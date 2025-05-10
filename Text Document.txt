@@ -1,0 +1,30 @@
+src/
+├── components/
+│   ├── Header.jsx
+│   ├── Footer.jsx
+│   ├── PromoSection.jsx
+│   ├── MenuSection.jsx
+│   ├── Advantages.jsx
+│   ├── Calculator.jsx
+│   ├── OrderButtons.jsx
+│   ├── Feedback.jsx
+│   ├── PackageSelection.jsx
+│   ├── DeliveryForm.jsx
+│   ├── OrderSummary.jsx
+│   ├── Payment.jsx
+│   ├── CookieBanner.jsx
+│   ├── Modal.jsx
+│   └── PaymentForm.jsx
+├── hooks/
+│   ├── useOrder.js
+│   ├── useForm.js
+│   ├── useDiscount.js
+│   └── useCookieConsent.js
+├── pages/
+│   ├── MenuPage.jsx
+│   ├── StandardMenuPage.jsx
+│   ├── HomePage.jsx
+│   ├── SuccessPage.jsx
+│   └── CancelPage.jsx
+├── App.js
+└── index.js

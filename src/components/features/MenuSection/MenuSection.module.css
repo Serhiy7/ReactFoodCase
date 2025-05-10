@@ -1,0 +1,62 @@
+.section {
+    padding-top: 0;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .title {
+    margin-bottom: 25px;
+    text-align: center;
+  }
+  
+  .tabButtons {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 5px;
+    padding-bottom: 20px;
+  }
+  
+  .tabButton {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .tabButton.active {
+    background-color: #3498db;
+    color: white;
+  }
+  
+  .mealTypeButtons {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .mealButton {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .mealButton.active {
+    background-color: #2ecc71;
+    color: white;
+  }
+  
+  .menuContainer {
+    display: none; /* Будет управляться через JS */
+  }
+  
+  .menuContainer.visible {
+    display: block;
+  }

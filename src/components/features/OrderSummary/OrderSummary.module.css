@@ -1,0 +1,22 @@
+.summary {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .heading {
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    color: #2c3e50;
+  }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+  }
+  
+  .grid p {
+    margin: 5px 0;
+  }
