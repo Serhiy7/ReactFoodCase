@@ -2,8 +2,8 @@ import React from 'react';
 import Header from '../components/Header';
 import PromoSection from '../components/PromoSection';
 import MenuSection from '../components/MenuSection';
-import Advantages from '../components/Advantages';
-import Calculator from '../components/Calculator';
+import Advantages from '../../components/Advantages';
+import Calculator from '../../components/Calculator';
 import OrderButtons from '../components/OrderButtons';
 import Footer from '../components/Footer';
 

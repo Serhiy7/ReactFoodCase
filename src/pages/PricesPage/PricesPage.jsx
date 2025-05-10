@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import PriceList from '../components/PriceList';
-import Calculator from '../components/Calculator';
+import Calculator from '../../components/Calculator';
 
 const PricesPage = () => {
   return (
