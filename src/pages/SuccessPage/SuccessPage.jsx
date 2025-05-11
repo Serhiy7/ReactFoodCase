@@ -1,11 +1,11 @@
 import React from 'react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import MainLayout from "../../components/layouts/MainLayout";
+
 
 const SuccessPage = () => {
   return (
     <div>
-      <Header />
+      <MainLayout />
       <main className="page-main">
         <div className="container">
           <div className="info-block">
@@ -26,7 +26,7 @@ const SuccessPage = () => {
           </div>
         </div>
       </main>
-      <Footer />
+      <MainLayout />
     </div>
   );
 };

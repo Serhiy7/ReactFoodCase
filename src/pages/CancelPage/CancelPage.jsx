@@ -1,5 +1,5 @@
 import React from 'react';
-import MainLayout from '@components/layouts/MainLayout';
+import MainLayout from "../../components/layouts/MainLayout";
 import styles from './CancelPage.module.css';
 
 const CancelPage = () => {

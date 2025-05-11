@@ -1,17 +1,12 @@
-import React from 'react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import FeedbackForm from '../components/FeedbackForm';
+import React from "react";
+import MainLayout from "../../components/layouts/MainLayout"; // Исправленный путь
+import FeedbackForm from "../../components/features/FeedbackForm/FeedbackForm";
 
 const FeedbackPage = () => {
   return (
-    <div>
-      <Header />
-      <main className="page-main">
-        <FeedbackForm />
-      </main>
-      <Footer />
-    </div>
+    <MainLayout>
+      <FeedbackForm />
+    </MainLayout>
   );
 };
 

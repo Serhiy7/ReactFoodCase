@@ -1,6 +1,6 @@
 import React from "react";
 import { useCalculatorForm } from "./useCalculatorForm";
-import Modal from "../ui/Modal/Modal";
+import Modal from "../../ui/Modal/Modal"; 
 import styles from "./Calculator.module.css";
 
 const Calculator = () => {

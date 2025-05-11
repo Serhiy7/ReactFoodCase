@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import styles from './Modal.module.css';
-import CloseIcon from '../../assets/icons/close.svg';
+import React, { useEffect } from "react";
+import PropTypes from "prop-types";
+import styles from "./Modal.module.css";
+// import CloseIcon from '../../assets/icons/close.svg';
 
 const Modal = ({ isOpen, onClose, children }) => {
   useEffect(() => {
-    const handleEscape = (e) => e.key === 'Escape' && onClose();
-    if (isOpen) document.addEventListener('keydown', handleEscape);
-    return () => document.removeEventListener('keydown', handleEscape);
+    const handleEscape = (e) => e.key === "Escape" && onClose();
+    if (isOpen) document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
   }, [isOpen, onClose]);
 
   if (!isOpen) return null;

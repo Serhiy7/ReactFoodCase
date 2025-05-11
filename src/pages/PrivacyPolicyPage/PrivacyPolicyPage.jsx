@@ -1,16 +1,15 @@
 import React from 'react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import PrivacyPolicy from '../components/PrivacyPolicy';
+import MainLayout from "../../components/layouts/MainLayout";
+import PrivacyPolicy from '../../components/features/PrivacyPolicy/PrivacyPolicy';
 
 const PrivacyPolicyPage = () => {
   return (
     <div>
-      <Header />
+      <MainLayout />
       <main className="page-main">
         <PrivacyPolicy />
       </main>
-      <Footer />
+      <MainLayout />
     </div>
   );
 };

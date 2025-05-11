@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useOrder } from '../hooks/useOrder';
+import { useOrder } from '../../../hooks/useOrder';
 import styles from './OrderSummary.module.css';
 
 const OrderSummary = () => {

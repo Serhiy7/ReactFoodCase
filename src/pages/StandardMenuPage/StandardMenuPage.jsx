@@ -1,12 +1,12 @@
 import React from "react";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import PackageSelection from "../components/PackageSelection";
-import DeliveryForm from "../components/DeliveryForm";
-import OrderSummary from "../components/OrderSummary";
-import Payment from "../components/Payment";
+import MainLayout from "../../components/layouts/MainLayout";
+
+import PackageSelection from "../../components/features/PackageSelection/PackageSelection";
+import DeliveryForm from "../../components/features/DeliveryForm/DeliveryForm";
+import OrderSummary from "../../components/features/OrderSummary/OrderSummary";
+import Payment from "../../components/features/Payment/Payment";
 import CookieBanner from "../../components/CookieBanner";
-import Modal from "../components/Modal";
+import Modal from "../../components/ui/Modal/Modal";
 import useOrder from "../../hooks/useOrder";
 
 const StandardMenuPage = () => {
@@ -28,7 +28,7 @@ const StandardMenuPage = () => {
 
   return (
     <div>
-      <Header />
+      <MainLayout />
       <main className="page-main">
         <div className="container">
           <h1 className="page-title">Złóż zamówienie</h1>
@@ -69,7 +69,7 @@ const StandardMenuPage = () => {
         </div>
       </main>
       <CookieBanner />
-      <Footer />
+      <MainLayout />
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <div className="calc-modal__title">
           Wybierz datę dostawy dla wszystkich paczek

@@ -1,16 +1,11 @@
-import React from 'react';
-import { useFeedbackForm } from './useFeedbackForm';
-import Modal from '../ui/Modal/Modal'; // Используем общий Modal
-import styles from './FeedbackForm.module.css';
+import React from "react";
+import { useFeedbackForm } from "./useFeedbackForm";
+import Modal from "../../ui/Modal/Modal"; // Используем общий Modal
+import styles from "./FeedbackForm.module.css";
 
 const FeedbackForm = () => {
-  const {
-    formData,
-    errors,
-    isSubmitting,
-    handleChange,
-    handleSubmit,
-  } = useFeedbackForm();
+  const { formData, errors, isSubmitting, handleChange, handleSubmit } =
+    useFeedbackForm();
   const [showModal, setShowModal] = useState(false);
 
   const onSubmit = async (e) => {

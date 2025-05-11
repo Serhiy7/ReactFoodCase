@@ -1,6 +1,6 @@
 import React from "react";
-import Header from "../Header";
-import Footer from "../Footer";
+import Header from "./Header/Header";  // Путь относительно MainLayout.jsx
+import Footer from "./Footer/Footer";  // Путь относительно MainLayout.jsx
 
 const MainLayout = ({ children }) => {
   return (

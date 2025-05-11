@@ -1,19 +1,19 @@
-import React from 'react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import PriceList from '../components/PriceList';
-import Calculator from '../../components/Calculator';
+import React from "react";
+import MainLayout from "../../components/layouts/MainLayout";
+
+import PriceList from "../../components/features/PriceList/PriceList";
+import Calculator from "../../components/features/Calculator/Calculator";
 
 const PricesPage = () => {
   return (
     <div>
-      <Header />
+      <MainLayout />
       <main className="page-main">
         <h1 className="page-title">Cennic uslug cateringowych</h1>
         <PriceList />
         <Calculator />
       </main>
-      <Footer />
+      <MainLayout />
     </div>
   );
 };

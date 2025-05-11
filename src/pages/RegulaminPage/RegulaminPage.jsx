@@ -1,16 +1,15 @@
-import React from 'react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import Regulamin from '../components/Regulamin';
+import React from "react";
+import MainLayout from "../../components/layouts/MainLayout";
+import Regulamin from "../../components/features/Regulamin/Regulamin";
 
 const RegulaminPage = () => {
   return (
     <div>
-      <Header />
+      <MainLayout />
       <main className="page-main">
         <Regulamin />
       </main>
-      <Footer />
+      <MainLayout />
     </div>
   );
 };
