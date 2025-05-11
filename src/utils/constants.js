@@ -1,7 +1,18 @@
-export const ADVANTAGES_DATA = [
-    {
-      icon: '<svg>...</svg>', // Замените на реальный SVG
-      text: "Bezpłatna dostawa na terenie miasta Kraków"
-    },
-    // Остальные преимущества...
-  ];
+// src/utils/constants.js
+export const HEADER_LINKS = [
+  {
+    label: "Главная",
+    path: "/",
+    isAnchor: false,
+  },
+  {
+    label: "Услуги",
+    path: "/services",
+    isAnchor: false,
+  },
+  {
+    label: "Контакты",
+    path: "/contacts",
+    isAnchor: false,
+  },
+];

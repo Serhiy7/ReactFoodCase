@@ -5,7 +5,7 @@ import PromoSection from "../../components/features/PromoSection/PromoSection";
 import MenuSection from "../../components/features/MenuSection/MenuSection";
 import Advantages from "../../components/features/Advantages/Advantages";
 import Calculator from "../../components/features/Calculator/Calculator";
-import OrderButtons from "../../components/featuresOrderButtons";
+// import OrderButtons from "../../components/featuresOrderButtons";
 
 const HomePage = () => {
   return (
@@ -22,7 +22,7 @@ const HomePage = () => {
           <Calculator />
         </div>
       </section>
-      <OrderButtons />
+      {/* <OrderButtons /> */}
       {/* Feedback component would go here if separate */}
       <MainLayout />
     </>

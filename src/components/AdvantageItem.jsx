@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styles from "./Advantages.module.css";
+// import styles from "./Advantages.module.css";
 
 const AdvantageItem = ({ icon, text }) => (
   <div className={styles.item}>

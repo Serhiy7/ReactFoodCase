@@ -1,27 +1,37 @@
-import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import styles from './Footer.module.css';
-import { FOOTER_LINKS, PAYMENT_METHODS, SOCIAL_LINKS } from './constants';
-import EmailIcon from '../../assets/icons/email.svg'; // Пример импорта SVG
-import InstagramIcon from '../../assets/icons/instagram.svg';
+import React from "react";
+import { Link, useLocation } from "react-router-dom";
+import styles from "./Footer.module.css";
+import { FOOTER_LINKS, PAYMENT_METHODS, SOCIAL_LINKS } from "./constants";
+// import EmailIcon from "../../assets/icons/email.svg"; // Пример импорта SVG
+// import InstagramIcon from '../../assets/icons/instagram.svg';
 
 const Footer = () => {
   const location = useLocation();
-  const isHomePage = location.pathname === '/' || location.pathname.endsWith('/index.php');
+  const isHomePage =
+    location.pathname === "/" || location.pathname.endsWith("/index.php");
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className={styles.footer} itemScope itemType="http://schema.org/Organization">
+    <footer
+      className={styles.footer}
+      itemScope
+      itemType="http://schema.org/Organization"
+    >
       <div className={styles.container}>
         <div className={styles.leftSection}>
           <div className={styles.logoWrapper}>
-            <img src="/assets/img/logo-w.png" alt="FoodCase Logo" className={styles.logo} />
+            <img
+              src="/assets/img/logo-w.png"
+              alt="FoodCase Logo"
+              className={styles.logo}
+            />
             <p className={styles.slogan}>
               Nasza firma zapewnia wygodną dostawę gotowych dań do Twojego domu
             </p>
           </div>
           <div className={styles.contact}>
-            Email: <a href="mailto:biuro@foodcasepl.com">biuro@foodcasepl.com</a>
+            Email:{" "}
+            <a href="mailto:biuro@foodcasepl.com">biuro@foodcasepl.com</a>
           </div>
         </div>
 
@@ -59,7 +69,10 @@ const Footer = () => {
           <div className={styles.column}>
             <h3 className={styles.title}>Kontakt:</h3>
             <div className={styles.socials}>
-              <a href="mailto:biuro@foodcasepl.com" className={styles.socialLink}>
+              <a
+                href="mailto:biuro@foodcasepl.com"
+                className={styles.socialLink}
+              >
                 <EmailIcon className={styles.socialIcon} />
               </a>
               <a
@@ -76,7 +89,8 @@ const Footer = () => {
       </div>
 
       <div className={styles.copyright}>
-        &copy; {currentYear} <span itemProp="name">FoodCase</span>. Wszelkie prawa zastrzeżone.
+        &copy; {currentYear} <span itemProp="name">FoodCase</span>. Wszelkie
+        prawa zastrzeżone.
       </div>
     </footer>
   );

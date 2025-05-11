@@ -1,14 +1,15 @@
-import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import styles from './Header.module.css';
-import { HEADER_LINKS } from './constants';
-import MenuIcon from '../../assets/icons/menu.svg';
-import { useHeader } from './useHeader';
+import React from "react";
+import { Link, useLocation } from "react-router-dom";
+import styles from "./Header.module.css";
+import { HEADER_LINKS } from "./constants";
+// import MenuIcon from '../../assets/icons/menu.svg';
+import { useHeader } from "./useHeader";
 
 const Header = () => {
   const { dropdownOpen, toggleDropdown, handleScrollClick } = useHeader();
   const location = useLocation();
-  const isHomePage = location.pathname === '/' || location.pathname.endsWith('/index.php');
+  const isHomePage =
+    location.pathname === "/" || location.pathname.endsWith("/index.php");
 
   return (
     <>
@@ -16,7 +17,11 @@ const Header = () => {
         Dla standardowego menu: Zamów na 20 dni lub więcej i uzyskaj rabat...
       </div>
 
-      <header className={styles.header} itemScope itemType="http://schema.org/WPHeader">
+      <header
+        className={styles.header}
+        itemScope
+        itemType="http://schema.org/WPHeader"
+      >
         <div className={styles.container}>
           <Link to="/index.php" className={styles.logo}>
             <img src="/assets/img/logo.png" alt="FoodCase Logo" />
