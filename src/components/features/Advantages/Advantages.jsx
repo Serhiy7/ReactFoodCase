@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Advantages.module.css";
-// import { ADVANTAGES_DATA } from "../../../utils/constants";
+// import { ADVANTAGES_DATA } from "../../../utils/constants"; sllojno
 import AdvantageItem from "../../AdvantageItem";
 
 const Advantages = () => (
