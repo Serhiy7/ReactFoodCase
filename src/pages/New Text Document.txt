@@ -1,0 +1,8 @@
+src/
+├── pages/
+│   ├── Home/                  # Главная страница
+│   ├── CalorieMealPlan/       # Заказ по калориям
+│   ├── MenuSelection/         # Заказ по выбору меню
+│   ├── Pricing/               # Страница с ценами
+│   ├── PrivacyPolicy/         # Политика конфиденциальности
+│   └── RegulaminPage/         # Regulamin (Условия обслуживания)

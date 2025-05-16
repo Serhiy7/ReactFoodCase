@@ -1,0 +1,10 @@
+src/
+├── layouts/                # Компоненты макета
+│   ├── Header/
+│   │   ├── Header.jsx      # Компонент шапки
+│   │   └── Header.css      # Стили шапки
+│   ├── Footer/
+│   │   ├── Footer.jsx      # Компонент футера
+│   │   └── Footer.css
+│   ├── index.js            # Реэкспорт Header/Footer
+│   └── MainLayout.jsx      # Главный макет

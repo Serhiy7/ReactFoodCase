@@ -1,14 +1,11 @@
-import React from "react";
-import Header from "./Header/Header";  // Путь относительно MainLayout.jsx
-import Footer from "./Footer/Footer";  // Путь относительно MainLayout.jsx
+// layouts/MainLayout.jsx
+import { Header, Footer } from "."; // Импорт из текущей папки (index.js)
 
 const MainLayout = ({ children }) => {
   return (
-    <div>
+    <div className="app">
       <Header />
-      <main className="page-main">
-        <div className="container">{children}</div>
-      </main>
+      <main>{children}</main> {/* Сюда подставляется контент страницы */}
       <Footer />
     </div>
   );
