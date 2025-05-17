@@ -1,0 +1,39 @@
+/* MobileMenuButton.module.css */
+
+.mobileMenuButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 0;
+  user-select: none;
+  position: relative;
+  z-index: 1000;
+}
+
+.mobileMenuButton__bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  margin: 4px 0;
+  background-color: #333;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Пример анимации для открытия/закрытия меню */
+.mobileMenuButton.open .mobileMenuButton__bar:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.mobileMenuButton.open .mobileMenuButton__bar:nth-child(2) {
+  opacity: 0;
+}
+
+.mobileMenuButton.open .mobileMenuButton__bar:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}

@@ -1,0 +1,28 @@
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: center;
+}
+
+.title {
+  margin-bottom: 20px;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.socials {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.socialLink {
+  color: inherit;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.socialLink:hover {
+  text-decoration: underline;
+}

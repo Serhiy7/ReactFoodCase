@@ -1,0 +1,18 @@
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  user-select: none;
+}
+
+.logoImage {
+  height: 50px;
+  width: auto;
+  transition: transform 0.3s ease;
+  pointer-events: none;
+}
+
+.logo:hover .logoImage,
+.logo:focus-visible .logoImage {
+  transform: scale(1.05);
+}

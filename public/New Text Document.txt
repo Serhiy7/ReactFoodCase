@@ -1,0 +1,108 @@
+my-react-project/
+│
+├── public/
+│   ├── index.html
+│   └── assets/
+│       └── img/
+│           └── promo/
+│               └── 1.png
+│
+├── src/
+│
+│   ├── components/
+│   │
+│   │   ├── HomePageFeatures/
+│   │   │
+│   │   │   └── Advantages/
+│   │   │       ├── Advantages.jsx
+│   │   │       ├── Advantages.module.css
+│   │   │       └── AdvantageItem/
+│   │   │           ├── AdvantageItem.jsx
+│   │   │           └── AdvantageItem.module.css
+│   │   │
+│   │   ├── CalorieCalculator/
+│   │   │   ├── CalorieCalculator.jsx
+│   │   │   ├── CalorieCalculator.module.css
+│   │   │   ├── CalculatorModal/
+│   │   │   │   ├── CalculatorModal.jsx
+│   │   │   │   └── CalculatorModal.module.css
+│   │   │   ├── InputRange.jsx
+│   │   │   ├── InputRange.module.jsx
+│   │   │   ├── SelectField.jsx
+│   │   │   ├── SelectField.module.jsx
+│   │   │   └── useCalorieForm.js
+│   │   │
+│   │   ├── Feedback/
+│   │   │   ├── Feedback.jsx
+│   │   │   └── Feedback.module.css
+│   │   │
+│   │   ├── MenuSection/
+│   │   │   ├── MenuSection.jsx
+│   │   │   └── MenuSection.module.css
+│   │   │
+│   │   ├── Order/
+│   │   │   ├── OrderButton.jsx
+│   │   │   ├── OrderButton.module.css
+│   │   │   ├── OrderOptions.jsx
+│   │   │   └── OrderOptions.module.css
+│   │   │
+│   │   └── Promo/
+│   │       ├── Promo.jsx
+│   │       └── Promo.module.css
+│
+│   ├── layouts/
+│   │
+│   │   ├── Header/
+│   │   │   ├── constants.js
+│   │   │   ├── DropdownOrder.jsx
+│   │   │   ├── DropdownOrder.module.css
+│   │   │   ├── Header.jsx
+│   │   │   ├── Header.module.css
+│   │   │   ├── Logo.jsx
+│   │   │   ├── Logo.module.css
+│   │   │   ├── MobileMenuButton.jsx
+│   │   │   ├── MobileMenuButton.module.css
+│   │   │   ├── NavMenu.jsx
+│   │   │   └── NavMenu.module.css
+│   │   │
+│   │   ├── Footer/
+│   │   │   ├── Footer.jsx
+│   │   │   ├── Footer.module.css
+│   │   │   ├── FooterNavigation.jsx
+│   │   │   ├── FooterNavigation.module.css
+│   │   │   ├── FooterPayments.jsx
+│   │   │   ├── FooterPayments.module.css
+│   │   │   ├── FooterContact.module.css
+│   │   │   └── FooterContact.jsx
+│   │   │
+│   │   └── index.js
+│
+│   ├── constants/
+│   │   └── footerData.js
+│
+│   ├── pages/
+│   │
+│   │   ├── Home/
+│   │   │   └── Home.jsx
+│   │
+│   │   ├── CalorieMealPlan/
+│   │   │   └── CalorieMealPlan.jsx
+│   │
+│   │   ├── MenuSelection/
+│   │   │   └── MenuSelection.jsx
+│   │
+│   │   ├── Pricing/
+│   │   │   └── Pricing.jsx
+│   │
+│   │   ├── PrivacyPolicy/
+│   │   │   └── PrivacyPolicy.jsx
+│   │
+│   │   └── RegulaminPage/
+│   │       └── RegulaminPage.jsx
+│
+│   ├── App.jsx
+│   ├── index.js
+│   └── styles/
+│       └── global.css
+│
+└── package.json

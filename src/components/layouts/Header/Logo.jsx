@@ -1,0 +1,24 @@
+import React from "react";
+import { Link } from "react-router-dom";
+import styles from "./Logo.module.css";
+
+/**
+ * Логотип с ссылкой на главную страницу
+ * @component
+ * @returns {JSX.Element}
+ */
+export const Logo = () => (
+  <Link
+    to="/"
+    className={styles.logo}
+    aria-label="Перейти на главную страницу"
+    tabIndex={0}
+  >
+    <img
+      src="/assets/img/logo.svg"
+      alt="Логотип сайта"
+      className={styles.logoImage}
+      draggable={false}
+    />
+  </Link>
+);

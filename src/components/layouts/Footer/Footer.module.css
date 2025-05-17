@@ -38,19 +38,9 @@
   font-size: 16px;
 }
 
-.footer__nav {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-  gap: 5px;
-}
 
-.footer__link:hover {
-  text-decoration: underline;
-}
+
+
 
 .footer__partners,
 .footer__socials {
@@ -104,10 +94,7 @@
     text-align: left;
   }
 
-  .footer__nav {
-    gap: 10px;
-    align-items: flex-start;
-  }
+  
 
   .footer__copyright {
     font-size: 18px;
