@@ -1,0 +1,32 @@
+/* Глобальные стили (можно добавить в основной CSS файл) */
+body {
+  font-family: Montserrat, sans-serif;
+  font-size: 18px;
+  line-height: 22px;
+  color: #000;
+  background: #f6f7fa;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #0056d3;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.container {
+  padding: 0 15px;
+  width: 100%;
+  max-width: 1470px;
+  margin: 0 auto;
+}

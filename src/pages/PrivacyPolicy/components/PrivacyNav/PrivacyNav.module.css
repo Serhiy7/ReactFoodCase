@@ -1,0 +1,29 @@
+.pageNav {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 0;
+  padding: 30px;
+  list-style-type: none;
+  position: sticky;
+  top: 120px;
+}
+
+.pageNav__link {
+  font-weight: 600;
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.pageNav__link:hover,
+.pageNav__link.active {
+  color: #0056d3;
+}
+
+@media (max-width: 992px) {
+  .pageNav {
+    padding: 20px;
+    position: static;
+  }
+}
