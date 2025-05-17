@@ -1,0 +1,67 @@
+.pageMain {
+  padding: 35px 0;
+}
+
+.pageTitle {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.priceList {
+  padding: 0 0 35px 0;
+}
+
+.container {
+  padding: 0 15px;
+  width: 100%;
+  max-width: 1470px;
+  margin: 0 auto;
+}
+
+.orderButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 20px;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  color: #fff;
+  background: #0056d3;
+  border: 1px solid #0056d3;
+  transition: 0.5s;
+  margin: 30px auto 0;
+  text-decoration: none;
+}
+
+.orderButton:hover {
+  cursor: pointer;
+  transition: 0.5s;
+  color: #000;
+  background: rgba(0, 0, 0, 0);
+}
+
+.sectionWhite {
+  background: #fff;
+  padding: 35px 0;
+}
+
+@media (min-width: 993px) {
+  .pageMain {
+    padding: 70px 0;
+  }
+
+  .pageTitle {
+    margin-bottom: 50px;
+  }
+
+  .priceList {
+    padding: 0 0 70px 0;
+  }
+
+  .orderButton {
+    font-size: 18px;
+    font-weight: 700;
+  }
+}

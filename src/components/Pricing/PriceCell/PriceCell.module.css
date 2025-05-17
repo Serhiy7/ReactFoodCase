@@ -1,0 +1,19 @@
+.price {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 16px;
+  justify-content: center;
+}
+
+.priceOld {
+  font-weight: 500;
+  color: red;
+  text-decoration: line-through;
+}
+
+@media (min-width: 1201px) {
+  .price {
+    font-size: 20px;
+  }
+}
