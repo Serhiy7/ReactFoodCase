@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import styles from "./CalorieCalculator.module.css";
 
 import CalculatorModal from "./CalculatorModal/CalculatorModal";
-import InputRange from "./InputRange";
-import SelectField from "./SelectField";
+import InputRange from "./InputRange/InputRange";
+import SelectField from "./SelectField/SelectField";
 import useCalorieForm from "./useCalorieForm";
 
 const CalorieCalculator = () => {
