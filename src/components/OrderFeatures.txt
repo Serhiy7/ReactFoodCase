@@ -1,0 +1,48 @@
+src/
+├── pages/
+│   └── OrderPage/
+│       ├── OrderPage.jsx          # Главная страница заказа
+│       └── OrderPage.module.css
+│
+└── components/
+    └── OrderFeatures/
+        ├── PackageWidget/         # Виджет отдельного пакета
+        │   ├── PackageWidget.jsx
+        │   ├── PackageWidget.module.css
+        │   └── usePackageWidget.js
+        │
+        ├── PackageSelection/      # Блок выбора пакетов
+        │   ├── PackageSelection.jsx
+        │   └── PackageSelection.module.css
+        │
+        ├── DatePickerModal/       # Модалка выбора дат
+        │   ├── DatePickerModal.jsx
+        │   └── DatePickerModal.module.css
+        │
+        ├── ModalManager/          # Управление модальными окнами
+            ├── ModalManager.jsx    # Главный файл с экспортами
+            ├── useModal.js         # Хук для использования контекста
+        │   └── ModalManager.module.css
+        │
+        ├── OrderTotal/            # Блок итоговой стоимости
+        │   ├── OrderTotal.jsx
+        │   └── OrderTotal.module.css
+        │
+        ├── DeliveryForm/          # Форма доставки
+        │   ├── DeliveryForm.jsx
+        │   └── DeliveryForm.module.css
+        │
+        ├── OrderSummary/          # Сводка заказа
+        │   ├── OrderSummary.jsx
+        │   └── OrderSummary.module.css
+        │
+        ├── StepsIndicator/        # Индикатор шагов
+        │   ├── StepsIndicator.jsx
+        │   └── StepsIndicator.module.css
+        │
+        ├── MultiStepForm/         # Управление многошаговой формой
+        │   ├── MultiStepForm.jsx
+        │   ├── MultiStepForm.module.css
+        │   └── useMultiStepForm.js
+        │
+        └── index.js               # Экспорт компонентов

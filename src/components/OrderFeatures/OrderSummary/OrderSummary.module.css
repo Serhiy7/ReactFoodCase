@@ -1,0 +1,49 @@
+.totalInfo {
+  width: 100%;
+}
+
+.totalInfoRow {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.totalInfoRow:not(:last-child) {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 20px;
+}
+
+.totalInfoHeading {
+  font-weight: 600;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.totalInfoGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.totalInfoField {
+  margin-bottom: 5px;
+}
+
+.totalInfoField strong {
+  font-weight: 600;
+}
+
+.totalInfoField:last-child {
+  margin-bottom: 0;
+}
+
+@media (min-width: 767px) {
+  .totalInfoGrid {
+    display: grid;
+    gap: 15px;
+    grid-template-columns: 1fr 1fr;
+  }
+}

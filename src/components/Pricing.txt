@@ -1,0 +1,20 @@
+src/
+├── components/
+│   └── Pricing/
+│       ├── PriceTable/
+│       │   ├── PriceTable.jsx
+│       │   └── PriceTable.module.css
+│       ├── PriceRow/
+│       │   ├── PriceRow.jsx
+│       │   └── PriceRow.module.css
+│       ├── PriceCell/
+│       │   ├── PriceCell.jsx
+│       │   └── PriceCell.module.css
+│       └── PriceCalculator/
+│           ├── PriceCalculator.jsx
+│           └── PriceCalculator.module.css
+│
+└── pages/
+    └── PricingPage/
+        ├── PricingPage.jsx
+        └── PricingPage.module.css

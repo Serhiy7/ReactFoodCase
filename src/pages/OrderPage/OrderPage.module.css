@@ -1,0 +1,49 @@
+.orderPage {
+  background: #f6f7fa;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.pageMain {
+  padding: 35px 0;
+}
+
+.container {
+  padding: 0 15px;
+  width: 100%;
+  max-width: 1470px;
+  margin: 0 auto;
+}
+
+.pageTitle {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 35px;
+  line-height: 40px;
+  font-weight: 700;
+}
+
+.pageGrid {
+  display: flex;
+  gap: 15px;
+  flex-direction: column;
+}
+
+@media (min-width: 1201px) {
+  .pageGrid {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 30px;
+  }
+
+  .pageMain {
+    padding: 70px 0;
+  }
+
+  .pageTitle {
+    font-size: 50px;
+    line-height: 55px;
+    margin-bottom: 50px;
+  }
+}
