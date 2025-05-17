@@ -1,0 +1,30 @@
+.hidden {
+  display: flex;
+  justify-content: space-evenly;
+  padding-left: 15px;
+  padding-right: 15px;
+  gap: 5px;
+  background-color: #fff;
+}
+
+.btn-centre {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 20px;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  color: #fff;
+  background: #0056d3;
+  border: 1px solid #0056d3;
+  transition: 0.5s;
+}
+
+.btn-centre:hover {
+  cursor: pointer;
+  transition: 0.5s;
+  color: #000;
+  background: rgba(0, 0, 0, 0);
+}

@@ -1,0 +1,19 @@
+.advants {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+@media (min-width: 767px) {
+  .advants {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1201px) {
+  .advants {
+    gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

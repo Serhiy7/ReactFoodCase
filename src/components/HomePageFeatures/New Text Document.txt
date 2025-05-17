@@ -65,16 +65,15 @@ my-react-project/
 │   │   └── RegulaminPage/
 │   │       ├── RegulaminPage.jsx
 │   │       └── RegulaminPage.module.css
-│   │
-│   ├── layouts/
-│   │   ├── Header/
-│   │   │   ├── Header.jsx
-│   │   │   └── Header.module.css
-│   │   ├── Footer/
-│   │   │   ├── Footer.jsx
-│   │   │   └── Footer.module.css
-│   │   ├── index.js
-│   │   └── MainLayout.jsx
+├── layouts/                # Компоненты макета
+│   ├── Header/
+│   │   ├── Header.jsx      # Компонент шапки
+│   │   └── Header.css      # Стили шапки
+│   ├── Footer/
+│   │   ├── Footer.jsx      # Компонент футера
+│   │   └── Footer.css
+│   ├── index.js            # Реэкспорт Header/Footer
+│   └── MainLayout.jsx      # Главный макет
 │   │
 │   ├── App.jsx
 │   ├── index.js

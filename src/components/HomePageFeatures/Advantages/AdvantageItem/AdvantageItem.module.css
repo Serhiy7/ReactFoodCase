@@ -1,0 +1,42 @@
+.advants__item {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  padding: 10px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.13);
+}
+
+.advants__icon {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  padding: 7px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #0056d3 0, #2e7beb 100%);
+}
+
+.advants__icon img,
+.advants__icon svg {
+  max-width: 100%;
+}
+
+@media (min-width: 767px) {
+  .advants__item {
+    padding: 20px 15px;
+    font-weight: 600;
+    font-size: 17px;
+  }
+
+  .advants__icon {
+    width: 60px;
+    height: 60px;
+  }
+}
