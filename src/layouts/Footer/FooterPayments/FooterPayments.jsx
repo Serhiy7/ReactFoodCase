@@ -1,4 +1,4 @@
-import { PAYMENT_METHODS } from "../../../../constants/footerData";
+import { PAYMENT_METHODS } from "../../../constants/footerData";
 import styles from "./FooterPayments.module.css";
 
 const FooterPayments = () => (

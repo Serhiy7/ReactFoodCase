@@ -46,10 +46,38 @@ my-react-project/
 │   │   │   ├── OrderOptions.jsx
 │   │   │   └── OrderOptions.module.css
 │   │   │
-│   │   └── Promo/
-│   │       ├── Promo.jsx
-│   │       └── Promo.module.css
+│   │   ├── Promo/
+│   │   │   ├── Promo.jsx
+│   │   │   └── Promo.module.css
+│   │   │
+│   │   └── PrivacyPolicyFeatures/
+│   │       ├── index.js                 # Новый файл для реэкспорта
+│   │       ├── PrivacyArticle/
+│   │       │   ├── PrivacyArticle.jsx
+│   │       │   └── PrivacyArticle.module.css
+│   │       └── PrivacyNav/
+│   │           ├── PrivacyNav.jsx
+│   │           └── PrivacyNav.module.css
 │
+
+src/
+├── components/
+│   └── RegulaminFeatures/
+│       ├── RegulaminArticle/
+│       │   ├── RegulaminArticle.jsx
+│       │   └── RegulaminArticle.module.css
+│       ├── RegulaminNav/
+│       │   ├── RegulaminNav.jsx
+│       │   └── RegulaminNav.module.css
+│       └── index.js
+
+
+└── pages/
+    └── RegulaminPage/
+        ├── RegulaminPage.jsx
+        └── RegulaminPage.module.css
+
+
 │   ├── layouts/
 │   │
 │   │   ├── Header/

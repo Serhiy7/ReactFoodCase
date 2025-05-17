@@ -4,7 +4,7 @@ import Advantages from "../../components/HomePageFeatures/Advantages/Advantages"
 import CalorieCalculator from "../../components/HomePageFeatures/CalorieCalculator/CalorieCalculator";
 import OrderButton from "../../components/HomePageFeatures/Order/OrderButton";
 import OrderOptions from "../../components/HomePageFeatures/Order/OrderOptions";
-import { Footer, Header } from "../../components/layouts/index";
+import { Header, Footer } from "@/layouts/index.js";
 import Feedback from "../../components/HomePageFeatures/Feedback/Feedback";
 
 const HomePage = () => {

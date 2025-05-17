@@ -1,81 +1,78 @@
-/* Основные стили страницы */
-.page-main {
+.pageWrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f6f7fa;
+}
+
+.pageMain {
+  flex: 1;
   padding: 35px 0;
 }
 
-.container {
+.pageContainer {
   padding: 0 15px;
   width: 100%;
   max-width: 1470px;
   margin: 0 auto;
 }
 
-.page-title {
+.pageTitle {
   text-align: center;
   margin-bottom: 30px;
   font-size: 35px;
   line-height: 40px;
   font-weight: 700;
+  color: #000;
 }
 
-/* Сетка страницы */
-.page-grid {
+.contentGrid {
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
-.page-grid.revert {
-  flex-direction: column-reverse;
-}
-
-.page-grid__main {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+.mainContent {
+  flex: 1;
   padding: 25px;
   border-radius: 15px;
   background: #fff;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
-.page-grid__aside {
-  flex-shrink: 0;
+.sidebar {
+  width: 100%;
   background: #fff;
   border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
-/* Адаптация для десктопов */
 @media (min-width: 1201px) {
-  .page-main {
+  .pageMain {
     padding: 70px 0;
   }
 
-  .page-title {
+  .pageTitle {
     font-size: 50px;
     line-height: 55px;
     margin-bottom: 50px;
   }
 
-  .page-grid {
-    flex-direction: row;
-    align-items: flex-start;
+  .contentGrid {
+    flex-direction: row-reverse;
     gap: 30px;
   }
 
-  .page-grid.revert {
-    flex-direction: row-reverse;
-  }
-
-  .page-grid__aside {
+  .sidebar {
     width: 365px;
     position: sticky;
     top: 130px;
+    align-self: flex-start;
   }
 }
 
-/* Скрытие на мобильных */
 @media (max-width: 992px) {
-  .hidden-mob {
+  .sidebar {
     display: none;
   }
 }

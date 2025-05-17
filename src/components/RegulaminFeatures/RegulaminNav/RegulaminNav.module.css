@@ -1,0 +1,55 @@
+.navContainer {
+  padding: 30px;
+  position: relative;
+}
+
+.navTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #000;
+}
+
+.navList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.navItem {
+  position: relative;
+  padding-left: 15px;
+}
+
+.navItem::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  background-color: #0056d3;
+  border-radius: 50%;
+}
+
+.navLink {
+  color: #4a4a4a;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+  display: block;
+  padding: 5px 0;
+}
+
+.navLink:hover {
+  color: #0056d3;
+}
+
+.navLink:focus {
+  outline: 2px solid #0056d3;
+  outline-offset: 2px;
+}

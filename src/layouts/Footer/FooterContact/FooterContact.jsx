@@ -1,4 +1,4 @@
-import { SOCIAL_LINKS } from "../../../../constants/footerData";
+import { SOCIAL_LINKS } from "../../../constants/footerData";
 // import { ReactComponent as EmailIcon } from "../../assets/icons/email.svg";
 // import { ReactComponent as InstagramIcon } from "../../assets/icons/instagram.svg";
 import styles from "./FooterContact.module.css";
