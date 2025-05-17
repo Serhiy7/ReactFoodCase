@@ -1,5 +1,5 @@
 import { PAYMENT_METHODS } from "../../../../constants/footerData";
-import styles from "./Footer.module.css";
+import styles from "./FooterPayments.module.css";
 
 const FooterPayments = () => (
   <div className={styles.column}>

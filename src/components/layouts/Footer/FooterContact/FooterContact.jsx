@@ -1,15 +1,15 @@
 import { SOCIAL_LINKS } from "../../../../constants/footerData";
 // import { ReactComponent as EmailIcon } from "../../assets/icons/email.svg";
 // import { ReactComponent as InstagramIcon } from "../../assets/icons/instagram.svg";
-import styles from "./Footer.module.css";
+import styles from "./FooterContact.module.css";
 
 const FooterContact = () => (
   <div className={styles.column}>
     <h3 className={styles.title}>Kontakt:</h3>
     <div className={styles.socials}>
       <a href={SOCIAL_LINKS.email} className={styles.socialLink}>
-         {/* <EmailIcon className={styles.socialIcon} /> */}
-  📧 Email
+        {/* <EmailIcon className={styles.socialIcon} /> */}
+        📧 Email
       </a>
       <a
         href={SOCIAL_LINKS.instagram}
@@ -18,7 +18,7 @@ const FooterContact = () => (
         className={styles.socialLink}
       >
         {/* <InstagramIcon className={styles.socialIcon} /> */}
-         📧 InstagramIcon
+        📧 InstagramIcon
       </a>
     </div>
   </div>

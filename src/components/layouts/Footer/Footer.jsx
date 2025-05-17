@@ -1,7 +1,7 @@
 import styles from "./Footer.module.css";
-import FooterNavigation from "./FooterNavigation";
-import FooterPayments from "./FooterPayments";
-import FooterContact from "./FooterContact";
+import FooterNavigation from "./FooterNavigation/FooterNavigation";
+import FooterPayments from "./FooterPayments/FooterPayments";
+import FooterContact from "./FooterContact/FooterContact";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();

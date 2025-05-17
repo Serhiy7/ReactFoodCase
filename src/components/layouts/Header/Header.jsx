@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import styles from "./Header.module.css";
-import { Logo } from "./Logo";
-import { NavMenu } from "./NavMenu";
-import { DropdownOrder } from "./DropdownOrder";
-import { MobileMenuButton } from "./MobileMenuButton";
+import { Logo } from "./Logo/Logo";
+import { NavMenu } from "./NavMenu/NavMenu";
+import { DropdownOrder } from "./DropdownOrder/DropdownOrder";
+import { MobileMenuButton } from "./MobileMenuButton/MobileMenuButton";
 
 /**
  * Основной Header сайта с адаптивной навигацией
