@@ -1,49 +1,34 @@
-import React, { useState } from 'react';
-import styles from './MultiStepForm.module.css';
-import { useMultiStepForm } from './useMultiStepForm';
+import React, { useState } from "react";
+import styles from "./MultiStepForm.module.css";
 
-const MultiStepForm = ({ children }) => {
-  const {
-    currentStep,
-    steps,
-    next,
-    prev,
-    goTo,
-    isFirstStep,
-    isLastStep
-  } = useMultiStepForm(children);
+const MultiStepForm = ({ children, initialStep = 0 }) => {
+  const [currentStep, setCurrentStep] = useState(initialStep);
+  const steps = React.Children.toArray(children);
+
+  const next = () => {
+    setCurrentStep((prev) => Math.min(prev + 1, steps.length - 1));
+  };
+
+  const prev = () => {
+    setCurrentStep((prev) => Math.max(prev - 1, 0));
+  };
 
   return (
     <div className={styles.multiStepForm}>
-      <div className={styles.stepsIndicator}>
-        {steps.map((step, index) => (
-          <button
-            key={index}
-            onClick={() => goTo(index)}
-            className={`${styles.step} ${currentStep === index ? styles.active : ''}`}
-          >
-            {index + 1}. {step.props.title}
-          </button>
-        ))}
-      </div>
-      
-      <div className={styles.formContent}>
-        {currentStep}
-      </div>
-      
-      <div className={styles.formControls}>
-        {!isFirstStep && (
-          <button type="button" onClick={prev} className={styles.prevButton}>
+      {steps[currentStep]}
+
+      <div className={styles.navigation}>
+        {currentStep > 0 && (
+          <button onClick={prev} className={styles.btn}>
             Wstecz
           </button>
         )}
-        
-        {!isLastStep ? (
-          <button type="button" onClick={next} className={styles.nextButton}>
+        {currentStep < steps.length - 1 ? (
+          <button onClick={next} className={styles.btn}>
             Dalej
           </button>
         ) : (
-          <button type="submit" className={styles.submitButton}>
+          <button type="submit" className={styles.btn}>
             Złóż zamówienie
           </button>
         )}

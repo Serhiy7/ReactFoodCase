@@ -1,0 +1,39 @@
+src/
+└── components/
+    └── MenuSelectionFeatures/
+        ├── MenuSelectionWidget/
+        │   ├── MenuSelectionWidget.jsx
+        │   ├── MenuSelectionWidget.module.css
+        │   └── useMenuSelection.js
+        ├── MealCategorySection/
+        │   ├── MealCategorySection.jsx
+        │   └── MealCategorySection.module.css
+        ├── MealItem/
+        │   ├── MealItem.jsx
+        │   └── MealItem.module.css
+        ├── WeightSelector/
+        │   ├── WeightSelector.jsx
+        │   └── WeightSelector.module.css
+        ├── DatePickerModal/
+        │   ├── DatePickerModal.jsx
+        │   └── DatePickerModal.module.css
+        ├── OrderSummary/
+        │   ├── OrderSummary.jsx
+        │   └── OrderSummary.module.css
+        ├── DeliveryForm/
+        │   ├── DeliveryForm.jsx
+        │   └── DeliveryForm.module.css
+        ├── StepsIndicator/
+        │   ├── StepsIndicator.jsx
+        │   └── StepsIndicator.module.css
+        ├── OrderTotal/
+        │   ├── OrderTotal.jsx
+        │   └── OrderTotal.module.css
+        └── index.js
+
+
+src/
+└── pages/
+    └── MenuSelectionPage/
+        ├── MenuSelectionPage.jsx       # Главный компонент страницы
+        └── MenuSelectionPage.module.css

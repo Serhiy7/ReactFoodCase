@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"; // Добавлен импорт useEffect
+import React, { useState, useEffect } from "react";
 import { useModal } from "../ModalManager/useModal";
 import AirDatepicker from "air-datepicker";
 import "air-datepicker/air-datepicker.css";
@@ -6,18 +6,21 @@ import styles from "./DatePickerModal.module.css";
 
 const DatePickerModal = () => {
   const { closeModal, modalProps } = useModal();
-  const { packageId, onSelectDates } = modalProps["date-picker"] || {};
-  const [selectedDates, setSelectedDates] = useState([]);
-
-  const handleConfirm = () => {
-    onSelectDates(selectedDates);
-    closeModal("date-picker");
-  };
+  const {
+    packageId,
+    initialDates = [],
+    onSelect,
+  } = modalProps["date-picker"] || {};
+  const [selectedDates, setSelectedDates] = useState(initialDates);
+  const datepickerRef = useRef(null);
 
   useEffect(() => {
-    const datepicker = new AirDatepicker("#datepicker", {
+    if (!datepickerRef.current) return;
+
+    const datepicker = new AirDatepicker(datepickerRef.current, {
       inline: true,
       multipleDates: true,
+      selectedDates: initialDates,
       minDate: new Date(),
       onSelect: ({ date }) => {
         setSelectedDates(Array.isArray(date) ? date : [date]);
@@ -25,15 +28,30 @@ const DatePickerModal = () => {
     });
 
     return () => datepicker.destroy();
-  }, []);
+  }, [initialDates]);
+
+  const handleConfirm = () => {
+    if (typeof onSelect === "function") {
+      onSelect(selectedDates);
+    }
+    closeModal("date-picker");
+  };
 
   return (
     <div className={styles.modalContent}>
       <h2>Wybierz daty dostawy dla pakietu #{packageId}</h2>
-      <div id="datepicker" className={styles.datepicker} />
-      <button onClick={handleConfirm} className={styles.confirmButton}>
-        Zatwierdź
-      </button>
+      <div ref={datepickerRef} className={styles.datepicker} />
+      <div className={styles.modalActions}>
+        <button
+          onClick={() => closeModal("date-picker")}
+          className={styles.cancelButton}
+        >
+          Anuluj
+        </button>
+        <button onClick={handleConfirm} className={styles.confirmButton}>
+          Zatwierdź
+        </button>
+      </div>
     </div>
   );
 };

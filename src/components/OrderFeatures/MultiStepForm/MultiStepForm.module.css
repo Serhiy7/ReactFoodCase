@@ -1,0 +1,34 @@
+.multiStepForm {
+  position: relative;
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.prevButton,
+.nextButton,
+.submitButton {
+  padding: 12px 24px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.prevButton {
+  background: #f0f0f0;
+  border: 1px solid #ddd;
+}
+
+.nextButton,
+.submitButton {
+  background: #006a23;
+  color: white;
+  border: none;
+}
+
+.nextButton:hover,
+.submitButton:hover {
+  background: #00561c;
+}

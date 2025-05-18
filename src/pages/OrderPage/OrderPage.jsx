@@ -1,81 +1,139 @@
-import React, { useState } from "react";
+import React, { useState, useCallback, useMemo } from "react";
 import styles from "./OrderPage.module.css";
+import { Header, Footer } from "../../layouts";
 import {
-  StepsIndicator,
+  MultiStepForm,
   PackageSelection,
   DeliveryForm,
   OrderSummary,
   OrderTotal,
+  ModalProvider,
 } from "../../components/OrderFeatures";
-import { Header, Footer } from "../../layouts";
 
 const OrderPage = () => {
-  const [orderData, setOrderData] = useState({
-    packages: [], // Массив выбранных пакетов с датами
-    delivery: {}, // Данные доставки
-    total: 0, // Общая сумма без скидки
-    discount: 0, // Сумма скидки
-    totalWithDiscount: 0, // Итоговая сумма
+  const [orderState, setOrderState] = useState({
+    packages: [],
+    delivery: {},
   });
 
-  // Обработчик выбора пакета и дат
-  const handlePackageSelect = (selectedPackage) => {
-    setOrderData((prev) => ({
-      ...prev,
-      packages: [...prev.packages, selectedPackage],
-      // Обновляем стоимость (примерная логика)
-      total: prev.total + selectedPackage.price * selectedPackage.dates.length,
-    }));
+  // Вынесем расчеты в отдельную функцию для лучшей читаемости
+  const calculateOrderTotals = (packages) => {
+    const totalDays = packages.reduce(
+      (sum, pkg) => sum + (pkg.dates?.length || 0),
+      0
+    );
+
+    const subtotal = packages.reduce(
+      (sum, pkg) => sum + (pkg.price || 0) * (pkg.dates?.length || 0),
+      0
+    );
+
+    // Определяем скидку на основе количества дней
+    const getDiscountPercent = (days) => {
+      if (days >= 28) return 7;
+      if (days >= 24) return 5;
+      if (days >= 20) return 4;
+      return 0;
+    };
+
+    const discountPercent = getDiscountPercent(totalDays);
+    const discountAmount = (subtotal * discountPercent) / 100;
+    const total = subtotal - discountAmount;
+
+    return {
+      totalDays,
+      subtotal,
+      discountPercent,
+      discountAmount,
+      total,
+    };
   };
 
-  // Обработчик данных доставки
-  const handleDeliverySubmit = (deliveryData) => {
-    setOrderData((prev) => ({
+  // Мемоизированные значения заказа
+  const { totalDays, subtotal, discountPercent, discountAmount, total } =
+    useMemo(
+      () => calculateOrderTotals(orderState.packages),
+      [orderState.packages]
+    );
+
+  // Обработчики изменений состояния
+  const handlePackageUpdate = useCallback((updatedPackages) => {
+    setOrderState((prev) => ({
+      ...prev,
+      packages: updatedPackages,
+    }));
+  }, []);
+
+  const handleDeliverySubmit = useCallback((deliveryData) => {
+    setOrderState((prev) => ({
       ...prev,
       delivery: deliveryData,
     }));
-  };
+  }, []);
 
-  // Переход к оплате
-  const handleProceedToCheckout = () => {
-    console.log("Данные заказа:", orderData);
-    // Здесь будет логика отправки данных на сервер
-  };
+  // Проверка готовности заказа
+  const isOrderValid = useMemo(() => {
+    const hasPackages = orderState.packages.length > 0;
+    const allPackagesHaveDates = orderState.packages.every(
+      (pkg) => pkg.dates?.length > 0
+    );
+    const hasDeliveryInfo = Object.keys(orderState.delivery).length > 0;
+
+    return hasPackages && allPackagesHaveDates && hasDeliveryInfo;
+  }, [orderState]);
 
   return (
-    <div className={styles.orderPage}>
-      <Header />
-      <main className={styles.pageMain}>
-        <div className={styles.container}>
-          <h1 className={styles.pageTitle}>Złóż zamówienie</h1>
+    <ModalProvider>
+      <div className={styles.orderPage}>
+        <Header />
+        <main className={styles.pageMain}>
+          <div className={`${styles.container} ${styles.orderContainer}`}>
+            <h1 className={styles.pageTitle}>Złóż zamówienie</h1>
 
-          <StepsIndicator currentStep={1} />
+            <MultiStepForm>
+              {/* Шаг 1: Выбор пакетов */}
+              <PackageSelection
+                onOrderUpdate={handlePackageUpdate}
+                className={styles.packageStep}
+              />
 
-          <div className={styles.pageGrid}>
-            <div className={styles.pageGridMain}>
-              <PackageSelection onPackageSelect={handlePackageSelect} />
-              <DeliveryForm onSubmit={handleDeliverySubmit} />
+              {/* Шаг 2: Данные доставки */}
+              <DeliveryForm
+                onSubmit={handleDeliverySubmit}
+                className={styles.deliveryStep}
+                initialValues={orderState.delivery}
+              />
+
+              {/* Шаг 3: Подтверждение заказа */}
               <OrderSummary
-                packages={orderData.packages}
-                deliveryData={orderData.delivery}
+                packages={orderState.packages}
+                delivery={orderState.delivery}
+                totals={{
+                  subtotal,
+                  discount: discountAmount,
+                  total,
+                  discountPercent,
+                }}
+                className={styles.summaryStep}
               />
-            </div>
+            </MultiStepForm>
 
-            <div className={styles.pageGridAside}>
-              <OrderTotal
-                packageCount={orderData.packages.length}
-                totalWithoutDiscount={orderData.total}
-                discountAmount={orderData.discount}
-                totalPrice={orderData.totalWithDiscount}
-                onProceedToCheckout={handleProceedToCheckout}
-              />
-            </div>
+            {/* Боковая панель с итогами */}
+            <OrderTotal
+              daysCount={totalDays}
+              packageCount={orderState.packages.length}
+              subtotal={subtotal}
+              discountAmount={discountAmount}
+              total={total}
+              isValid={isOrderValid}
+              className={styles.orderTotal}
+            />
           </div>
-        </div>
-      </main>
-      <Footer />
-    </div>
+        </main>
+        <Footer />
+      </div>
+    </ModalProvider>
   );
 };
 
-export default OrderPage;
+export default React.memo(OrderPage);
