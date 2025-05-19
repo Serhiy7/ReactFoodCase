@@ -1,4 +1,4 @@
-.burger {
+.burgerButton {
   background: none;
   border: none;
   cursor: pointer;
@@ -12,7 +12,7 @@
   z-index: 1000;
 }
 
-.line {
+.burgerLine {
   display: block;
   height: 2px;
   width: 100%;
@@ -21,20 +21,20 @@
 }
 
 /* Анимация при открытии */
-.burger[aria-expanded="true"] .line:nth-child(1) {
+.burgerButton.open .burgerLine:nth-child(1) {
   transform: translateY(6px) rotate(45deg);
 }
 
-.burger[aria-expanded="true"] .line:nth-child(2) {
+.burgerButton.open .burgerLine:nth-child(2) {
   opacity: 0;
 }
 
-.burger[aria-expanded="true"] .line:nth-child(3) {
+.burgerButton.open .burgerLine:nth-child(3) {
   transform: translateY(-6px) rotate(-45deg);
 }
 
 @media (min-width: 767px) {
-  .burger {
+  .burgerButton {
     display: none;
   }
 }

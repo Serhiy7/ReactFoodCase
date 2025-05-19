@@ -1,4 +1,4 @@
-import { Header, Footer } from "@/layouts/index.js";
+
 import { PrivacyArticle, PrivacyNav } from "@/components/PrivacyPolicyFeatures";
 import styles from "./PrivacyPolicy.module.css"; // Импорт стилей
 
@@ -16,7 +16,6 @@ const PrivacyPolicy = () => {
       <meta name="description" content={metaData.description} />
       <meta name="keywords" content={metaData.keywords} />
 
-      <Header />
 
       <main className={styles["page-main"]}>
         <div className={styles.container}>
@@ -36,7 +35,7 @@ const PrivacyPolicy = () => {
         </div>
       </main>
 
-      <Footer />
+    
     </>
   );
 };

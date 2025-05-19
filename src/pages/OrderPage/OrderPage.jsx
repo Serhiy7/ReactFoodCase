@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useMemo } from "react";
 import styles from "./OrderPage.module.css";
-import { Header, Footer } from "../../layouts";
+
 import {
   MultiStepForm,
   PackageSelection,
@@ -85,7 +85,7 @@ const OrderPage = () => {
   return (
     <ModalProvider>
       <div className={styles.orderPage}>
-        <Header />
+
         <main className={styles.pageMain}>
           <div className={`${styles.container} ${styles.orderContainer}`}>
             <h1 className={styles.pageTitle}>Złóż zamówienie</h1>
@@ -130,7 +130,7 @@ const OrderPage = () => {
             />
           </div>
         </main>
-        <Footer />
+      
       </div>
     </ModalProvider>
   );

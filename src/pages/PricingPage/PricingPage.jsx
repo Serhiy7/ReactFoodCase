@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './PricingPage.module.css';
-import { Header, Footer } from "@/layouts/index.js";
+
 import PriceTable from '@components/Pricing/PriceTable/PriceTable.jsx';
 import PriceCalculator from '@components/Pricing/PriceCalculator/PriceCalculator';
 
@@ -22,7 +22,7 @@ const PricingPage = () => {
 
   return (
     <>
-    <Header/>
+   
     <main className={styles.pageMain}>
       <h1 className={styles.pageTitle}>Cennik usług cateringowych</h1>
 
@@ -42,7 +42,7 @@ const PricingPage = () => {
         </div>
       </section>
     </main>
-    <Footer/>
+    
     </>
   );
 };

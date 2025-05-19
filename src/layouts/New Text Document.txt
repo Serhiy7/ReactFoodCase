@@ -1,84 +1,35 @@
-my-react-project/
-│
-├── public/
-│   ├── index.html
-│   ├── assets/
-│   │   ├── img/
-│   │   │   └── promo/
-│   │   │       └── 1.png
-│   │   └── ...
-│   └── ...
-│
-├── src/
-│   ├── components/
-│   │   ├── common/
-│   │   │   ├── Button/
-│   │   │   │   ├── Button.jsx
-│   │   │   │   └── Button.module.css
-│   │   │   ├── Modal/
-│   │   │   │   ├── Modal.jsx
-│   │   │   │   └── Modal.module.css
-│   │   │   └── ...
-│   │   ├── Promo/
-│   │   │   ├── Promo.jsx
-│   │   │   └── Promo.module.css
-│   │   ├── Advantages/
-│   │   │   ├── Advantages.jsx
-│   │   │   ├── Advantages.module.css
-│   │   │   └── AdvantageItem/
-│   │   │       ├── AdvantageItem.jsx
-│   │   │       └── AdvantageItem.module.css
-│   │   ├── CalorieCalculator/
-│   │   │   ├── CalorieCalculator.jsx
-│   │   │   ├── CalorieCalculator.module.css
-│   │   │   └── CalculatorModal/
-│   │   │       ├── CalculatorModal.jsx
-│   │   │       └── CalculatorModal.module.css
-│   │   ├── Order/
-│   │   │   ├── OrderButton.jsx
-│   │   │   ├── OrderButton.module.css
-│   │   │   ├── OrderOptions.jsx
-│   │   │   └── OrderOptions.module.css
-│   │   ├── MenuSection/
-│   │   │   ├── MenuSection.jsx
-│   │   │   └── MenuSection.module.css
-│   │   └── Feedback/
-│   │       ├── Feedback.jsx
-│   │       └── Feedback.module.css
-│   │
-│   ├── pages/
-│   │   ├── Home/
-│   │   │   ├── Home.jsx
-│   │   │   └── Home.module.css
-│   │   ├── CalorieMealPlan/
-│   │   │   ├── CalorieMealPlan.jsx
-│   │   │   └── CalorieMealPlan.module.css
-│   │   ├── MenuSelection/
-│   │   │   ├── MenuSelection.jsx
-│   │   │   └── MenuSelection.module.css
-│   │   ├── Pricing/
-│   │   │   ├── Pricing.jsx
-│   │   │   └── Pricing.module.css
-│   │   ├── PrivacyPolicy/
-│   │   │   ├── PrivacyPolicy.jsx
-│   │   │   └── PrivacyPolicy.module.css
-│   │   └── RegulaminPage/
-│   │       ├── RegulaminPage.jsx
-│   │       └── RegulaminPage.module.css
-│   │
-│   ├── layouts/
-│   │   ├── Header/
-│   │   │   ├── Header.jsx
-│   │   │   └── Header.module.css
-│   │   ├── Footer/
-│   │   │   ├── Footer.jsx
-│   │   │   └── Footer.module.css
-│   │   ├── index.js
-│   │   └── MainLayout.jsx
-│   │
-│   ├── App.jsx
+.
+├── layouts
+│   ├── Footer
+│   ├── Header
+│   │   ├── components
+│   │   │   ├── BurgerButton
+│   │   │   │   ├── BurgerButton.jsx
+│   │   │   │   └── BurgerButton.module.css
+│   │   │   ├── DesktopMenu
+│   │   │   │   ├── DesktopMenu.jsx
+│   │   │   │   └── DesktopMenu.module.css
+│   │   │   ├── MobileMenu
+│   │   │   │   ├── MobileMenu.jsx
+│   │   │   │   └── MobileMenu.module.css
+│   │   ├── constants
+│   │   │   ├── index.js
+│   │   │   ├── mainLinks.js
+│   │   │   └── secondaryLinks.js
+│   │   ├── DropdownOrder
+│   │   │   ├── DropdownOrder.jsx
+│   │   │   └── DropdownOrder.module.css
+│   │   ├── Logo
+│   │   │   ├── Logo.jsx
+│   │   │   └── Logo.module.css
+│   │   ├── MobileMenuButton
+│   │   │   ├── MobileMenuButton.jsx
+│   │   │   └── MobileMenuButton.module.css
+│   │   ├── NavMenu
+│   │   │   ├── NavMenu.jsx
+│   │   │   ├── NavMenu.module.css
+│   │   │   ├── constants.js
+│   │   │   └── Header.jsx
+│   │   └── Header.module.css
 │   ├── index.js
-│   └── styles/
-│       └── global.css
-│
-└── package.json
+│   └── New Text Document.txt

@@ -1,31 +1,48 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import styles from "./Header.module.css";
-import { Logo } from "./Logo/Logo";
-import { NavMenu } from "./NavMenu/NavMenu";
-import { DropdownOrder } from "./DropdownOrder/DropdownOrder";
-import { MobileMenuButton } from "./MobileMenuButton/MobileMenuButton";
+import Logo from "./Logo/Logo";
+import DesktopMenu from "./components/DesktopMenu/DesktopMenu";
+import MobileMenu from "./components/MobileMenu/MobileMenu";
+import BurgerButton from "./components/BurgerButton/BurgerButton";
 
-/**
- * Основной Header сайта с адаптивной навигацией
- */
 const Header = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const toggleMobileMenu = () => setMobileMenuOpen((open) => !open);
-  const closeMobileMenu = () => setMobileMenuOpen(false);
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen((prevState) => !prevState);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
 
   return (
-    <header className={styles.header}>
-      <div className={styles.container}>
-        <Logo />
-        <NavMenu
-          isMobileMenuOpen={mobileMenuOpen}
-          onLinkClick={closeMobileMenu}
+    <header className={styles.header} role="banner">
+      <div className={styles.headerContainer}>
+        <Logo className={styles.logo} />
+
+        <DesktopMenu className={styles.desktopMenu} />
+
+        <BurgerButton
+          isOpen={isMobileMenuOpen}
+          onClick={toggleMobileMenu}
+          className={styles.burgerButton}
+          aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
         />
-        <DropdownOrder />
-        <MobileMenuButton isOpen={mobileMenuOpen} onToggle={toggleMobileMenu} />
+
+        <MobileMenu
+          isOpen={isMobileMenuOpen}
+          onClose={closeMobileMenu}
+          className={styles.mobileMenu}
+        />
       </div>
     </header>
   );
 };
+
+Header.propTypes = {
+  // Добавьте propTypes если компонент принимает пропсы
+};
+
 export default Header;

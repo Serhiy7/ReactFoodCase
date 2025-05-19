@@ -7,7 +7,7 @@ import styles from "./Logo.module.css";
  * @component
  * @returns {JSX.Element}
  */
-export const Logo = () => (
+const Logo = () => (
   <Link
     to="/"
     className={styles.logo}
@@ -22,3 +22,4 @@ export const Logo = () => (
     />
   </Link>
 );
+export default Logo;

@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet";
-import { Header, Footer } from "@/layouts";
+
 import { RegulaminArticle, RegulaminNav } from "@regulamin";
 import styles from "./RegulaminPage.module.css";
 
@@ -41,8 +41,6 @@ const RegulaminPage = () => {
         <link rel="canonical" href={metaData.canonicalUrl} />
       </Helmet>
 
-      <Header />
-
       <main className={styles.pageMain}>
         <div className={styles.pageContainer}>
           <h1 className={styles.pageTitle}>Regulamin</h1>
@@ -58,8 +56,6 @@ const RegulaminPage = () => {
           </div>
         </div>
       </main>
-
-      <Footer />
     </div>
   );
 };

@@ -1,61 +1,55 @@
-/* NavMenu.module.css */
-
-/* Основной контейнер меню */
 .navMenu {
   display: flex;
+  flex-direction: column;
   gap: 10px;
-  list-style: none;
   margin: 0;
   padding: 0;
-}
-
-/* Пункт меню */
-.navMenuItem {
   list-style: none;
 }
 
-/* Ссылка в меню */
+.navMenuItem {
+  margin: 0;
+}
+
 .navMenuLink {
-  text-decoration: none;
-  color: inherit;
+  font-size: 16px;
   font-weight: 600;
-  font-size: 13px;
-  cursor: pointer;
-  user-select: none;
+  color: #000;
+  text-decoration: none;
   transition: color 0.3s ease;
+  padding: 8px 0;
+  display: block;
 }
 
 .navMenuLink:hover {
-  color: #0056d3; /* твой основной синий */
+  color: #0056d3;
 }
 
-/* Адаптивные стили для NavMenu */
-@media (min-width: 640px) {
+.navMenuLink.active {
+  color: #0056d3;
+  font-weight: 700;
+}
+
+@media (min-width: 767px) {
   .navMenu {
-    gap: 10px;
     flex-direction: row;
-    padding: 0;
-    background: transparent;
-  }
-
-  .navMenuLink {
-    font-size: 13px;
-    font-weight: 600;
-  }
-}
-
-@media (min-width: 993px) {
-  .navMenu {
+    align-items: center;
     gap: 15px;
   }
 
   .navMenuLink {
-    font-size: 16px;
-    font-weight: 700;
+    font-size: 14px;
+    padding: 0;
   }
 }
-.active {
-  color: #0056d3;
-  font-weight: 700;
-  border-bottom: 2px solid #0056d3;
+
+@media (min-width: 1201px) {
+  .navMenu {
+    gap: 30px;
+  }
+
+  .navMenuLink {
+    font-size: 18px;
+    font-weight: 700;
+  }
 }
