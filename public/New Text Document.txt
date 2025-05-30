@@ -1,4 +1,4 @@
-сделай красиво тут 
+
 ReactFoodCase/
 ├── .gitattributes
 ├── .gitignore
