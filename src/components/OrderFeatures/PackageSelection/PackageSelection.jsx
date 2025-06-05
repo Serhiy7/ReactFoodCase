@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import PropTypes from "prop-types";
 import PackageWidget from "../PackageWidget/PackageWidget";
 import styles from "./PackageSelection.module.css";
@@ -52,41 +52,48 @@ const DEFAULT_PACKAGES = [
 ];
 
 const PackageSelection = ({ onOrderUpdate, className }) => {
-  const [widgets, setWidgets] = useState([{ id: 1 }]);
+  // widgets — это список “слотов” для выбора пакета (один или больше)
+  const [widgets, setWidgets] = useState([{ id: Date.now() }]);
+  // selections — объект вида { [widgetId]: { packageId, dates, price, packageData, … } }
   const [selections, setSelections] = useState({});
 
-  const handleSelectionChange = useCallback(
-    (widgetId, selection) => {
-      setSelections((prev) => {
-        const newSelections = {
-          ...prev,
-          [widgetId]: selection,
-        };
+  // 1. При любом изменении selections мы обновляем родителя
+  useEffect(() => {
+    if (onOrderUpdate) {
+      // преобразуем объект { id1: {...}, id2: {...} } в массив [ {...}, {...} ]
+      const arrayOfPackages = Object.values(selections);
+      onOrderUpdate(arrayOfPackages);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selections]); // <-- будем вызывать onOrderUpdate после того, как selections изменился
 
-        // Вызываем обновление заказа
-        if (onOrderUpdate) {
-          onOrderUpdate(Object.values(newSelections));
-        }
+  // 2. При выборе (или изменении) одного виджета сохраним в локальный стейт
+  const handleSelectionChange = useCallback((widgetId, selection) => {
+    setSelections((prev) => {
+      return {
+        ...prev,
+        [widgetId]: selection,
+      };
+    });
+  }, []);
 
-        return newSelections;
-      });
-    },
-    [onOrderUpdate]
-  );
-
+  // 3. Добавить новый “слот” для выбора пакета
   const addPackageWidget = useCallback(() => {
     const newId = Date.now();
     setWidgets((prev) => [...prev, { id: newId }]);
+    // По умолчанию для нового виджета ещё нет selections[newId] — поле будет добавлено,
+    // когда пользователь впервые выберет пакет либо при автоподборе первого пакета в PackageWidget.
   }, []);
 
+  // 4. Удалить “слот” и очистить его selection
   const removePackageWidget = useCallback(
     (id) => {
       if (widgets.length > 1) {
         setWidgets((prev) => prev.filter((widget) => widget.id !== id));
         setSelections((prev) => {
-          const newSelections = { ...prev };
-          delete newSelections[id];
-          return newSelections;
+          const copy = { ...prev };
+          delete copy[id];
+          return copy;
         });
       }
     },

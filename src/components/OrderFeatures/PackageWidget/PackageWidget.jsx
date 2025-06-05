@@ -1,9 +1,8 @@
 import React, { useState, useCallback, useEffect, useMemo } from "react";
 import PropTypes from "prop-types";
-import { useModal } from "../ModalManager/useModal";
+import useModal from "../ModalManager/useModal";
 import styles from "./PackageWidget.module.css";
 
-// Выносим подкомпоненты в отдельные константы
 const PackageCard = React.memo(({ package: pkg, isSelected, onSelect }) => (
   <div
     className={`${styles.packageCard} ${isSelected ? styles.selected : ""}`}
@@ -88,21 +87,23 @@ const PackageWidget = ({ packages, isFirst, onRemove, onSelectionChange }) => {
   const [selectedDates, setSelectedDates] = useState([]);
   const { openModal } = useModal();
 
-  // Автовыбор первого пакета при монтировании
+  // При монтировании выбираем первый пакет (если он есть)
   useEffect(() => {
     if (packages.length > 0 && !selectedPackage) {
       handlePackageSelect(packages[0]);
     }
-  }, [packages]);
+  }, [packages, selectedPackage]);
 
   const handlePackageSelect = useCallback(
     (pkg) => {
       setSelectedPackage(pkg);
       setSelectedDates([]);
+      const initialPriceInfo = calculatePriceInfo(pkg, []);
+      // вызываем onSelectionChange сразу с пустыми датами
       onSelectionChange?.({
         packageId: pkg.id,
         dates: [],
-        price: 0,
+        ...initialPriceInfo,
         packageData: pkg,
       });
     },
@@ -129,7 +130,7 @@ const PackageWidget = ({ packages, isFirst, onRemove, onSelectionChange }) => {
   }, [selectedPackage, selectedDates, openModal, onSelectionChange]);
 
   const calculatePriceInfo = useCallback((pkg, dates) => {
-    if (!pkg || dates.length === 0) return { price: 0, discount: 0 };
+    if (!pkg || dates.length === 0) return { price: 0, discount: 0, days: 0 };
 
     const days = dates.length;
     let discountPercent = 0;

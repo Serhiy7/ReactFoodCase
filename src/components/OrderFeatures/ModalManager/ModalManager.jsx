@@ -1,3 +1,5 @@
+// src/components/OrderFeatures/ModalManager/ModalManager.jsx
+
 import React, { createContext, useState, useCallback } from "react";
 import PropTypes from "prop-types";
 import styles from "./ModalManager.module.css";
@@ -24,37 +26,50 @@ export const ModalProvider = ({ children }) => {
   const [modalProps, setModalProps] = useState({});
 
   // Мемоизированные функции для оптимизации
-  const openModal = useCallback((modalId, props = {}) => {
-    if (!Object.values(MODAL_TYPES).includes(modalId)) {
-      console.error(`Unknown modal type: ${modalId}`);
-      return;
-    }
+  const openModal = useCallback(
+    (modalId, props = {}) => {
+      if (!Object.values(MODAL_TYPES).includes(modalId)) {
+        console.error(`Unknown modal type: ${modalId}`);
+        return;
+      }
 
-    setModalProps((prev) => ({
-      ...prev,
-      [modalId]: {
-        ...props,
-        // Добавляем обязательные пропсы
-        onClose: props.onClose || (() => closeModal(modalId)),
-      },
-    }));
-    setOpenModals((prev) => new Set(prev).add(modalId));
-    document.body.classList.add(styles.modalOpen);
-  }, []);
+      setModalProps((prev) => ({
+        ...prev,
+        [modalId]: {
+          ...props,
+          // Добавляем обязательные пропсы
+          onClose: props.onClose || (() => closeModal(modalId)),
+        },
+      }));
+
+      setOpenModals((prev) => {
+        const next = new Set(prev);
+        next.add(modalId);
+        return next;
+      });
+
+      document.body.classList.add(styles.modalOpen);
+    },
+    [
+      /* закрыть модалку вызывается из closeModal, но зависимости добавлять не нужно, 
+       так как closeModal сам по себе не изменяется (useCallback) */
+    ]
+  );
 
   const closeModal = useCallback(
     (modalId) => {
       setOpenModals((prev) => {
-        const newModals = new Set(prev);
-        newModals.delete(modalId);
-        return newModals;
+        const next = new Set(prev);
+        next.delete(modalId);
+        return next;
       });
 
-      // Вызываем onClose callback если он есть
+      // Вызываем onClose callback, если он есть
       if (modalProps[modalId]?.onClose) {
         modalProps[modalId].onClose();
       }
 
+      // Если после удаления последней модалки их больше не осталось — убираем CSS-класс
       if (openModals.size === 1) {
         document.body.classList.remove(styles.modalOpen);
       }
@@ -74,7 +89,7 @@ export const ModalProvider = ({ children }) => {
     document.body.classList.remove(styles.modalOpen);
   }, [openModals, modalProps]);
 
-  // Функция рендера модального окна по типу
+  // Функция рендера конкретного компонента по его типу
   const renderModalComponent = useCallback(
     (modalId) => {
       const currentProps = modalProps[modalId] || {};
@@ -97,7 +112,7 @@ export const ModalProvider = ({ children }) => {
     closeModal,
     closeAllModals,
     modalProps,
-    MODAL_TYPES, // Экспортируем типы модалок для использования в компонентах
+    MODAL_TYPES, // Экспортируем типы модалок для использования в других компонентах
   };
 
   return (
@@ -119,14 +134,10 @@ export const ModalProvider = ({ children }) => {
   );
 };
 
-// PropTypes для лучшей документации
 ModalProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-// Экспорт для удобства
-export default {
-  ModalContext,
-  ModalProvider,
-  MODAL_TYPES,
-};
+// Экспортируем ModalProvider как default, а ModalContext и MODAL_TYPES именованно
+export default ModalProvider;
+export { MODAL_TYPES };

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useModal } from "../ModalManager/useModal";
+import React, { useState, useEffect, useRef } from "react"; // ← добавили useRef
+import useModal from "../ModalManager/useModal";
 import AirDatepicker from "air-datepicker";
 import "air-datepicker/air-datepicker.css";
 import styles from "./DatePickerModal.module.css";
