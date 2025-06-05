@@ -1,0 +1,61 @@
+/* src/components/MenuSelectionFeatures/WeightSelector/WeightSelector.module.css */
+
+/* Корневой контейнер селектора веса */
+.weightSelector {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* вертикальные отступы между заголовком и кнопками */
+}
+
+/* Заголовок блока «Zważ wagę» */
+.selectorTitle {
+  font-size: 25px; /* из .select-weight */
+  font-weight: 600; /* чуть жирнее */
+  margin-bottom: 10px;
+}
+
+/* Контейнер для кнопок */
+.weightButtons {
+  display: flex;
+  flex-direction: row; /* кнопки в одну строку */
+  gap: 10px; /* расстояние между кнопками */
+  flex-wrap: wrap; /* перенос, если слишком много кнопок */
+}
+
+/* Обычная кнопка веса */
+.weightButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  color: #fff;
+  background: #0056d3;
+  transition: background-color 0.5s, transform 0.3s;
+  cursor: pointer;
+  border: none;
+}
+
+/* Hover-эффект для кнопок веса */
+.weightButton:hover {
+  background-color: #0040a8;
+  transform: scale(1.05);
+}
+
+/* Состояние «активной» кнопки веса */
+.active {
+  border: 2px solid #007bff;
+  background-color: #e6f7ff;
+  color: #0056b3;
+  font-weight: 700;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
+}
+
+/* Если нужно «заблокировать» кнопку (disabled) */
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

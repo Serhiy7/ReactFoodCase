@@ -1,0 +1,83 @@
+/* src/components/MenuSelectionFeatures/OrderTotal/OrderTotal.module.css */
+
+/* Общий контейнер блока «OrderTotal» */
+.orderTotal {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Каждый пункт итога (Wybrane daty, Liczba dań, Razem do zapłaty) */
+.totalItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+.totalItem:first-child {
+  padding-top: 0;
+}
+.totalItem:last-child {
+  border-bottom: none;
+}
+
+/* Сама цифра/текст внутри .totalItem */
+.totalPrice {
+  font-weight: bold;
+}
+
+/* Чекбокс согласия */
+.termsCheckbox {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 14px;
+}
+.termsCheckbox input {
+  width: 20px;
+  height: 20px;
+}
+.termsCheckbox a {
+  text-decoration: underline;
+  color: #0056d3;
+}
+
+/* Кнопки «Dalej / Wstecz / Płatność» */
+.nextButton,
+.backButton,
+.payButton {
+  margin-top: 20px;
+  padding: 15px 20px;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  background: #0056d3;
+  border: 1px solid #0056d3;
+  cursor: pointer;
+  transition: 0.5s;
+  text-align: center;
+}
+.nextButton:hover,
+.backButton:hover,
+.payButton:hover {
+  color: #000;
+  background: rgba(0, 0, 0, 0);
+}
+.nextButton:disabled,
+.backButton:disabled,
+.payButton:disabled {
+  pointer-events: none;
+  color: #000;
+  border-color: #e0e0e0;
+  background: #e0e0e0;
+}
+
+/* Дополнительный класс для визуального отключения */
+.disabled {
+  pointer-events: none;
+  color: #000;
+  border-color: #e0e0e0;
+  background: #e0e0e0;
+}

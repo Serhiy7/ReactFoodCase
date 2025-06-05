@@ -1,5 +1,6 @@
-import React from 'react';
-import styles from './WeightSelector.module.css';
+// src/components/MenuSelectionFeatures/WeightSelector/WeightSelector.jsx
+import React from "react";
+import styles from "./WeightSelector.module.css";
 
 const WeightSelector = ({ options, onSelect, selected }) => {
   return (
@@ -9,12 +10,13 @@ const WeightSelector = ({ options, onSelect, selected }) => {
         {options.map((option, index) => (
           <button
             key={index}
+            type="button"
             className={`${styles.weightButton} ${
-              selected?.weight === option.weight ? styles.active : ''
+              selected?.weight === option.weight ? styles.active : ""
             }`}
             onClick={() => onSelect(option)}
           >
-            {option.weight} - {option.price} zł
+            {option.weight} g – {option.price} zł
           </button>
         ))}
       </div>

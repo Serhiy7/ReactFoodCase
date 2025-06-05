@@ -1,5 +1,6 @@
 // src/components/OrderFeatures/DeliveryForm/DeliveryForm.jsx
 import React, { useState } from "react";
+import styles from "./DeliveryForm.module.css";
 
 const DeliveryForm = ({ onSubmit, onBack, initialValues = {} }) => {
   const [formData, setFormData] = useState({
@@ -26,12 +27,12 @@ const DeliveryForm = ({ onSubmit, onBack, initialValues = {} }) => {
   };
 
   return (
-    <div className="page-grid__tab active">
-      {/* Кнопка «Назад» (Change order) */}
+    <div className={`page-grid__tab active ${styles.deliveryWidget}`}>
+      {/* Кнопка «Зmień kolejność» */}
       <div
         className="btn pay-total__prev"
         onClick={onBack}
-        style={{ cursor: "pointer" }}
+        style={{ cursor: "pointer", marginBottom: "20px" }}
       >
         <svg
           width="6"
@@ -50,44 +51,44 @@ const DeliveryForm = ({ onSubmit, onBack, initialValues = {} }) => {
         Zmień kolejność
       </div>
 
-      {/* Форма самих полей «Данные доставки» */}
-      <form className="delivery-widget" onSubmit={handleSubmit}>
+      {/* Форма «Данные доставки» */}
+      <form className={styles.deliveryWidget__form} onSubmit={handleSubmit}>
         {/* === Блок «Dane kontaktowe» === */}
-        <div className="delivery-widget__row">
-          <div className="delivery-widget__title">Dane kontaktowe:</div>
+        <div className={styles.deliveryWidget__row}>
+          <div className={styles.deliveryWidget__title}>Dane kontaktowe:</div>
 
-          <div className="delivery-widget__grid">
+          <div className={styles.deliveryWidget__grid}>
             {/* E-mail */}
-            <div className="delivery-widget__field large">
-              <div className="delivery-widget__label">E-mail</div>
+            <div className={`${styles.deliveryWidget__field} ${styles.large}`}>
+              <div className={styles.deliveryWidget__label}>E-mail</div>
               <input
                 type="email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="delivery-widget__input email-input"
+                className={`${styles.deliveryWidget__input} ${styles.emailInput}`}
                 placeholder="E-mail"
               />
             </div>
 
             {/* Numer telefonu */}
-            <div className="delivery-widget__field">
-              <div className="delivery-widget__label">Numer telefonu</div>
+            <div className={styles.deliveryWidget__field}>
+              <div className={styles.deliveryWidget__label}>Numer telefonu</div>
               <input
                 type="text"
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
                 required
-                className="delivery-widget__input phone-input"
+                className={`${styles.deliveryWidget__input} ${styles.phoneInput}`}
                 placeholder="Numer telefonu"
               />
             </div>
 
             {/* Pełne imię i nazwisko */}
-            <div className="delivery-widget__field">
-              <div className="delivery-widget__label">
+            <div className={styles.deliveryWidget__field}>
+              <div className={styles.deliveryWidget__label}>
                 Pełne imię i nazwisko
               </div>
               <input
@@ -96,7 +97,7 @@ const DeliveryForm = ({ onSubmit, onBack, initialValues = {} }) => {
                 value={formData.fullname}
                 onChange={handleChange}
                 required
-                className="delivery-widget__input fullname-input"
+                className={`${styles.deliveryWidget__input} ${styles.fullnameInput}`}
                 placeholder="Pełne imię i nazwisko"
               />
             </div>
@@ -104,102 +105,102 @@ const DeliveryForm = ({ onSubmit, onBack, initialValues = {} }) => {
         </div>
 
         {/* === Блок «Dane dostawy» === */}
-        <div className="delivery-widget__row">
-          <div className="delivery-widget__title">Dane dostawy:</div>
+        <div className={styles.deliveryWidget__row}>
+          <div className={styles.deliveryWidget__title}>Dane dostawy:</div>
 
-          <div className="delivery-widget__grid">
+          <div className={styles.deliveryWidget__grid}>
             {/* Ulica */}
-            <div className="delivery-widget__field">
-              <div className="delivery-widget__label">Ulica</div>
+            <div className={styles.deliveryWidget__field}>
+              <div className={styles.deliveryWidget__label}>Ulica</div>
               <input
                 type="text"
                 name="street"
                 value={formData.street}
                 onChange={handleChange}
                 required
-                className="delivery-widget__input street-input"
+                className={`${styles.deliveryWidget__input} ${styles.streetInput}`}
                 placeholder="Ulica"
               />
             </div>
 
             {/* Dom */}
-            <div className="delivery-widget__field">
-              <div className="delivery-widget__label">Dom</div>
+            <div className={styles.deliveryWidget__field}>
+              <div className={styles.deliveryWidget__label}>Dom</div>
               <input
                 type="text"
                 name="house_number"
                 value={formData.house_number}
                 onChange={handleChange}
                 required
-                className="delivery-widget__input house-number-input"
+                className={`${styles.deliveryWidget__input} ${styles.houseNumberInput}`}
                 placeholder="Dom"
               />
             </div>
 
             {/* Klatka */}
-            <div className="delivery-widget__field">
-              <div className="delivery-widget__label">Klatka</div>
+            <div className={styles.deliveryWidget__field}>
+              <div className={styles.deliveryWidget__label}>Klatka</div>
               <input
                 type="text"
                 name="klatka"
                 value={formData.klatka}
                 onChange={handleChange}
-                className="delivery-widget__input klatka-input"
+                className={`${styles.deliveryWidget__input} ${styles.klatkaInput}`}
                 placeholder="Klatka"
               />
             </div>
 
             {/* Piętro */}
-            <div className="delivery-widget__field">
-              <div className="delivery-widget__label">Piętro</div>
+            <div className={styles.deliveryWidget__field}>
+              <div className={styles.deliveryWidget__label}>Piętro</div>
               <input
                 type="text"
                 name="floor"
                 value={formData.floor}
                 onChange={handleChange}
                 required
-                className="delivery-widget__input floor-input"
+                className={`${styles.deliveryWidget__input} ${styles.floorInput}`}
                 placeholder="Piętro"
               />
             </div>
 
             {/* Mieszkanie */}
-            <div className="delivery-widget__field">
-              <div className="delivery-widget__label">Mieszkanie</div>
+            <div className={styles.deliveryWidget__field}>
+              <div className={styles.deliveryWidget__label}>Mieszkanie</div>
               <input
                 type="text"
                 name="apartment"
                 value={formData.apartment}
                 onChange={handleChange}
                 required
-                className="delivery-widget__input apartment-input"
+                className={`${styles.deliveryWidget__input} ${styles.apartmentInput}`}
                 placeholder="Mieszkanie"
               />
             </div>
 
             {/* Kod do klatki */}
-            <div className="delivery-widget__field">
-              <div className="delivery-widget__label">Kod do klatki</div>
+            <div className={styles.deliveryWidget__field}>
+              <div className={styles.deliveryWidget__label}>Kod do klatki</div>
               <input
                 type="text"
                 name="gate_code"
                 value={formData.gate_code}
                 onChange={handleChange}
                 required
-                className="delivery-widget__input gate-code-input"
-                placeholder="Kod do klatki"
+                className={`${styles.deliveryWidget__input} ${styles.gateCodeInput}`}
+                placeholder="Kod do klatки"
               />
             </div>
 
             {/* Uwagi */}
-            <div className="delivery-widget__field large">
-              <div className="delivery-widget__label">Uwagi</div>
+            <div className={`${styles.deliveryWidget__field} ${styles.large}`}>
+              <div className={styles.deliveryWidget__label}>Uwagi</div>
               <input
                 type="text"
                 name="notes"
                 value={formData.notes}
                 onChange={handleChange}
-                className="delivery-widget__input notes-input large"
+                className={`${styles.deliveryWidget__input} ${styles.notesInput} ${styles.large}`}
                 placeholder="Uwagi"
               />
             </div>
@@ -207,12 +208,11 @@ const DeliveryForm = ({ onSubmit, onBack, initialValues = {} }) => {
         </div>
 
         {/* Кнопки «Wstecz» и «Dalej» */}
-        <div className="delivery-widget__buttons">
+        <div className={styles.deliveryWidget__buttons}>
           <button
             type="button"
             className="btn pay-total__prev"
             onClick={onBack}
-            style={{ marginRight: "1rem" }}
           >
             Wstecz
           </button>

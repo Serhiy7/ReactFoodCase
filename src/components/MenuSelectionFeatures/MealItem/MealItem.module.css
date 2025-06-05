@@ -1,0 +1,78 @@
+/* src/components/MenuSelectionFeatures/MealItem/MealItem.module.css */
+
+/* Обычная карточка блюда */
+.mealItem {
+  display: flex;
+  flex-direction: row;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.13);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+/* Hover-эффект карточки */
+.mealItem:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0, 123, 255, 0.6);
+}
+
+/* Состояние «выбрано» */
+.selected {
+  border: 2px solid #00d1ff;
+  box-shadow: 0 0 20px #00d1ff;
+  transform: scale(1.05);
+  transition: all 0.3s ease;
+}
+
+/* Состояние «недоступно» (disabled) */
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Изображение блюда (левый блок) */
+.mealImage {
+  flex-shrink: 0;
+  width: 35%; /* в зависимости от макета можно скорректировать */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.mealImage img {
+  max-width: 100%;
+  object-fit: cover;
+}
+
+/* Правый блок с текстом и ценой */
+.mealInfo {
+  flex: 1 1 auto;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Название блюда */
+.mealName {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+/* Описание блюда */
+.mealDescription {
+  font-size: 14px;
+  line-height: 16px;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+/* Отображение цены, когда блюдо выбрано */
+.mealPrice {
+  font-size: 14px;
+  font-weight: 600;
+  color: #0056d3;
+}

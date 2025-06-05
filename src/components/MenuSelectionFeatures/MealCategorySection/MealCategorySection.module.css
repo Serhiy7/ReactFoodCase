@@ -1,0 +1,20 @@
+/* src/components/MenuSelectionFeatures/MealCategorySection/MealCategorySection.module.css */
+
+/* Корневой контейнер секции */
+.categorySection {
+  margin-bottom: 25px;
+}
+
+/* Заголовок секции (например, «Śniadania», «Obiad» и т. д.) */
+.sectionTitle {
+  font-size: 22px; /* из .pay-widget__heading */
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+/* Сетка карточек блюд */
+.mealGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* из .menu__grid */
+}

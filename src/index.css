@@ -1,21 +1,252 @@
-/* Глобальные стили (можно добавить в основной CSS файл) */
+/* ---------- normalize.css (фрагмент) ---------- */
+html {
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+}
 body {
-  font-family: Montserrat, sans-serif;
-  font-size: 18px;
-  line-height: 22px;
-  color: #000;
-  background: #f6f7fa;
   margin: 0;
 }
-
+main {
+  display: block;
+}
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+hr {
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible;
+}
+pre {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
 a {
+  background-color: transparent;
+}
+b,
+strong {
+  font-weight: bolder;
+}
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+}
+button,
+select {
+  text-transform: none;
+}
+[type="button"],
+[type="reset"],
+[type="submit"],
+button {
+  -webkit-appearance: button;
+}
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner,
+button::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring,
+button:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+legend {
+  box-sizing: border-box;
   color: inherit;
-  text-decoration: none;
-  transition: color 0.3s ease;
+  display: table;
+  max-width: 100%;
+  padding: 0;
+  white-space: normal;
+}
+progress {
+  vertical-align: baseline;
+}
+textarea {
+  overflow: auto;
+}
+[type="checkbox"],
+[type="radio"] {
+  box-sizing: border-box;
+  padding: 0;
+}
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+[type="search"] {
+  -webkit-appearance: textfield;
+  outline-offset: -2px;
+}
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  font: inherit;
+}
+details {
+  display: block;
+}
+summary {
+  display: list-item;
+}
+template {
+  display: none;
+}
+[hidden] {
+  display: none;
 }
 
-a:hover {
-  color: #0056d3;
+/* ---------- Обнуление AirDatepicker (нужно, чтобы datepicker нормально рендерился) ---------- */
+.air-datepicker-cell.-day-.-other-month-,
+.air-datepicker-cell.-year-.-other-decade- {
+  color: var(--adp-color-other-month);
+}
+.air-datepicker-cell.-day-.-other-month-:hover,
+.air-datepicker-cell.-year-.-other-decade-:hover {
+  color: var(--adp-color-other-month-hover);
+}
+.-disabled-.-focus-.air-datepicker-cell.-day-.-other-month-,
+.-disabled-.-focus-.air-datepicker-cell.-year-.-other-decade- {
+  color: var(--adp-color-other-month);
+}
+.-selected-.air-datepicker-cell.-day-.-other-month-,
+.-selected-.air-datepicker-cell.-year-.-other-decade- {
+  color: #fff;
+  background: var(--adp-background-color-selected-other-month);
+}
+.-selected-.-focus-.air-datepicker-cell.-day-.-other-month-,
+.-selected-.-focus-.air-datepicker-cell.-year-.-other-decade- {
+  background: var(--adp-background-color-selected-other-month-focused);
+}
+.-in-range-.air-datepicker-cell.-day-.-other-month-,
+.-in-range-.air-datepicker-cell.-year-.-other-decade-,
+.-in-range-.-focus-.air-datepicker-cell.-day-.-other-month-,
+.-in-range-.-focus-.air-datepicker-cell.-year-.-other-decade- {
+  background-color: var(--adp-background-color-in-range);
+  color: var(--adp-color);
+}
+.air-datepicker-cell {
+  border-radius: var(--adp-cell-border-radius);
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+.air-datepicker-cell.-focus- {
+  background: var(--adp-cell-background-color-hover);
+}
+.air-datepicker-cell.-current- {
+  color: var(--adp-color-current-date);
+}
+.air-datepicker-cell.-current-.-focus- {
+  color: var(--adp-color);
+}
+.air-datepicker-cell.-current-.-in-range- {
+  color: var(--adp-color-current-date);
+}
+.air-datepicker-cell.-disabled- {
+  cursor: default;
+  color: var(--adp-color-disabled);
+}
+.air-datepicker-cell.-disabled-.-focus-,
+.air-datepicker-cell.-disabled-.-in-range-,
+.air-datepicker-cell.-disabled-.-current-.-focus- {
+  color: var(--adp-color-disabled);
+}
+.air-datepicker-cell.-in-range- {
+  background: var(--adp-cell-background-color-in-range);
+  border-radius: 0;
+}
+.air-datepicker-cell.-in-range-.-focus-,
+.air-datepicker-cell.-in-range-:hover {
+  background: var(--adp-cell-background-color-in-range-hover);
+}
+.air-datepicker-cell.-range-from- {
+  border: 1px solid var(--adp-cell-border-color-in-range);
+  background-color: var(--adp-cell-background-color-in-range);
+  border-radius: var(--adp-cell-border-radius) 0 0 var(--adp-cell-border-radius);
+}
+.air-datepicker-cell.-range-to- {
+  border: 1px solid var(--adp-cell-border-color-in-range);
+  background-color: var(--adp-cell-background-color-in-range);
+  border-radius: 0 var(--adp-cell-border-radius) var(--adp-cell-border-radius) 0;
+}
+.air-datepicker-cell.-range-to-.-range-from- {
+  border-radius: var(--adp-cell-border-radius);
+}
+.air-datepicker-cell.-selected- {
+  color: #fff;
+  border: none;
+  background: var(--adp-cell-background-color-selected);
+}
+.air-datepicker-cell.-selected-.-current- {
+  color: #fff;
+  background: var(--adp-cell-background-color-selected);
+}
+.air-datepicker-cell.-selected-.-focus- {
+  background: var(--adp-cell-background-color-selected-hover);
+}
+.air-datepicker-body {
+  transition: all var(--adp-transition-duration) var(--adp-transition-ease);
+}
+.air-datepicker-body.-hidden- {
+  display: none;
+}
+/* (Остальная часть AirDatepicker можно оставить на месте, т. е. подключить «air-datepicker.css» у вас уже подключено) */
+
+/* ---------- Общие утилиты и кнопки ---------- */
+* {
+  box-sizing: border-box;
+}
+::after,
+::before {
+  box-sizing: inherit;
+}
+
+body {
+  font: 400 18px/22px Montserrat, sans-serif;
+  color: #000;
+  background: #f6f7fa;
+}
+body.menu-open {
+  overflow: hidden;
+}
+
+a,
+button {
+  color: inherit;
+  transition: 0.5s;
+  text-decoration: none;
+}
+a:hover,
+button:hover {
+  cursor: pointer;
+}
+
+.container {
+  padding: 0 15px;
+  width: 100%;
+  max-width: 1470px;
+  margin: 0 auto;
 }
 
 h1,
@@ -28,14 +259,26 @@ h6 {
   margin: 0;
   line-height: 1.1;
 }
-
-.container {
-  padding: 0 15px;
-  width: 100%;
-  max-width: 1470px;
-  margin: 0 auto;
+h1 {
+  font-size: 35px;
+  line-height: 40px;
 }
-/* Глобальные стили для кнопок */
+h2 {
+  font-size: 30px;
+  line-height: 35px;
+}
+
+p {
+  margin: 12px 0;
+}
+p:first-child {
+  margin-top: 0;
+}
+p:last-child {
+  margin-bottom: 0;
+}
+
+/* ---------- Класс “.btn” (универсальная синяя кнопка, во многих компонентах упоминается) ---------- */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -48,44 +291,125 @@ h6 {
   color: #fff;
   background: #0056d3;
   border: 1px solid #0056d3;
-  transition: all 0.5s;
+  transition: 0.5s;
 }
-
 .btn:hover {
   color: #000;
-  background: transparent;
+  background: rgba(0, 0, 0, 0);
+}
+.btn[disabled] {
+  pointer-events: none;
+  color: #000;
+  border-color: #e0e0e0;
+  background: #e0e0e0;
+}
+
+/* ---------- Утилитарные классы ---------- */
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.add-food {
+  text-align: center;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 42px;
+  color: #fff;
+  background: #0056d3;
+  transition: background-color 0.5s, transform 0.3s;
   cursor: pointer;
 }
-
-/* Стили для dropdown */
-.dropdown {
-  position: relative;
-  display: inline-block;
+.add-food:hover {
+  background-color: #0040a8;
+  transform: scale(1.05);
 }
 
-.dropdownContent {
+/* ---------- Макеты «page-grid» и «page-main» (используются в MenuSelectionPage и OrderPage) ---------- */
+.page-main {
+  padding: 35px 0;
+}
+.page-title {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 35px;
+  font-weight: 700;
+  line-height: 40px;
+}
+.page-grid {
+  display: flex;
+  gap: 15px;
+  flex-direction: column;
+}
+.page-grid__main {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  flex-direction: column;
+  padding: 25px;
+  flex: 1 1 auto;
+  min-width: 0;
+  border-radius: 15px;
+  background: #fff;
+}
+.page-grid__aside {
+  flex-shrink: 0;
+  background: #fff;
+  border-radius: 15px;
+  padding: 25px;
+}
+.page-grid__tab {
+  width: 100%;
   display: none;
+  position: relative;
+}
+.page-grid__tab.active {
+  display: block;
+}
+
+/* ---------- Отдельные общие блоки ---------- */
+.steps-line {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+}
+.modalOverlay {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  z-index: 85;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.7);
+}
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  text-align: center;
+  background: #fff;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.13);
+  padding: 20px;
+  border-radius: 15px;
+  position: relative;
+}
+.closeButton {
   position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.dropdownContent a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  transition: background-color 0.3s;
-}
-
-.dropdownContent a:hover {
-  background-color: #f1f1f1;
-}
-
-.dropdown:hover .dropdownContent {
-  display: block;
+  top: 15px;
+  right: 15px;
+  font-size: 24px;
+  line-height: 1;
+  background: none;
+  border: none;
+  cursor: pointer;
 }

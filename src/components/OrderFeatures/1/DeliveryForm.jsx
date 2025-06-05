@@ -27,7 +27,7 @@ const DeliveryForm = ({ onSubmit, onBack, initialValues = {} }) => {
 
   return (
     <div className="page-grid__tab active">
-      {/* Кнопка «Назад» (Change order) */}
+      {/* Кнопка «Назад» */}
       <div
         className="btn pay-total__prev"
         onClick={onBack}
@@ -50,14 +50,11 @@ const DeliveryForm = ({ onSubmit, onBack, initialValues = {} }) => {
         Zmień kolejność
       </div>
 
-      {/* Форма самих полей «Данные доставки» */}
       <form className="delivery-widget" onSubmit={handleSubmit}>
         {/* === Блок «Dane kontaktowe» === */}
         <div className="delivery-widget__row">
           <div className="delivery-widget__title">Dane kontaktowe:</div>
-
           <div className="delivery-widget__grid">
-            {/* E-mail */}
             <div className="delivery-widget__field large">
               <div className="delivery-widget__label">E-mail</div>
               <input
@@ -71,7 +68,6 @@ const DeliveryForm = ({ onSubmit, onBack, initialValues = {} }) => {
               />
             </div>
 
-            {/* Numer telefonu */}
             <div className="delivery-widget__field">
               <div className="delivery-widget__label">Numer telefonu</div>
               <input
@@ -85,7 +81,6 @@ const DeliveryForm = ({ onSubmit, onBack, initialValues = {} }) => {
               />
             </div>
 
-            {/* Pełne imię i nazwisko */}
             <div className="delivery-widget__field">
               <div className="delivery-widget__label">
                 Pełne imię i nazwisko
@@ -106,9 +101,7 @@ const DeliveryForm = ({ onSubmit, onBack, initialValues = {} }) => {
         {/* === Блок «Dane dostawy» === */}
         <div className="delivery-widget__row">
           <div className="delivery-widget__title">Dane dostawy:</div>
-
           <div className="delivery-widget__grid">
-            {/* Ulica */}
             <div className="delivery-widget__field">
               <div className="delivery-widget__label">Ulica</div>
               <input
@@ -122,7 +115,6 @@ const DeliveryForm = ({ onSubmit, onBack, initialValues = {} }) => {
               />
             </div>
 
-            {/* Dom */}
             <div className="delivery-widget__field">
               <div className="delivery-widget__label">Dom</div>
               <input
@@ -136,7 +128,6 @@ const DeliveryForm = ({ onSubmit, onBack, initialValues = {} }) => {
               />
             </div>
 
-            {/* Klatka */}
             <div className="delivery-widget__field">
               <div className="delivery-widget__label">Klatka</div>
               <input
@@ -149,7 +140,6 @@ const DeliveryForm = ({ onSubmit, onBack, initialValues = {} }) => {
               />
             </div>
 
-            {/* Piętro */}
             <div className="delivery-widget__field">
               <div className="delivery-widget__label">Piętro</div>
               <input
@@ -163,7 +153,6 @@ const DeliveryForm = ({ onSubmit, onBack, initialValues = {} }) => {
               />
             </div>
 
-            {/* Mieszkanie */}
             <div className="delivery-widget__field">
               <div className="delivery-widget__label">Mieszkanie</div>
               <input
@@ -177,7 +166,6 @@ const DeliveryForm = ({ onSubmit, onBack, initialValues = {} }) => {
               />
             </div>
 
-            {/* Kod do klatki */}
             <div className="delivery-widget__field">
               <div className="delivery-widget__label">Kod do klatki</div>
               <input
@@ -187,11 +175,10 @@ const DeliveryForm = ({ onSubmit, onBack, initialValues = {} }) => {
                 onChange={handleChange}
                 required
                 className="delivery-widget__input gate-code-input"
-                placeholder="Kod do klatki"
+                placeholder="Kod do klatки"
               />
             </div>
 
-            {/* Uwagi */}
             <div className="delivery-widget__field large">
               <div className="delivery-widget__label">Uwagi</div>
               <input
@@ -206,13 +193,12 @@ const DeliveryForm = ({ onSubmit, onBack, initialValues = {} }) => {
           </div>
         </div>
 
-        {/* Кнопки «Wstecz» и «Dalej» */}
+        {/* Кнопки «Wstecz / Dalej» */}
         <div className="delivery-widget__buttons">
           <button
             type="button"
             className="btn pay-total__prev"
             onClick={onBack}
-            style={{ marginRight: "1rem" }}
           >
             Wstecz
           </button>

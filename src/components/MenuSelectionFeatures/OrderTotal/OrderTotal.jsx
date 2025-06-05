@@ -1,91 +1,34 @@
+// src/components/MenuSelectionFeatures/OrderTotal/OrderTotal.jsx
 import React, { useState } from "react";
-import { loadStripe } from "@stripe/stripe-js";
 import styles from "./OrderTotal.module.css";
 
-const stripePromise = loadStripe("YOUR_STRIPE_PUBLISHABLE_KEY");
-
-const OrderTotal = ({ order, currentStep, onNextStep, onPrevStep }) => {
+const OrderTotal = ({ order = {}, currentStep, onNextStep, onPrevStep }) => {
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
 
-  const calculateTotal = () => {
-    return order.selectedMeals.reduce((sum, meal) => sum + meal.price, 0);
-  };
+  // Если order.selectedMeals нет — по умолчанию пустой массив
+  const meals = Array.isArray(order.selectedMeals) ? order.selectedMeals : [];
 
-  const handlePayment = async () => {
-    if (!termsAccepted) return;
+  // Сумма всех цен (0, если нет ни одного блюда)
+  const calculateTotal = () =>
+    meals.reduce((sum, meal) => sum + (meal.price || 0), 0);
 
-    setIsProcessing(true);
-    try {
-      const stripe = await stripePromise;
-
-      // 1. Сохраняем заказ
-      const saveOrderResponse = await fetch("/api/save-order", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          order: order,
-          csrf_token: document.querySelector('meta[name="csrf-token"]')
-            ?.content,
-        }),
-      });
-
-      const saveOrderResult = await saveOrderResponse.json();
-
-      if (!saveOrderResult.success) {
-        throw new Error(
-          saveOrderResult.message || "Błąd podczas zapisywania zamówienia"
-        );
-      }
-
-      // 2. Создаем сессию оплаты Stripe
-      const response = await fetch("/api/create-checkout-session", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          order_id: saveOrderResult.order_id,
-          total_amount: calculateTotal(),
-          customer_email: order.delivery.email,
-          items: order.selectedMeals.map((item) => ({
-            name: item.name,
-            price: item.price,
-            quantity: 1,
-          })),
-        }),
-      });
-
-      const session = await response.json();
-
-      // 3. Перенаправляем на страницу оплаты Stripe
-      const result = await stripe.redirectToCheckout({
-        sessionId: session.id,
-      });
-
-      if (result.error) {
-        throw new Error(result.error.message);
-      }
-    } catch (error) {
-      console.error("Błąd płatności:", error);
-      alert(`Wystąpił błąd: ${error.message}`);
-    } finally {
-      setIsProcessing(false);
-    }
-  };
+  // Количество выбранных дат (если нет, то 0)
+  const datesCount = Array.isArray(order.selectedDates)
+    ? order.selectedDates.length
+    : 0;
 
   return (
     <div className={styles.orderTotal}>
       <div className={styles.totalItem}>
         <b>Wybrane daty:</b>
-        <span>{order.selectedDates?.length || 1}</span>
+        {/* Если datesCount === 0, можно вывести “0” или “—” */}
+        <span>{datesCount}</span>
       </div>
 
       <div className={styles.totalItem}>
         <b>Liczba dań:</b>
-        <span>{order.selectedMeals.length}</span>
+        <span>{meals.length}</span>
       </div>
 
       <div className={styles.totalItem}>
@@ -95,15 +38,16 @@ const OrderTotal = ({ order, currentStep, onNextStep, onPrevStep }) => {
         </span>
       </div>
 
-      <label className={styles.termsCheckbox}>
+      <label htmlFor="accept" className={styles.termsCheckbox}>
         <input
           type="checkbox"
+          id="accept"
           checked={termsAccepted}
           onChange={(e) => setTermsAccepted(e.target.checked)}
         />
         <span>
           Zapoznałem się z zasadami strony i{" "}
-          <a href="/regulamin/" target="_blank">
+          <a href="/regulamin/" target="_blank" rel="noopener noreferrer">
             Regulamin
           </a>
           .
@@ -112,7 +56,9 @@ const OrderTotal = ({ order, currentStep, onNextStep, onPrevStep }) => {
 
       {currentStep < 3 && (
         <button
-          className={styles.nextButton}
+          className={`${styles.nextButton} ${
+            !termsAccepted ? styles.disabled : ""
+          }`}
           onClick={onNextStep}
           disabled={!termsAccepted || isProcessing}
         >
@@ -134,8 +80,14 @@ const OrderTotal = ({ order, currentStep, onNextStep, onPrevStep }) => {
 
       {currentStep === 3 && (
         <button
-          className={styles.payButton}
-          onClick={handlePayment}
+          id="pay-button"
+          className={`${styles.payButton} ${
+            isProcessing ? styles.disabled : ""
+          }`}
+          onClick={() => {
+            if (termsAccepted) onNextStep();
+            setIsProcessing(true);
+          }}
           disabled={!termsAccepted || isProcessing}
         >
           {isProcessing ? "Przetwarzanie..." : "Płatność"}

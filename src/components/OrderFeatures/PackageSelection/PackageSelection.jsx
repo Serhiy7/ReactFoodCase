@@ -1,7 +1,7 @@
+// src/components/OrderFeatures/PackageSelection/PackageSelection.jsx
 import React, { useState, useCallback, useEffect } from "react";
 import PropTypes from "prop-types";
 import PackageWidget from "../PackageWidget/PackageWidget";
-import styles from "./PackageSelection.module.css";
 
 const DEFAULT_PACKAGES = [
   {
@@ -52,40 +52,28 @@ const DEFAULT_PACKAGES = [
 ];
 
 const PackageSelection = ({ onOrderUpdate, className }) => {
-  // widgets — это список “слотов” для выбора пакета (один или больше)
   const [widgets, setWidgets] = useState([{ id: Date.now() }]);
-  // selections — объект вида { [widgetId]: { packageId, dates, price, packageData, … } }
   const [selections, setSelections] = useState({});
 
-  // 1. При любом изменении selections мы обновляем родителя
   useEffect(() => {
     if (onOrderUpdate) {
-      // преобразуем объект { id1: {...}, id2: {...} } в массив [ {...}, {...} ]
       const arrayOfPackages = Object.values(selections);
       onOrderUpdate(arrayOfPackages);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selections]); // <-- будем вызывать onOrderUpdate после того, как selections изменился
+  }, [selections, onOrderUpdate]);
 
-  // 2. При выборе (или изменении) одного виджета сохраним в локальный стейт
   const handleSelectionChange = useCallback((widgetId, selection) => {
-    setSelections((prev) => {
-      return {
-        ...prev,
-        [widgetId]: selection,
-      };
-    });
+    setSelections((prev) => ({
+      ...prev,
+      [widgetId]: selection,
+    }));
   }, []);
 
-  // 3. Добавить новый “слот” для выбора пакета
   const addPackageWidget = useCallback(() => {
     const newId = Date.now();
     setWidgets((prev) => [...prev, { id: newId }]);
-    // По умолчанию для нового виджета ещё нет selections[newId] — поле будет добавлено,
-    // когда пользователь впервые выберет пакет либо при автоподборе первого пакета в PackageWidget.
   }, []);
 
-  // 4. Удалить “слот” и очистить его selection
   const removePackageWidget = useCallback(
     (id) => {
       if (widgets.length > 1) {
@@ -97,11 +85,11 @@ const PackageSelection = ({ onOrderUpdate, className }) => {
         });
       }
     },
-    [widgets.length]
+    [widgets]
   );
 
   return (
-    <div className={`${styles.container} ${className || ""}`}>
+    <div className={`container ${className || ""}`}>
       {widgets.map((widget, index) => (
         <PackageWidget
           key={widget.id}
@@ -116,7 +104,7 @@ const PackageSelection = ({ onOrderUpdate, className }) => {
 
       <button
         onClick={addPackageWidget}
-        className={styles.addButton}
+        className="addButton"
         aria-label="Dodaj kolejny pakiet"
       >
         Dodaj kolejny pakiet

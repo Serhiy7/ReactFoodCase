@@ -7,13 +7,17 @@ import {
   ModalProvider,
   MultiStepForm,
   PackageSelection,
+  // DeliveryForm,
+  // OrderSummary,
+  // OrderTotal,
+} from "../../components/OrderFeatures";
+import {
   DeliveryForm,
   OrderSummary,
   OrderTotal,
-} from "../../components/OrderFeatures";
-
+} from "../../components/MenuSelectionFeatures/index";
 // Отдельно импортируем StepsIndicator
-import StepsIndicator from "../../components/OrderFeatures/StepsIndicator/StepsIndicator";
+import StepsIndicator from "../../components/MenuSelectionFeatures/StepsIndicator/StepsIndicator";
 
 const OrderPage = () => {
   const [currentStep, setCurrentStep] = useState(0);

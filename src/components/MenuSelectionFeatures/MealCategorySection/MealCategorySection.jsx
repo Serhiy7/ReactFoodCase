@@ -1,64 +1,122 @@
-import React, { useState } from 'react';
-import styles from './MealCategorySection.module.css';
-import MealItem from '../MealItem/MealItem';
-import WeightSelector from '../WeightSelector/WeightSelector';
+// src/components/MenuSelectionFeatures/MealCategorySection/MealCategorySection.jsx
+import React, { useState, useEffect } from "react";
+import MealItem from "../MealItem/MealItem";
+import WeightSelector from "../WeightSelector/WeightSelector";
+import styles from "./MealCategorySection.module.css";
 
-const MealCategorySection = ({ category, title, onSelect }) => {
-  const [selectedWeight, setSelectedWeight] = useState(null);
-  const [selectedMeal, setSelectedMeal] = useState(null);
-  
-  // Mock data - replace with actual data from props or API
-  const mealOptions = [
-    { id: 1, name: 'Jajecznica', description: 'Jajka na bekonie', price: 15 },
-    { id: 2, name: 'Owsianka', description: 'Płatki owsiane z owocami', price: 12 }
-  ];
-  
+const MealCategorySection = ({
+  category,
+  title,
+  onSelect,
+  initialSelection,
+}) => {
   const weightOptions = [
-    { weight: '200g', price: 15 },
-    { weight: '300g', price: 20 }
+    { weight: 150, price: 25 },
+    { weight: 200, price: 30 },
+    { weight: 250, price: 35 },
   ];
 
-  const handleWeightSelect = (weight) => {
-    setSelectedWeight(weight);
-    if (selectedMeal) {
-      onSelect(category, {
-        ...selectedMeal,
-        weight: weight.weight,
-        price: weight.price
-      });
+  const allMeals = [
+    {
+      id: 1,
+      name: "Jajecznica",
+      description: "Jajka na bekonie",
+      priceBase: 15,
+    },
+    {
+      id: 2,
+      name: "Owsianka",
+      description: "Płatki owsiane z owocami",
+      priceBase: 12,
+    },
+    // … добавьте другие блюда по необходимости
+  ];
+
+  const [selectedWeight, setSelectedWeight] = useState(
+    initialSelection?.weight
+      ? weightOptions.find((w) => w.weight === initialSelection.weight)
+      : null
+  );
+  const [selectedMeal, setSelectedMeal] = useState(
+    initialSelection?.id
+      ? allMeals.find((m) => m.id === initialSelection.id)
+      : null
+  );
+
+  useEffect(() => {
+    if (initialSelection) {
+      const w =
+        weightOptions.find((w) => w.weight === initialSelection.weight) || null;
+      const m = allMeals.find((m) => m.id === initialSelection.id) || null;
+      setSelectedWeight(w);
+      setSelectedMeal(m);
+    } else {
+      setSelectedWeight(null);
+      setSelectedMeal(null);
+    }
+  }, [initialSelection]);
+
+  const handleWeightClick = (option) => {
+    if (selectedWeight?.weight === option.weight) {
+      setSelectedWeight(null);
+      if (selectedMeal) {
+        setSelectedMeal(null);
+        onSelect(null);
+      }
+    } else {
+      setSelectedWeight(option);
+      if (selectedMeal) {
+        setSelectedMeal(null);
+        onSelect(null);
+      }
     }
   };
 
-  const handleMealSelect = (meal) => {
-    setSelectedMeal(meal);
-    if (selectedWeight) {
-      onSelect(category, {
-        ...meal,
+  const handleMealClick = (meal) => {
+    if (!selectedWeight) return;
+    if (selectedMeal?.id === meal.id) {
+      setSelectedMeal(null);
+      setSelectedWeight(null);
+      onSelect(null);
+    } else {
+      setSelectedMeal(meal);
+      const payload = {
+        id: meal.id,
+        name: meal.name,
+        description: meal.description,
         weight: selectedWeight.weight,
-        price: selectedWeight.price
-      });
+        price: selectedWeight.price,
+      };
+      onSelect(payload);
     }
   };
 
   return (
     <section className={styles.categorySection} data-category={category}>
       <h2 className={styles.sectionTitle}>{title}</h2>
-      
-      <WeightSelector 
+
+      {/* 1. Блок WeightSelector */}
+      <WeightSelector
         options={weightOptions}
-        onSelect={handleWeightSelect}
+        onSelect={handleWeightClick}
         selected={selectedWeight}
       />
-      
+
+      {/* 2. Сетка MealItem */}
       <div className={styles.mealGrid}>
-        {mealOptions.map(meal => (
-          <MealItem
-            key={meal.id}
-            meal={meal}
-            isSelected={selectedMeal?.id === meal.id}
-            onSelect={() => handleMealSelect(meal)}
-          />
-        ))}
+        {allMeals.map((meal) => {
+          const isThisSelected = selectedMeal?.id === meal.id;
+          const disabled = !selectedWeight;
+          return (
+            <MealItem
+              key={meal.id}
+              meal={{ ...meal, price: meal.priceBase }}
+              isSelected={isThisSelected}
+              isDisabled={disabled}
+              onSelect={() => handleMealClick(meal)}
+            />
+          );
+        })}
       </div>
     </section>
   );

@@ -3,11 +3,6 @@ import React from "react";
 import styles from "./OrderSummary.module.css";
 
 const OrderSummary = ({ order, onBack }) => {
-  // Если order ещё не передали или отсутствует поле packages — не рендерим ничего
-  if (!order || !Array.isArray(order.packages)) {
-    return null;
-  }
-
   return (
     <div className={styles.orderSummary}>
       {/* Заголовок «Podsumowanie zamówienia» */}
@@ -18,10 +13,8 @@ const OrderSummary = ({ order, onBack }) => {
         <h3>Informacje o zamówieniu</h3>
         <div>
           {order.packages.map((pkg, pkgIndex) => {
-            // Пропускаем пакет без даты
             if (!pkg.date) return null;
 
-            // Собираем все выбранные блюда за этот день
             const mealsThisDate = [];
             if (pkg.sniad)
               mealsThisDate.push({ category: "Śniadanie", ...pkg.sniad });
@@ -29,9 +22,9 @@ const OrderSummary = ({ order, onBack }) => {
               mealsThisDate.push({ category: "Obiad", ...pkg.obiad });
             if (pkg.kolacja)
               mealsThisDate.push({ category: "Kolacja", ...pkg.kolacja });
+
             if (mealsThisDate.length === 0) return null;
 
-            // Считаем сумму за этот день
             const dayTotal = mealsThisDate
               .reduce((sum, m) => sum + m.price, 0)
               .toFixed(2);
