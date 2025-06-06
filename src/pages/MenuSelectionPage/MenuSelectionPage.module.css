@@ -33,6 +33,7 @@
   gap: 15px;
   flex-direction: column; /* на мобилке */
 }
+
 @media (min-width: 767px) {
   .pageGrid {
     flex-direction: row;
@@ -58,4 +59,33 @@
   background: #fff;
   border-radius: 15px;
   padding: 25px;
+  height: 450px;
+
+  /* Делаем «липкую» панель */
+  position: sticky;
+  top: 90px; /* отступ от верха окна */
+
+  max-height: calc(100vh - 40px);
+}
+
+@media (min-width: 993px) {
+  .btn {
+    font-size: 18px;
+    font-weight: 700;
+  }
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 20px;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  color: #fff;
+  background: #0056d3;
+  border: 1px solid #0056d3;
+  transition: 0.5s;
 }

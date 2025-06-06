@@ -134,19 +134,8 @@ const MenuSelectionPage = () => {
                     />
                   ))}
 
-                  <button
-                    className={styles.addPackageButton}
-                    onClick={addPackage}
-                  >
+                  <button className={styles.btn} onClick={addPackage}>
                     Dodaj następną datę
-                  </button>
-
-                  <button
-                    className={styles.nextButton}
-                    onClick={goNextStep}
-                    disabled={!isStep1Valid}
-                  >
-                    Podaj dane dostawy
                   </button>
                 </>
               )}

@@ -23,6 +23,7 @@
 
 /* Заголовок внутри строки */
 .deliveryWidget__title {
+  margin-top: 20px;
   font-size: 20px;
   margin-bottom: 25px;
   font-weight: 600;
@@ -80,4 +81,48 @@
 .deliveryWidget__buttons .btn {
   flex: 1;
   max-width: 200px;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 20px;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  color: #fff;
+  background: #0056d3;
+  border: 1px solid #0056d3;
+  transition: 0.5s;
+}
+
+.payTotalPrev {
+  width: 150px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px; /* Расстояние между SVG-иконкой и текстом */
+  padding: 6px 14px; /* Внутренние отступы (вертикально и горизонтально) */
+  border: 1px solid #2e67ff; /* Синяя обводка (можно заменить на #007bff или другой оттенок) */
+  border-radius: 20px; /* Скруглённые края, чтобы получилась «пилюля» */
+  font-size: 14px;
+  font-weight: 500;
+  color: #000; /* Чёрный цвет текста и иконки (иконка SVG наследует цвет) */
+  background-color: #fff; /* Белый фон по умолчанию */
+  cursor: pointer; /* Курсор «рука» при наведении */
+  user-select: none;
+  transition: background-color 0.2s ease;
+}
+
+/* При наведении — лёгкое синее затемнение внутри */
+.payTotalPrev:hover {
+  background-color: rgba(46, 103, 255, 0.1);
+}
+
+/* Если нужно дополнительные «disabled»-стили, например: */
+.payTotalPrev:disabled,
+.payTotalPrev.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
 }

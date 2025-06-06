@@ -1,4 +1,4 @@
-/* ---------- normalize.css (фрагмент) ---------- */
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 html {
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
@@ -25,9 +25,40 @@ pre {
 a {
   background-color: transparent;
 }
+abbr[title] {
+  border-bottom: none;
+  text-decoration: underline;
+  -webkit-text-decoration: underline dotted;
+  text-decoration: underline dotted;
+}
 b,
 strong {
   font-weight: bolder;
+}
+code,
+kbd,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+small {
+  font-size: 80%;
+}
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sub {
+  bottom: -0.25em;
+}
+sup {
+  top: -0.5em;
+}
+img {
+  border-style: none;
 }
 button,
 input,
@@ -38,6 +69,10 @@ textarea {
   font-size: 100%;
   line-height: 1.15;
   margin: 0;
+}
+button,
+input {
+  overflow: visible;
 }
 button,
 select {
@@ -112,108 +147,7 @@ template {
   display: none;
 }
 
-/* ---------- Обнуление AirDatepicker (нужно, чтобы datepicker нормально рендерился) ---------- */
-.air-datepicker-cell.-day-.-other-month-,
-.air-datepicker-cell.-year-.-other-decade- {
-  color: var(--adp-color-other-month);
-}
-.air-datepicker-cell.-day-.-other-month-:hover,
-.air-datepicker-cell.-year-.-other-decade-:hover {
-  color: var(--adp-color-other-month-hover);
-}
-.-disabled-.-focus-.air-datepicker-cell.-day-.-other-month-,
-.-disabled-.-focus-.air-datepicker-cell.-year-.-other-decade- {
-  color: var(--adp-color-other-month);
-}
-.-selected-.air-datepicker-cell.-day-.-other-month-,
-.-selected-.air-datepicker-cell.-year-.-other-decade- {
-  color: #fff;
-  background: var(--adp-background-color-selected-other-month);
-}
-.-selected-.-focus-.air-datepicker-cell.-day-.-other-month-,
-.-selected-.-focus-.air-datepicker-cell.-year-.-other-decade- {
-  background: var(--adp-background-color-selected-other-month-focused);
-}
-.-in-range-.air-datepicker-cell.-day-.-other-month-,
-.-in-range-.air-datepicker-cell.-year-.-other-decade-,
-.-in-range-.-focus-.air-datepicker-cell.-day-.-other-month-,
-.-in-range-.-focus-.air-datepicker-cell.-year-.-other-decade- {
-  background-color: var(--adp-background-color-in-range);
-  color: var(--adp-color);
-}
-.air-datepicker-cell {
-  border-radius: var(--adp-cell-border-radius);
-  box-sizing: border-box;
-  cursor: pointer;
-  display: flex;
-  position: relative;
-  align-items: center;
-  justify-content: center;
-  z-index: 1;
-}
-.air-datepicker-cell.-focus- {
-  background: var(--adp-cell-background-color-hover);
-}
-.air-datepicker-cell.-current- {
-  color: var(--adp-color-current-date);
-}
-.air-datepicker-cell.-current-.-focus- {
-  color: var(--adp-color);
-}
-.air-datepicker-cell.-current-.-in-range- {
-  color: var(--adp-color-current-date);
-}
-.air-datepicker-cell.-disabled- {
-  cursor: default;
-  color: var(--adp-color-disabled);
-}
-.air-datepicker-cell.-disabled-.-focus-,
-.air-datepicker-cell.-disabled-.-in-range-,
-.air-datepicker-cell.-disabled-.-current-.-focus- {
-  color: var(--adp-color-disabled);
-}
-.air-datepicker-cell.-in-range- {
-  background: var(--adp-cell-background-color-in-range);
-  border-radius: 0;
-}
-.air-datepicker-cell.-in-range-.-focus-,
-.air-datepicker-cell.-in-range-:hover {
-  background: var(--adp-cell-background-color-in-range-hover);
-}
-.air-datepicker-cell.-range-from- {
-  border: 1px solid var(--adp-cell-border-color-in-range);
-  background-color: var(--adp-cell-background-color-in-range);
-  border-radius: var(--adp-cell-border-radius) 0 0 var(--adp-cell-border-radius);
-}
-.air-datepicker-cell.-range-to- {
-  border: 1px solid var(--adp-cell-border-color-in-range);
-  background-color: var(--adp-cell-background-color-in-range);
-  border-radius: 0 var(--adp-cell-border-radius) var(--adp-cell-border-radius) 0;
-}
-.air-datepicker-cell.-range-to-.-range-from- {
-  border-radius: var(--adp-cell-border-radius);
-}
-.air-datepicker-cell.-selected- {
-  color: #fff;
-  border: none;
-  background: var(--adp-cell-background-color-selected);
-}
-.air-datepicker-cell.-selected-.-current- {
-  color: #fff;
-  background: var(--adp-cell-background-color-selected);
-}
-.air-datepicker-cell.-selected-.-focus- {
-  background: var(--adp-cell-background-color-selected-hover);
-}
-.air-datepicker-body {
-  transition: all var(--adp-transition-duration) var(--adp-transition-ease);
-}
-.air-datepicker-body.-hidden- {
-  display: none;
-}
-/* (Остальная часть AirDatepicker можно оставить на месте, т. е. подключить «air-datepicker.css» у вас уже подключено) */
-
-/* ---------- Общие утилиты и кнопки ---------- */
+/* Global box-sizing */
 * {
   box-sizing: border-box;
 }
@@ -222,33 +156,12 @@ template {
   box-sizing: inherit;
 }
 
+/* Global typography */
 body {
   font: 400 18px/22px Montserrat, sans-serif;
   color: #000;
   background: #f6f7fa;
 }
-body.menu-open {
-  overflow: hidden;
-}
-
-a,
-button {
-  color: inherit;
-  transition: 0.5s;
-  text-decoration: none;
-}
-a:hover,
-button:hover {
-  cursor: pointer;
-}
-
-.container {
-  padding: 0 15px;
-  width: 100%;
-  max-width: 1470px;
-  margin: 0 auto;
-}
-
 h1,
 h2,
 h3,
@@ -267,7 +180,6 @@ h2 {
   font-size: 30px;
   line-height: 35px;
 }
-
 p {
   margin: 12px 0;
 }
@@ -277,139 +189,14 @@ p:first-child {
 p:last-child {
   margin-bottom: 0;
 }
-
-/* ---------- Класс “.btn” (универсальная синяя кнопка, во многих компонентах упоминается) ---------- */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 15px 20px;
-  border-radius: 50px;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 20px;
-  color: #fff;
-  background: #0056d3;
-  border: 1px solid #0056d3;
+a,
+button {
+  color: inherit;
   transition: 0.5s;
+  text-decoration: none;
 }
-.btn:hover {
-  color: #000;
-  background: rgba(0, 0, 0, 0);
-}
-.btn[disabled] {
-  pointer-events: none;
-  color: #000;
-  border-color: #e0e0e0;
-  background: #e0e0e0;
-}
-
-/* ---------- Утилитарные классы ---------- */
-.disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-.add-food {
-  text-align: center;
-  border-radius: 10px;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 42px;
-  color: #fff;
-  background: #0056d3;
-  transition: background-color 0.5s, transform 0.3s;
-  cursor: pointer;
-}
-.add-food:hover {
-  background-color: #0040a8;
-  transform: scale(1.05);
-}
-
-/* ---------- Макеты «page-grid» и «page-main» (используются в MenuSelectionPage и OrderPage) ---------- */
-.page-main {
-  padding: 35px 0;
-}
-.page-title {
-  text-align: center;
-  margin-bottom: 30px;
-  font-size: 35px;
-  font-weight: 700;
-  line-height: 40px;
-}
-.page-grid {
-  display: flex;
-  gap: 15px;
-  flex-direction: column;
-}
-.page-grid__main {
-  display: flex;
-  align-items: flex-start;
-  gap: 20px;
-  flex-direction: column;
-  padding: 25px;
-  flex: 1 1 auto;
-  min-width: 0;
-  border-radius: 15px;
-  background: #fff;
-}
-.page-grid__aside {
-  flex-shrink: 0;
-  background: #fff;
-  border-radius: 15px;
-  padding: 25px;
-}
-.page-grid__tab {
-  width: 100%;
-  display: none;
-  position: relative;
-}
-.page-grid__tab.active {
-  display: block;
-}
-
-/* ---------- Отдельные общие блоки ---------- */
-.steps-line {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 30px;
-}
-.modalOverlay {
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  height: 100%;
-  z-index: 85;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.7);
-}
-.modalContent {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  text-align: center;
-  background: #fff;
-  width: 100%;
-  max-width: 600px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.13);
-  padding: 20px;
-  border-radius: 15px;
-  position: relative;
-}
-.closeButton {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  font-size: 24px;
-  line-height: 1;
-  background: none;
-  border: none;
+a:hover,
+button:hover {
+  transition: 0.5s;
   cursor: pointer;
 }

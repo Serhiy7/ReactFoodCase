@@ -30,7 +30,7 @@ const DeliveryForm = ({ onSubmit, onBack, initialValues = {} }) => {
     <div className={`page-grid__tab active ${styles.deliveryWidget}`}>
       {/* Кнопка «Зmień kolejność» */}
       <div
-        className="btn pay-total__prev"
+        className={styles.payTotalPrev}
         onClick={onBack}
         style={{ cursor: "pointer", marginBottom: "20px" }}
       >
@@ -209,14 +209,10 @@ const DeliveryForm = ({ onSubmit, onBack, initialValues = {} }) => {
 
         {/* Кнопки «Wstecz» и «Dalej» */}
         <div className={styles.deliveryWidget__buttons}>
-          <button
-            type="button"
-            className="btn pay-total__prev"
-            onClick={onBack}
-          >
+          <button type="button" className={styles.btn} onClick={onBack}>
             Wstecz
           </button>
-          <button type="submit" className="btn pay-total__send">
+          <button type="submit" className={styles.btn}>
             Dalej
           </button>
         </div>

@@ -1,6 +1,23 @@
-// src/components/MenuSelectionFeatures/MealItem/MealItem.jsx
+// src/components/MealItem/MealItem.jsx
 import React from "react";
+import styles from "./MealItem.module.css";
 
+/**
+ * Презентационный компонент для отрисовки одной карточки блюда.
+ *
+ * Пропсы:
+ *   - meal: {
+ *       id,
+ *       name,
+ *       description,
+ *       price (базовая цена),
+ *       weight (выбранный пользователем вес),
+ *       image (URL картинки)
+ *     }
+ *   - isSelected: boolean — если карточка выбрана, рисуем рамку, показываем цену
+ *   - isDisabled: boolean — если true, блокируем клики
+ *   - onSelect: колбэк, когда кликнули по карточке
+ */
 const MealItem = ({ meal, isSelected, isDisabled, onSelect }) => {
   const handleClick = () => {
     if (isDisabled) return;
@@ -9,22 +26,22 @@ const MealItem = ({ meal, isSelected, isDisabled, onSelect }) => {
 
   return (
     <div
-      className={`mealItem ${isSelected ? "selected" : ""} ${
-        isDisabled ? "disabled" : ""
+      className={`${styles.mealItem} ${isSelected ? styles.selected : ""} ${
+        isDisabled ? styles.disabled : ""
       }`}
       onClick={handleClick}
     >
-      <div className="mealImage">
+      <div className={styles.mealImage}>
         <img
           src={meal.image || "/assets/img/placeholder.jpg"}
           alt={meal.name}
         />
       </div>
-      <div className="mealInfo">
-        <h3 className="mealName">{meal.name}</h3>
-        <p className="mealDescription">{meal.description}</p>
+      <div className={styles.mealInfo}>
+        <h3 className={styles.mealName}>{meal.name}</h3>
+        <p className={styles.mealDescription}>{meal.description}</p>
         {isSelected && (
-          <div className="mealPrice">
+          <div className={styles.mealPrice}>
             {meal.price} zł ({meal.weight} g)
           </div>
         )}
@@ -33,4 +50,4 @@ const MealItem = ({ meal, isSelected, isDisabled, onSelect }) => {
   );
 };
 
-export default MealItem;
+export default React.memo(MealItem);

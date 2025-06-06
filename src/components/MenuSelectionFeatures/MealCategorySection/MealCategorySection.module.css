@@ -1,20 +1,53 @@
-/* src/components/MenuSelectionFeatures/MealCategorySection/MealCategorySection.module.css */
-
-/* Корневой контейнер секции */
+/* Обёртка для каждого раздела категории */
 .categorySection {
-  margin-bottom: 25px;
+  padding: 20px 0;
+  position: relative;
+  border-bottom: 1px solid #e0e0e0;
 }
 
-/* Заголовок секции (например, «Śniadania», «Obiad» и т. д.) */
+/* Заголовок <h2> внутри секции */
 .sectionTitle {
-  font-size: 22px; /* из .pay-widget__heading */
+  text-align: center;
+  font-size: 25px;
   font-weight: 600;
   margin-bottom: 20px;
 }
 
-/* Сетка карточек блюд */
+/* Сетка, где отображаются все MealItem */
 .mealGrid {
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
-  gap: 15px; /* из .menu__grid */
+  gap: 15px;
+  overflow: inherit;
+}
+
+/* На более широких экранах показываем 2 колонки */
+@media screen and (min-width: 767px) {
+  .mealGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-top: 50px;
+  }
+}
+
+/* Если нужно, можно добавить .weightWrapper и .selectorTitle тоже сюда */
+.weightWrapper {
+  align-items: center;
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  gap: 10px;
+  flex-direction: column;
+}
+@media screen and (min-width: 560px) {
+  .weightWrapper {
+    flex-direction: row;
+  }
+}
+
+.selectorTitle {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
 }
