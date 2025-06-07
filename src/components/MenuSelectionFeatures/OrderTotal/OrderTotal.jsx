@@ -68,16 +68,6 @@ const OrderTotal = ({ order = {}, currentStep, onNextStep, onPrevStep }) => {
         </button>
       )}
 
-      {/* {currentStep > 1 && (
-        <button
-          className={styles.backButton}
-          onClick={onPrevStep}
-          disabled={isProcessing}
-        >
-          {currentStep === 2 ? "Zmień kolejność" : "Edytuj dane"}
-        </button>
-      )} */}
-
       {currentStep === 3 && (
         <button
           id="pay-button"

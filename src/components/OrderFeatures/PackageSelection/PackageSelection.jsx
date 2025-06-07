@@ -1,7 +1,7 @@
-// src/components/OrderFeatures/PackageSelection/PackageSelection.jsx
 import React, { useState, useCallback, useEffect } from "react";
 import PropTypes from "prop-types";
 import PackageWidget from "../PackageWidget/PackageWidget";
+import styles from "./PackageSelection.module.css";
 
 const DEFAULT_PACKAGES = [
   {
@@ -89,7 +89,7 @@ const PackageSelection = ({ onOrderUpdate, className }) => {
   );
 
   return (
-    <div className={`container ${className || ""}`}>
+    <div className={`${styles.container} ${className || ""}`}>
       {widgets.map((widget, index) => (
         <PackageWidget
           key={widget.id}
@@ -104,7 +104,7 @@ const PackageSelection = ({ onOrderUpdate, className }) => {
 
       <button
         onClick={addPackageWidget}
-        className="addButton"
+        className={styles.addButton}
         aria-label="Dodaj kolejny pakiet"
       >
         Dodaj kolejny pakiet

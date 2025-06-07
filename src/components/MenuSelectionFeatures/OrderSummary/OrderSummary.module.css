@@ -2,6 +2,7 @@
 
 /* Общий контейнер суммарной страницы */
 .orderSummary {
+  width: 100%;
   background: #fff;
   border-radius: 15px;
   padding: 20px;

@@ -3,87 +3,126 @@ import React from "react";
 import styles from "./OrderSummary.module.css";
 
 const OrderSummary = ({ order, onBack }) => {
-  // Если order ещё не передали или отсутствует поле packages — не рендерим ничего
-  if (!order || !Array.isArray(order.packages)) {
+  if (!order || !Array.isArray(order.packages) || !order.delivery) {
     return null;
   }
 
+  const {
+    email,
+    phone,
+    fullname,
+    street,
+    house_number,
+    klatka,
+    floor,
+    apartment,
+    gate_code,
+    notes,
+  } = order.delivery;
+
   return (
     <div className={styles.orderSummary}>
-      {/* Заголовок «Podsumowanie zamówienia» */}
+      {/* Заголовок */}
       <h2>Podsumowanie zamówienia</h2>
 
-      {/* Секция «Informacje o zamówieniu» */}
+      {/* Информация по пакетам */}
       <div className={styles.summarySection}>
         <h3>Informacje o zamówieniu</h3>
-        <div>
-          {order.packages.map((pkg, pkgIndex) => {
-            // Пропускаем пакет без даты
-            if (!pkg.date) return null;
+        {order.packages.map((pkg, idx) => {
+          if (!pkg.date) return null;
+          const meals = [];
+          if (pkg.sniad) meals.push({ category: "Śniadanie", ...pkg.sniad });
+          if (pkg.obiad) meals.push({ category: "Obiad", ...pkg.obiad });
+          if (pkg.kolacja) meals.push({ category: "Kolacja", ...pkg.kolacja });
+          if (meals.length === 0) return null;
 
-            // Собираем все выбранные блюда за этот день
-            const mealsThisDate = [];
-            if (pkg.sniad)
-              mealsThisDate.push({ category: "Śniadanie", ...pkg.sniad });
-            if (pkg.obiad)
-              mealsThisDate.push({ category: "Obiad", ...pkg.obiad });
-            if (pkg.kolacja)
-              mealsThisDate.push({ category: "Kolacja", ...pkg.kolacja });
-            if (mealsThisDate.length === 0) return null;
-
-            // Считаем сумму за этот день
-            const dayTotal = mealsThisDate
-              .reduce((sum, m) => sum + m.price, 0)
-              .toFixed(2);
-
-            return (
-              <div key={pkgIndex} className={styles.dateBlock}>
-                <p className={styles.dateHeader}>
-                  <strong>Data: {pkg.date}</strong>
-                </p>
-                <div className={styles.mealsList}>
-                  {mealsThisDate.map((meal, idx) => (
-                    <div key={idx} className={styles.mealSummary}>
-                      <span>
-                        {meal.category}: {meal.name}
-                      </span>
-                      <span>
-                        {meal.weight} g — {meal.price} zł
-                      </span>
-                    </div>
-                  ))}
-                </div>
-                <p>
-                  <strong>Razem za dzień: {dayTotal} zł</strong>
-                </p>
-                <hr />
+          const dayTotal = meals
+            .reduce((sum, m) => sum + m.price, 0)
+            .toFixed(2);
+          return (
+            <div key={idx} className={styles.dateBlock}>
+              <p className={styles.dateHeader}>
+                <strong>Data: {pkg.date}</strong>
+              </p>
+              <div className={styles.mealsList}>
+                {meals.map((meal, i) => (
+                  <div key={i} className={styles.mealSummary}>
+                    <span>
+                      {meal.category}: {meal.name}
+                    </span>
+                    <span>
+                      {meal.weight} g — {meal.price} zł
+                    </span>
+                  </div>
+                ))}
               </div>
-            );
-          })}
-        </div>
+              <p>
+                <strong>Razem za dzień: {dayTotal} zł</strong>
+              </p>
+              <hr />
+            </div>
+          );
+        })}
       </div>
 
-      {/* Секция «Dane dostawy» */}
+      {/* Данные доставки */}
       <div className={styles.summarySection}>
         <h3>Dane dostawy</h3>
         <div className={styles.deliveryDetails}>
-          <div>
-            <strong>Adres:</strong> {order.delivery.street}{" "}
-            {order.delivery.house_number}
+          {/* Контактные данные */}
+          <div className={styles.detailRow}>
+            <strong>E-mail:</strong> {email}
           </div>
-          <div>
-            <strong>Kontakt:</strong> {order.delivery.fullname},{" "}
-            {order.delivery.phone}
+          <div className={styles.detailRow}>
+            <strong>Telefon:</strong> {phone}
           </div>
+          <div className={styles.detailRow}>
+            <strong>Pełne imię i nazwisko:</strong> {fullname}
+          </div>
+
+          <hr />
+
+          {/* Адрес: сначала улица, затем дом */}
+          <div className={styles.detailRow}>
+            <strong>Ulica:</strong> {street}
+          </div>
+          <div className={styles.detailRow}>
+            <strong>Dom:</strong> {house_number}
+          </div>
+
+          {/* Дополнительные поля */}
+          {klatka && (
+            <div className={styles.detailRow}>
+              <strong>Klatka:</strong> {klatka}
+            </div>
+          )}
+          <div className={styles.detailRow}>
+            <strong>Piętro:</strong> {floor}
+          </div>
+          <div className={styles.detailRow}>
+            <strong>Mieszkanie:</strong> {apartment}
+          </div>
+          <div className={styles.detailRow}>
+            <strong>Kod do klatki:</strong> {gate_code}
+          </div>
+
+          {notes && (
+            <>
+              <hr />
+              <div className={styles.detailRow}>
+                <strong>Uwagi:</strong> {notes}
+              </div>
+            </>
+          )}
         </div>
       </div>
 
-      {/* Итоговая строка «Razem do zapłaty» */}
+      {/* Итог */}
       <div className={styles.summaryTotal}>
         <strong>Razem do zapłaty:</strong> {order.total.toFixed(2)} zł
       </div>
 
-      {/* Кнопка «Edytuj dane» */}
+      {/* Кнопка редактирования */}
       <button className={styles.backButton} onClick={onBack}>
         Edytuj dane
       </button>

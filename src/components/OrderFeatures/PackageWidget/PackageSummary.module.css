@@ -1,0 +1,81 @@
+/* src/components/OrderFeatures/PackageWidget/PackageSummary.module.css */
+.summaryContainer {
+  background: #f9f9f9;
+  padding: 12px;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+@media (min-width: 993px) {
+  .summaryContainer {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 20px;
+  }
+}
+
+.imageWrapper img {
+  width: 100%;
+  border-radius: 4px;
+}
+
+@media (min-width: 993px) {
+  .imageWrapper {
+    flex: 0 0 40%;
+  }
+}
+
+.details {
+  flex: 1;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.priceContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.original {
+  text-decoration: line-through;
+  color: #888;
+  font-size: 13px;
+}
+
+.final {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.badge {
+  background: #e53e3e;
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+/* Контейнер для inline-календаря */
+.inlinePicker {
+  margin-top: 12px;
+  /* можно задать фиксированную ширину: например, width: 260px; */
+}

@@ -1,6 +1,6 @@
-// src/components/OrderFeatures/MultiStepForm/MultiStepForm.jsx
 import React, { useState, useEffect, useCallback } from "react";
 import PropTypes from "prop-types";
+import styles from "./MultiStepForm.module.css";
 
 const MultiStepForm = ({
   children,
@@ -29,20 +29,20 @@ const MultiStepForm = ({
   }, [currentStep]);
 
   return (
-    <div className="multiStepForm">
-      <div className="stepContent">{steps[currentStep]}</div>
-      <div className="navigation">
+    <div className={styles.multiStepForm}>
+      <div className={styles.stepContent}>{steps[currentStep]}</div>
+      <div className={styles.navigation}>
         {currentStep > 0 && (
-          <button onClick={goPrev} className="btn">
+          <button onClick={goPrev} className={styles.btn}>
             Wstecz
           </button>
         )}
         {currentStep < steps.length - 1 ? (
-          <button onClick={goNext} className="btn">
+          <button onClick={goNext} className={styles.btn}>
             Dalej
           </button>
         ) : (
-          <button type="button" className="btn" onClick={goNext}>
+          <button type="button" className={styles.btn} onClick={goNext}>
             Złóż zamówienie
           </button>
         )}

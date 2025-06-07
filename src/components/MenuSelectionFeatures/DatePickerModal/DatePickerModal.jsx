@@ -1,91 +1,70 @@
-import React, { useState, useEffect, useRef } from "react";
+// src/components/MenuSelectionFeatures/DatePickerModal/DatePickerModal.jsx
+import React, { useEffect, useRef } from "react";
 import AirDatepicker from "air-datepicker";
+import pl from "air-datepicker/locale/pl";
 import "air-datepicker/air-datepicker.css";
 import styles from "./DatePickerModal.module.css";
 
-// -----------------------------------------------------------------------------
-// 1) Standalone version: accepts isOpen, onClose, onDateSelect, initialDate
-// -----------------------------------------------------------------------------
-const DatePickerModal = ({ isOpen, onClose, onDateSelect, initialDate }) => {
-  const [datepicker, setDatepicker] = useState(null);
-  const datepickerRef = useRef(null);
+const DatePickerModal = ({
+  isOpen,
+  onClose,
+  onDateSelect,
+  initialDates = [], // массив строк в формате "DD.MM.YYYY"
+}) => {
+  // ссылка на <div> для календаря
+  const pickerEl = useRef(null);
+  // храним инстанс не в состоянии, а в ref
+  const dpRef = useRef(null);
 
+  // инициализация/закрытие календаря
   useEffect(() => {
-    if (isOpen && datepickerRef.current && !datepicker) {
-      const options = {
-        locale: {
-          days: [
-            "Niedziela",
-            "Poniedziałek",
-            "Wtorek",
-            "Środa",
-            "Czwartek",
-            "Piątek",
-            "Sobota",
-          ],
-          daysMin: ["Nd", "Pn", "Wt", "Śr", "Czw", "Pt", "So"],
-          months: [
-            "Styczeń",
-            "Luty",
-            "Marzec",
-            "Kwiecień",
-            "Maj",
-            "Czerwiec",
-            "Lipiec",
-            "Sierpień",
-            "Wrzesień",
-            "Październik",
-            "Listopad",
-            "Grudzień",
-          ],
-          monthsShort: [
-            "Sty",
-            "Lut",
-            "Mar",
-            "Kwi",
-            "Maj",
-            "Cze",
-            "Lip",
-            "Sie",
-            "Wrz",
-            "Paź",
-            "Lis",
-            "Gru",
-          ],
-        },
+    if (isOpen && pickerEl.current && !dpRef.current) {
+      // создаём AirDatepicker
+      dpRef.current = new AirDatepicker(pickerEl.current, {
+        inline: true,
+        locale: pl,
         minDate: new Date(),
-        onSelect: ({ date }) => {
-          if (date) {
-            const formattedDate = date.toLocaleDateString("pl-PL", {
+        multipleDates: true,
+        multipleDatesSeparator: ", ",
+        onSelect({ datepicker }) {
+          // собираем выбранные JS Date в отформатированные строки
+          const arr = datepicker.selectedDates.map((d) =>
+            d.toLocaleDateString("pl-PL", {
               day: "2-digit",
               month: "2-digit",
               year: "numeric",
-            });
-            onDateSelect(formattedDate);
-          }
+            })
+          );
+          onDateSelect(arr);
         },
-      };
+      });
 
-      if (initialDate) {
-        // initialDate format: "DD.MM.YYYY"
-        const [dd, mm, yyyy] = initialDate.split(".");
-        const parsed = new Date(`${yyyy}-${mm}-${dd}`);
-        if (!isNaN(parsed)) {
-          options.date = parsed;
-        }
+      // если есть изначальные даты — сразу поставим их
+      if (initialDates.length) {
+        const jsDates = initialDates
+          .map((str) => {
+            const [dd, mm, yyyy] = str.split(".");
+            return new Date(`${yyyy}-${mm}-${dd}`);
+          })
+          .filter((d) => !isNaN(d));
+        dpRef.current.selectDate(jsDates);
       }
-
-      const dp = new AirDatepicker(datepickerRef.current, options);
-      setDatepicker(dp);
     }
 
+    // когда isOpen становится false — удаляем календарь
+    if (!isOpen && dpRef.current) {
+      dpRef.current.destroy();
+      dpRef.current = null;
+    }
+
+    // чистка при размонтировании компонента
     return () => {
-      if (datepicker) {
-        datepicker.destroy();
-        setDatepicker(null);
+      if (dpRef.current) {
+        dpRef.current.destroy();
+        dpRef.current = null;
       }
     };
-  }, [isOpen, initialDate, onDateSelect, datepicker]);
+  }, [isOpen, onDateSelect, initialDates]);
 
   if (!isOpen) return null;
 
@@ -95,18 +74,14 @@ const DatePickerModal = ({ isOpen, onClose, onDateSelect, initialDate }) => {
         <button className={styles.closeButton} onClick={onClose}>
           &times;
         </button>
-        <h2>Wybierz datę dostawy</h2>
-        <div ref={datepickerRef} className={styles.datepicker} />
+        <h2>Wybierz daty dostawy</h2>
+        {/* вот сюда AirDatepicker и «прилипнет» */}
+        <div ref={pickerEl} className={styles.datepicker} />
         <div className={styles.modalActions}>
           <button className={styles.cancelButton} onClick={onClose}>
             Anuluj
           </button>
-          <button
-            className={styles.confirmButton}
-            onClick={() => {
-              /* onDateSelect już wywoływane w onSelect AirDatepicker */
-            }}
-          >
+          <button className={styles.confirmButton} onClick={onClose}>
             Zatwierdź
           </button>
         </div>

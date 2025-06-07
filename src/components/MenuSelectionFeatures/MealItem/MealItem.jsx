@@ -2,22 +2,6 @@
 import React from "react";
 import styles from "./MealItem.module.css";
 
-/**
- * Презентационный компонент для отрисовки одной карточки блюда.
- *
- * Пропсы:
- *   - meal: {
- *       id,
- *       name,
- *       description,
- *       price (базовая цена),
- *       weight (выбранный пользователем вес),
- *       image (URL картинки)
- *     }
- *   - isSelected: boolean — если карточка выбрана, рисуем рамку, показываем цену
- *   - isDisabled: boolean — если true, блокируем клики
- *   - onSelect: колбэк, когда кликнули по карточке
- */
 const MealItem = ({ meal, isSelected, isDisabled, onSelect }) => {
   const handleClick = () => {
     if (isDisabled) return;
