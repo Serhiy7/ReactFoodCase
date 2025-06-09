@@ -11,22 +11,26 @@ const MultiStepForm = ({
   const steps = React.Children.toArray(children);
   const [currentStep, setCurrentStep] = useState(initialStep);
 
+  // 1) Вызываем колбэк при изменении шага
   useEffect(() => {
     onStepChange(currentStep);
   }, [currentStep, onStepChange]);
+
+  // 2) Синхронизируем внутренний стейт с внешним initialStep
+  useEffect(() => {
+    setCurrentStep(initialStep);
+  }, [initialStep]);
 
   const goNext = useCallback(() => {
     const validator = onValidateStep[currentStep];
     const isValid = typeof validator === "function" ? validator() : true;
     if (!isValid) return;
-    const nextStep = Math.min(currentStep + 1, steps.length - 1);
-    setCurrentStep(nextStep);
+    setCurrentStep((s) => Math.min(s + 1, steps.length - 1));
   }, [currentStep, onValidateStep, steps.length]);
 
   const goPrev = useCallback(() => {
-    const prevStep = Math.max(currentStep - 1, 0);
-    setCurrentStep(prevStep);
-  }, [currentStep]);
+    setCurrentStep((s) => Math.max(s - 1, 0));
+  }, []);
 
   return (
     <div className={styles.multiStepForm}>

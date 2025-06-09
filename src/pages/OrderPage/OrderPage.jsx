@@ -1,18 +1,28 @@
-import React, { useState, useCallback, useMemo } from "react";
+import React, { useState, useCallback, useMemo, useEffect } from "react";
 import styles from "./OrderPage.module.css";
-
-// Импортируем всё из нашего index.js
 import {
   ModalProvider,
   MultiStepForm,
   PackageSelection,
+  OrderTotalPackage,
+  StandardOrderSummary,
 } from "../../components/OrderFeatures";
-import {
-  DeliveryForm,
-  OrderSummary,
-  OrderTotal,
-} from "../../components/MenuSelectionFeatures";
+import { DeliveryDetailsForm } from "../../components/MenuSelectionFeatures/DeliveryForm";
+import { OrderSummary } from "../../components/MenuSelectionFeatures";
 import StepsIndicator from "../../components/MenuSelectionFeatures/StepsIndicator/StepsIndicator";
+
+const emptyDelivery = {
+  email: "",
+  phone: "",
+  fullname: "",
+  street: "",
+  house_number: "",
+  klatka: "",
+  floor: "",
+  apartment: "",
+  gate_code: "",
+  notes: "",
+};
 
 const OrderPage = () => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -20,6 +30,17 @@ const OrderPage = () => {
     packages: [],
     delivery: {},
   });
+
+  const [deliveryFormData, setDeliveryFormData] = useState(emptyDelivery);
+
+  useEffect(() => {
+    if (currentStep === 1) {
+      setDeliveryFormData({
+        ...emptyDelivery,
+        ...orderState.delivery,
+      });
+    }
+  }, [currentStep, orderState.delivery]);
 
   const handlePackageUpdate = useCallback((updatedPackages) => {
     setOrderState((prev) => ({
@@ -36,16 +57,47 @@ const OrderPage = () => {
     setCurrentStep(2);
   }, []);
 
+  // Универсальный onChange
+  const handleDeliveryChange = useCallback((fieldOrEvent, val) => {
+    let name, value;
+    if (typeof fieldOrEvent === "string") {
+      name = fieldOrEvent;
+      value = val;
+    } else {
+      ({ name, value } = fieldOrEvent.target);
+    }
+    setDeliveryFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  }, []);
+
+  // Сабмит внутри формы
+  const handleFormSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      handleDeliverySubmit(deliveryFormData);
+    },
+    [deliveryFormData, handleDeliverySubmit]
+  );
+
+  // Сабмит из сайдбара
+  const submitDeliveryForm = useCallback(() => {
+    handleDeliverySubmit(deliveryFormData);
+  }, [deliveryFormData, handleDeliverySubmit]);
+
+  // Валидация шагов
   const validateStep0 = useCallback(() => {
-    const pkgs = orderState.packages;
-    if (pkgs.length === 0) return false;
-    return pkgs.every(
-      (pkg) => Array.isArray(pkg.dates) && pkg.dates.length > 0
+    return (
+      orderState.packages.length > 0 &&
+      orderState.packages.every(
+        (p) => Array.isArray(p.dates) && p.dates.length > 0
+      )
     );
   }, [orderState.packages]);
 
   const validateStep1 = useCallback(() => {
-    const data = orderState.delivery;
+    const d = deliveryFormData;
     const required = [
       "email",
       "phone",
@@ -56,25 +108,28 @@ const OrderPage = () => {
       "apartment",
       "gate_code",
     ];
-    return required.every((key) => {
-      return data[key] && data[key].toString().trim() !== "";
-    });
-  }, [orderState.delivery]);
+    return required.every((k) => d[k]?.toString().trim().length > 0);
+  }, [deliveryFormData]);
 
   const onValidateStep = [validateStep0, validateStep1];
 
+  // Итоги
   const calculateOrderTotals = useCallback((packages) => {
-    const totalDays = packages.reduce((sum, pkg) => sum + (pkg.days || 0), 0);
+    const totalDays = packages.reduce((sum, p) => sum + (p.days || 0), 0);
     const subtotal = packages.reduce(
-      (sum, pkg) => sum + (pkg.originalPrice || 0),
+      (sum, p) => sum + (p.originalPrice || 0),
       0
     );
     const discountAmount = packages.reduce(
-      (sum, pkg) => sum + (pkg.discount || 0),
+      (sum, p) => sum + (p.discount || 0),
       0
     );
-    const total = subtotal - discountAmount;
-    return { totalDays, subtotal, discountAmount, total };
+    return {
+      totalDays,
+      subtotal,
+      discountAmount,
+      total: subtotal - discountAmount,
+    };
   }, []);
 
   const { totalDays, subtotal, discountAmount, total } = useMemo(
@@ -82,14 +137,13 @@ const OrderPage = () => {
     [orderState.packages, calculateOrderTotals]
   );
 
-  const isOrderValid = useMemo(() => {
-    return validateStep0() && validateStep1();
-  }, [validateStep0, validateStep1]);
+  const isOrderValid = useMemo(
+    () => validateStep0() && validateStep1(),
+    [validateStep0, validateStep1]
+  );
 
   const handleProceedToPayment = useCallback(() => {
-    if (isOrderValid) {
-      setCurrentStep(2);
-    }
+    if (isOrderValid) setCurrentStep(2);
   }, [isOrderValid]);
 
   return (
@@ -98,44 +152,50 @@ const OrderPage = () => {
         <main className={styles.pageMain}>
           <div className={`${styles.container} ${styles.orderContainer}`}>
             <h1 className={styles.pageTitle}>Złóż zamówienie</h1>
-
             <StepsIndicator currentStep={currentStep} />
-
             <div className={styles.contentGrid}>
               <div className={styles.mainColumn}>
                 <MultiStepForm
                   initialStep={currentStep}
                   onValidateStep={onValidateStep}
-                  onStepChange={(step) => setCurrentStep(step)}
+                  onStepChange={setCurrentStep}
                 >
+                  {/* Шаг 0 */}
                   <div className={styles.packageStep}>
                     <PackageSelection onOrderUpdate={handlePackageUpdate} />
                   </div>
-
+                  {/* Шаг 1 */}
                   <div className={styles.deliveryStep}>
-                    <DeliveryForm
-                      initialValues={orderState.delivery}
-                      onBack={() => setCurrentStep(0)}
-                      onSubmit={handleDeliverySubmit}
-                    />
+                    <form onSubmit={handleFormSubmit}>
+                      <DeliveryDetailsForm
+                        formData={deliveryFormData}
+                        onChange={handleDeliveryChange}
+                      />
+                    </form>
                   </div>
-
+                  {/* Шаг 2 */}
                   <div className={styles.summaryStep}>
-                    <OrderSummary
-                      selectedPackages={orderState.packages}
-                      deliveryData={orderState.delivery}
+                    <StandardOrderSummary
+                      packages={orderState.packages}
+                      delivery={orderState.delivery}
+                      onBack={() => setCurrentStep(1)}
                     />
                   </div>
                 </MultiStepForm>
               </div>
-
               <div className={styles.asideColumn}>
-                <OrderTotal
+                <OrderTotalPackage
                   packageCount={orderState.packages.length}
-                  totalWithoutDiscount={subtotal}
+                  totalDays={totalDays}
                   discountAmount={discountAmount}
                   totalPrice={total}
-                  onProceedToCheckout={handleProceedToPayment}
+                  currentStep={currentStep}
+                  onNextStep={() => {
+                    if (currentStep === 0) setCurrentStep(1);
+                    else if (currentStep === 1) submitDeliveryForm();
+                    else if (currentStep === 2) handleProceedToPayment();
+                  }}
+                  onPrevStep={() => setCurrentStep((s) => Math.max(s - 1, 0))}
                 />
               </div>
             </div>

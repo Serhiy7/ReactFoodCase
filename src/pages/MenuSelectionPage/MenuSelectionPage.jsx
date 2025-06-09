@@ -1,5 +1,4 @@
-// src/pages/MenuSelectionPage/MenuSelectionPage.jsx
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useCallback } from "react";
 import styles from "./MenuSelectionPage.module.css";
 
 import {
@@ -8,19 +7,15 @@ import {
   OrderSummary,
   OrderTotal,
 } from "../../components/MenuSelectionFeatures";
-
 import PackageWidget from "../../components/MenuSelectionFeatures/PackageWidget/PackageWidget";
 
 const MenuSelectionPage = () => {
-  // --- currentStep: 1 = выбор меню/дат, 2 = данные доставки, 3 = сводка, 4 = оплата
-  const [currentStep, setCurrentStep] = useState(1);
-
-  // --- packages: массив объектов { date: string, sniad: null|{…}, obiad: null|{…}, kolacja: null|{…} }
+  const [currentStep, setCurrentStep] = useState(1); // 1–4
   const [packages, setPackages] = useState([
     { date: "", sniad: null, obiad: null, kolacja: null },
   ]);
 
-  // --- deliveryData заполняется на шаге 2
+  // Подняли стейт формы доставки
   const [deliveryData, setDeliveryData] = useState({
     email: "",
     phone: "",
@@ -34,32 +29,20 @@ const MenuSelectionPage = () => {
     notes: "",
   });
 
-  // --- Формируем единый «order» объект для OrderSummary и OrderTotal
+  // Собираем единый заказ
   const order = useMemo(() => {
-    // Собираем все выбранные блюда (из каждого пакета — sniad, obiad, kolacja, если не null)
     const selectedMeals = packages
-      .flatMap((pkg) => {
-        const arr = [];
-        if (pkg.sniad) arr.push(pkg.sniad);
-        if (pkg.obiad) arr.push(pkg.obiad);
-        if (pkg.kolacja) arr.push(pkg.kolacja);
-        return arr;
-      })
-      .map((item) => ({
-        id: item.id,
-        name: item.name,
-        weight: item.weight,
-        price: item.price,
+      .flatMap((p) => [p.sniad, p.obiad, p.kolacja].filter(Boolean))
+      .map((m) => ({
+        id: m.id,
+        name: m.name,
+        weight: m.weight,
+        price: m.price,
       }));
-
-    // Считаем итоговую сумму
-    const total = selectedMeals.reduce((sum, m) => sum + m.price, 0);
-
-    // Список уникальных дат (без пустых)
+    const total = selectedMeals.reduce((s, m) => s + m.price, 0);
     const selectedDates = Array.from(
-      new Set(packages.map((pkg) => pkg.date).filter((d) => d !== ""))
+      new Set(packages.map((p) => p.date).filter(Boolean))
     );
-
     return {
       packages,
       selectedMeals,
@@ -69,45 +52,46 @@ const MenuSelectionPage = () => {
     };
   }, [packages, deliveryData]);
 
-  // --- Добавить новый пустой пакет (дата + меню)
-  const addPackage = () => {
+  // Пакеты
+  const addPackage = () =>
     setPackages((prev) => [
       ...prev,
       { date: "", sniad: null, obiad: null, kolacja: null },
     ]);
-  };
+  const removePackage = useCallback(
+    (idx) => setPackages((prev) => prev.filter((_, i) => i !== idx)),
+    []
+  );
+  const updatePackage = useCallback(
+    (idx, data) =>
+      setPackages((prev) => prev.map((p, i) => (i === idx ? data : p))),
+    []
+  );
 
-  // --- Удалить пакет по индексу
-  const removePackage = (idx) => {
-    setPackages((prev) => prev.filter((_, i) => i !== idx));
-  };
+  // Шаги
+  const goNextStep = useCallback(
+    () => setCurrentStep((s) => Math.min(s + 1, 4)),
+    []
+  );
+  const goPrevStep = useCallback(
+    () => setCurrentStep((s) => Math.max(s - 1, 1)),
+    []
+  );
 
-  // --- Обновить один пакет (здесь updatedData = { date, sniad, obiad, kolacja })
-  const updatePackage = (idx, updatedData) => {
-    setPackages((prev) =>
-      prev.map((pkg, i) => (i === idx ? updatedData : pkg))
-    );
-  };
-
-  // --- Переключение шагов
-  const goNextStep = () => setCurrentStep((prev) => Math.min(prev + 1, 4));
-  const goPrevStep = () => setCurrentStep((prev) => Math.max(prev - 1, 1));
-
-  // --- Обработчик сабмита формы доставки
-  const handleDeliverySubmit = (formValues) => {
-    setDeliveryData(formValues);
+  // Обработчик сабмита формы доставки
+  const handleDeliverySubmit = (vals) => {
+    setDeliveryData(vals);
     setCurrentStep(3);
   };
 
-  // --- Проверяем, можно ли перейти к шагу 2: у каждого пакета должна быть дата и хотя бы одно блюдо
+  // Проверка первого шага
   const isStep1Valid = useMemo(() => {
-    if (packages.length === 0) return false;
-    return packages.every((pkg) => {
-      const hasDate = pkg.date !== "";
-      const hasAnyMeal =
-        pkg.sniad !== null || pkg.obiad !== null || pkg.kolacja !== null;
-      return hasDate && hasAnyMeal;
-    });
+    return (
+      packages.length > 0 &&
+      packages.every(
+        (pkg) => pkg.date && (pkg.sniad || pkg.obiad || pkg.kolacja)
+      )
+    );
   }, [packages]);
 
   return (
@@ -115,13 +99,10 @@ const MenuSelectionPage = () => {
       <main className={styles.pageMain}>
         <div className={styles.container}>
           <h1 className={styles.pageTitle}>Menu do wyboru</h1>
-
-          {/* Шаги */}
           <StepsIndicator currentStep={currentStep} />
 
           <div className={styles.pageGrid}>
             <div className={styles.pageGridMain}>
-              {/* =========================== ШАГ 1 =========================== */}
               {currentStep === 1 && (
                 <>
                   {packages.map((pkg, idx) => (
@@ -133,29 +114,28 @@ const MenuSelectionPage = () => {
                       onRemove={removePackage}
                     />
                   ))}
-
                   <button className={styles.btn} onClick={addPackage}>
                     Dodaj następną datę
                   </button>
                 </>
               )}
 
-              {/* =========================== ШАГ 2 =========================== */}
               {currentStep === 2 && (
                 <DeliveryForm
+                  formData={deliveryData}
+                  onChange={(name, value) =>
+                    setDeliveryData((prev) => ({ ...prev, [name]: value }))
+                  }
                   onSubmit={handleDeliverySubmit}
                   onBack={() => setCurrentStep(1)}
-                  initialValues={deliveryData}
                 />
               )}
 
-              {/* =========================== ШАГ 3 =========================== */}
               {currentStep === 3 && (
                 <OrderSummary order={order} onBack={() => setCurrentStep(2)} />
               )}
             </div>
 
-            {/* Правая колонка с итогами */}
             <div className={styles.pageGridAside}>
               <OrderTotal
                 order={order}

@@ -1,0 +1,128 @@
+/* src/components/OrderFeatures/StandardOrderSummary/StandardOrderSummary.module.css */
+
+/* Общий контейнер */
+.orderSummary {
+  width: 100%;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  margin-bottom: 24px;
+}
+
+/* Заголовок */
+.orderSummary h2 {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+/* Секция */
+.summarySection {
+  margin-bottom: 32px;
+}
+
+/* Заголовок секции */
+.summarySection h3 {
+  font-size: 20px;
+  font-weight: 600;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Блок одного пакета/дня */
+.dateBlock {
+  background: #fafafa;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+/* Заголовок даты */
+.dateBlock .dateHeader {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+/* Список блюд */
+.mealsList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+/* Одна запись блюда в списке */
+.mealSummary {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  line-height: 1.3;
+}
+
+/* Секция доставки (контакты + адрес) */
+.deliveryDetails {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  font-size: 16px;
+}
+
+/* Если нужно, форма доставки подгружается «readonly», 
+   здесь можно скрыть рамки input-ов и т.п. */
+.deliveryDetails input {
+  background: transparent;
+  border: none;
+  font-size: inherit;
+  padding: 4px 0;
+}
+
+/* Итоговая строка справа */
+.summaryTotal {
+  text-align: right;
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 16px;
+}
+
+/* Контейнер для кнопок внизу */
+.buttonRow {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+}
+
+/* Общий стиль кнопок */
+.button {
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Синяя кнопка */
+.button.primary {
+  background: #0056d3;
+  color: #fff;
+}
+
+.button.primary:hover {
+  background: #0041a1;
+}
+
+/* Серая кнопка */
+.button.secondary {
+  background: #f0f0f0;
+  color: #333;
+}
+
+.button.secondary:hover {
+  background: #e0e0e0;
+}
