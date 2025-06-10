@@ -4,21 +4,26 @@ import styles from "./MealItem.module.css";
 
 const MealItem = ({ meal, isSelected, isDisabled, onSelect }) => {
   const handleClick = () => {
-    if (isDisabled) return;
-    onSelect();
+    if (!isDisabled) onSelect();
   };
 
   return (
     <div
-      className={`${styles.mealItem} ${isSelected ? styles.selected : ""} ${
-        isDisabled ? styles.disabled : ""
-      }`}
+      className={[
+        styles.mealItem,
+        isSelected && styles.selected,
+        isDisabled && styles.disabled,
+      ]
+        .filter(Boolean)
+        .join(" ")}
       onClick={handleClick}
     >
       <div className={styles.mealImage}>
+        {/* meal.image теперь = "/meals/jajecznica.png" и тянется из public */}
         <img
-          src={meal.image || "/assets/img/placeholder.jpg"}
+          src={meal.image}
           alt={meal.name}
+          onError={(e) => (e.currentTarget.style.display = "none")}
         />
       </div>
       <div className={styles.mealInfo}>

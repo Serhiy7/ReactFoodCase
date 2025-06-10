@@ -137,12 +137,6 @@ export default function OrderTotal(props) {
           Płatność
         </button>
       )}
-
-      {typeof onPrevStep === "function" && currentStep > 0 && (
-        <button className={styles.prevButton} onClick={onPrevStep}>
-          Wstecz
-        </button>
-      )}
     </div>
   );
 }

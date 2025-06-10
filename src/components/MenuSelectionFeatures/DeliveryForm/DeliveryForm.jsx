@@ -18,7 +18,6 @@ const DeliveryForm = ({ formData, onChange, onSubmit, onBack }) => {
           formData={formData}
           onChange={(name, value) => onChange(name, value)}
         />
-        <NavigationButtons onBack={onBack} onNext={handleSubmit} />
       </form>
     </div>
   );

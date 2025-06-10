@@ -103,13 +103,6 @@ const OrderTotalPackage = ({
           Przejdź do płatności
         </button>
       )}
-
-      {/* Кнопка «Назад» */}
-      {typeof onPrevStep === "function" && currentStep > 0 && (
-        <button className={styles.prevButton} onClick={onPrevStep}>
-          Wstecz
-        </button>
-      )}
     </div>
   );
 };
