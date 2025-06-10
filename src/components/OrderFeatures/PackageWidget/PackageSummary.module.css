@@ -16,9 +16,20 @@
   }
 }
 
+.imageWrapper {
+  display: flex;
+  justify-content: center; /* по горизонтали */
+  align-items: center; /* по вертикали */
+  /* можно задать фиксированную ширину, если нужно */
+  flex: 0 0 40%;
+}
+
+/* сам <img> займёт, скажем, 80% от обёртки и центрируется автоматически */
 .imageWrapper img {
-  width: 100%;
+  width: 80%;
+  height: auto;
   border-radius: 4px;
+  display: block;
 }
 
 @media (min-width: 993px) {

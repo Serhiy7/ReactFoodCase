@@ -1,7 +1,11 @@
+// src/components/OrderFeatures/PackageWidget/PackageCard.jsx
 import React from "react";
 import styles from "./PackageCard.module.css";
 
 export default function PackageCard({ pkg, selected, onSelect }) {
+  // формируем URL картинки по пакету
+  const imgSrc = `/assets/img/pay/${pkg.id}.png`;
+
   return (
     <div
       className={`${styles.packageCard} ${selected ? styles.selected : ""}`}
@@ -9,10 +13,11 @@ export default function PackageCard({ pkg, selected, onSelect }) {
     >
       <div className={styles.imageContainer}>
         <img
-          src={pkg.image}
+          src={imgSrc}
           alt={`${pkg.name} kalorii`}
           className={styles.image}
           loading="lazy"
+          onError={(e) => (e.currentTarget.style.display = "none")}
         />
       </div>
       <div className={styles.info}>

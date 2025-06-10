@@ -46,21 +46,6 @@ export default function StandardOrderSummary({
         Razem do zapłaty: {packages.reduce((s, p) => s + p.price, 0).toFixed(2)}{" "}
         zł
       </div>
-
-      <div className={pkgStyles.buttonRow}>
-        <button
-          className={`${pkgStyles.button} ${pkgStyles.secondary}`}
-          onClick={onBack}
-        >
-          Wstecz
-        </button>
-        <button
-          className={`${pkgStyles.button} ${pkgStyles.primary}`}
-          onClick={onPlace}
-        >
-          Złóż zamówienie
-        </button>
-      </div>
     </div>
   );
 }

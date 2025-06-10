@@ -11,10 +11,18 @@ export default function PackageSummary({
 }) {
   const { days, originalPrice, price, discountPercent } = priceInfo;
 
+  // Тот же приём: рисуем картинку по id пакета
+  const imgSrc = `/assets/img/pay/${pkg.id}.png`;
+
   return (
     <div className={styles.summaryContainer}>
       <div className={styles.imageWrapper}>
-        <img src={pkg.image} alt={`${pkg.name} kalorii`} loading="lazy" />
+        <img
+          src={imgSrc}
+          alt={`${pkg.name} kalorii`}
+          loading="lazy"
+          onError={(e) => (e.currentTarget.style.display = "none")}
+        />
       </div>
       <div className={styles.details}>
         <h4 className={styles.title}>{pkg.name} kalorii</h4>
