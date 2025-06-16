@@ -11,9 +11,10 @@
 
 /* Заголовок «Podsumowanie zamówienia» */
 .orderSummary h2 {
+  text-align: center;
+  margin-bottom: 20px;
   font-size: 30px;
   font-weight: 600;
-  margin-bottom: 20px;
 }
 
 /* Секции внутри суммарки */
@@ -84,18 +85,16 @@
 
 /* Кнопка «Edytuj dane» */
 .backButton {
-  margin-top: 20px;
   padding: 10px 20px;
   border-radius: 50px;
   font-size: 16px;
   font-weight: 500;
-  color: #fff;
-  background: #0056d3;
+  color: #000;
+  background: #fff;
   border: 1px solid #0056d3;
   cursor: pointer;
   transition: 0.5s;
 }
 .backButton:hover {
-  color: #000;
-  background: rgba(0, 0, 0, 0);
+  background: rgba(46, 103, 255, 0.1);
 }

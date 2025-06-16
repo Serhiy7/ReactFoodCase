@@ -22,8 +22,12 @@ const OrderSummary = ({ order, onBack }) => {
 
   return (
     <div className={styles.orderSummary}>
+      {/* Кнопка редактирования */}
+      <button className={styles.backButton} onClick={onBack}>
+        Edytuj dane
+      </button>
       {/* Заголовок */}
-      <h2>Podsumowanie zamówienia</h2>
+      <h2 className={styles.orSumH}>Podsumowanie zamówienia</h2>
 
       {/* Информация по пакетам */}
       <div className={styles.summarySection}>
@@ -121,11 +125,6 @@ const OrderSummary = ({ order, onBack }) => {
       <div className={styles.summaryTotal}>
         <strong>Razem do zapłaty:</strong> {order.total.toFixed(2)} zł
       </div>
-
-      {/* Кнопка редактирования */}
-      <button className={styles.backButton} onClick={onBack}>
-        Edytuj dane
-      </button>
     </div>
   );
 };

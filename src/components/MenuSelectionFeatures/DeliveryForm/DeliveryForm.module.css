@@ -9,3 +9,9 @@
 .form {
   width: 100%;
 }
+#deliveryForm input:invalid {
+  border-color: #e74c3c; /* ярко-красный бордер */
+}
+#deliveryForm input:valid {
+  border-color: #e0e0e0; /* обычный цвет */
+}

@@ -1,3 +1,4 @@
+// src/components/OrderFeatures/PackageSelection/PackageSelection.jsx
 import React, { useState, useCallback, useEffect } from "react";
 import PropTypes from "prop-types";
 import PackageWidget from "../PackageWidget/PackageWidget";
@@ -55,13 +56,16 @@ const PackageSelection = ({ onOrderUpdate, className }) => {
   const [widgets, setWidgets] = useState([{ id: Date.now() }]);
   const [selections, setSelections] = useState({});
 
+  // При изменении widgets или selections отдаем ровно widgets.length пакетов
   useEffect(() => {
-    if (onOrderUpdate) {
-      const arrayOfPackages = Object.values(selections);
-      onOrderUpdate(arrayOfPackages);
-    }
-  }, [selections, onOrderUpdate]);
+    if (!onOrderUpdate) return;
+    const arrayOfPackages = widgets.map(({ id }) =>
+      selections[id] ? selections[id] : { dates: [] }
+    );
+    onOrderUpdate(arrayOfPackages);
+  }, [widgets, selections, onOrderUpdate]);
 
+  // Обработка выбора в конкретном виджете
   const handleSelectionChange = useCallback((widgetId, selection) => {
     setSelections((prev) => ({
       ...prev,
@@ -69,36 +73,35 @@ const PackageSelection = ({ onOrderUpdate, className }) => {
     }));
   }, []);
 
+  // Добавление нового виджета
   const addPackageWidget = useCallback(() => {
-    const newId = Date.now();
-    setWidgets((prev) => [...prev, { id: newId }]);
+    setWidgets((prev) => [...prev, { id: Date.now() }]);
   }, []);
 
+  // Удаление виджета
   const removePackageWidget = useCallback(
     (id) => {
-      if (widgets.length > 1) {
-        setWidgets((prev) => prev.filter((widget) => widget.id !== id));
-        setSelections((prev) => {
-          const copy = { ...prev };
-          delete copy[id];
-          return copy;
-        });
-      }
+      if (widgets.length <= 1) return;
+      setWidgets((prev) => prev.filter((w) => w.id !== id));
+      setSelections((prev) => {
+        const copy = { ...prev };
+        delete copy[id];
+        return copy;
+      });
     },
     [widgets]
   );
 
   return (
     <div className={`${styles.container} ${className || ""}`}>
-      {widgets.map((widget, index) => (
+      {widgets.map((widget, idx) => (
         <PackageWidget
           key={widget.id}
+          widgetId={widget.id} // прокидываем widgetId
           packages={DEFAULT_PACKAGES}
-          isFirst={index === 0}
+          isFirst={idx === 0}
           onRemove={() => removePackageWidget(widget.id)}
-          onSelectionChange={(selection) =>
-            handleSelectionChange(widget.id, selection)
-          }
+          onSelectionChange={(sel) => handleSelectionChange(widget.id, sel)}
         />
       ))}
 
@@ -114,7 +117,7 @@ const PackageSelection = ({ onOrderUpdate, className }) => {
 };
 
 PackageSelection.propTypes = {
-  onOrderUpdate: PropTypes.func,
+  onOrderUpdate: PropTypes.func.isRequired,
   className: PropTypes.string,
 };
 

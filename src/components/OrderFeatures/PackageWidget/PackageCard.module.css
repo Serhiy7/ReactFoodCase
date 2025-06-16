@@ -14,9 +14,9 @@
 .packageCard:hover {
   border-color: #0056d3;
 }
+/* выделенная карточка */
 .selected {
   border-color: #0056d3;
-  background: #e6f2ff;
 }
 
 .imageContainer {
@@ -42,6 +42,7 @@
 }
 
 .selectButton {
+  border: 1px solid #0056d3;
   padding: 6px 12px;
   background: #0056d3;
   color: #fff;
@@ -51,9 +52,21 @@
   transition: background 0.3s, color 0.3s;
 }
 .selectButton:hover {
+  background: rgba(0, 0, 0, 0);
+  color: #000;
+}
+
+/* Новые правила для выбранной карточки */
+.packageCard.selected .selectButton {
   background: #fff;
   color: #0056d3;
+  border-color: #0056d3;
 }
+.packageCard.selected .selectButton:hover {
+  background: #0056d3;
+  color: #fff;
+}
+
 @media (min-width: 993px) {
   .selectButton {
     font-size: 18px;

@@ -1,79 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./OrderTotal.module.css";
 
-export default function OrderTotal(props) {
+export default function OrderTotal({
+  order = {},
+  currentStep,
+  onNextStep,
+  onPrevStep,
+  isStep1Valid,
+  isStep2Valid, // <-- принимаем
+}) {
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
 
-  // Определяем режим: пакетный или меню-блюд
-  const isPackageMode = typeof props.packageCount === "number";
+  // Если потеряли валидность шага 1 или 2 — сбрасываем чекбокс
+  useEffect(() => {
+    if (
+      termsAccepted &&
+      ((currentStep === 1 && !isStep1Valid) ||
+        (currentStep === 2 && !isStep2Valid))
+    ) {
+      setTermsAccepted(false);
+    }
+  }, [currentStep, isStep1Valid, isStep2Valid, termsAccepted]);
 
-  // === Пакетный режим ===
-  if (isPackageMode) {
-    const {
-      packageCount,
-      totalWithoutDiscount,
-      discountAmount,
-      totalPrice,
-      onProceedToCheckout,
-    } = props;
-
-    const handleClick = () => {
-      if (!termsAccepted || isProcessing) return;
-      setIsProcessing(true);
-      onProceedToCheckout();
-    };
-
-    return (
-      <div className={styles.orderTotal}>
-        <div className={styles.totalItem}>
-          <b>Liczba pakietów:</b> <span>{packageCount}</span>
-        </div>
-        <div className={styles.totalItem}>
-          <b>Razem bez zniżki:</b>{" "}
-          <span>{totalWithoutDiscount.toFixed(2)} zł</span>
-        </div>
-        {discountAmount > 0 && (
-          <div className={styles.totalItem}>
-            <b>Rabatt:</b> <span>-{discountAmount.toFixed(2)} zł</span>
-          </div>
-        )}
-        <div className={styles.totalItem}>
-          <b>Do zapłaty:</b> <span>{totalPrice.toFixed(2)} zł</span>
-        </div>
-
-        <label className={styles.termsCheckbox}>
-          <input
-            type="checkbox"
-            checked={termsAccepted}
-            onChange={(e) => setTermsAccepted(e.target.checked)}
-          />
-          <span>Akceptuję regulamin</span>
-        </label>
-
-        <button
-          className={`${styles.nextButton} ${
-            !termsAccepted || isProcessing ? styles.disabled : ""
-          }`}
-          onClick={handleClick}
-          disabled={!termsAccepted || isProcessing}
-        >
-          Podaj adres dostawy
-        </button>
-      </div>
-    );
-  }
-
-  // === Меню-блюд режим ===
-  const { order = {}, currentStep, onNextStep, onPrevStep } = props;
   const meals = Array.isArray(order.selectedMeals) ? order.selectedMeals : [];
   const dates = Array.isArray(order.selectedDates) ? order.selectedDates : [];
   const total = meals.reduce((sum, m) => sum + (m.price || 0), 0);
 
   const handleNext = () => {
+    // на шаге 2 блокируем, если форма не валидна
     if (!termsAccepted) return;
     onNextStep();
   };
+
   const handlePay = () => {
     if (!termsAccepted) return;
     setIsProcessing(true);
@@ -98,6 +57,10 @@ export default function OrderTotal(props) {
           type="checkbox"
           checked={termsAccepted}
           onChange={(e) => setTermsAccepted(e.target.checked)}
+          disabled={
+            (currentStep === 1 && !isStep1Valid) ||
+            (currentStep === 2 && !isStep2Valid)
+          }
         />
         <span>Zapoznałem się z regulaminem</span>
       </label>
@@ -105,10 +68,10 @@ export default function OrderTotal(props) {
       {currentStep === 1 && (
         <button
           className={`${styles.nextButton} ${
-            !termsAccepted ? styles.disabled : ""
+            (!termsAccepted || !isStep1Valid) && styles.disabled
           }`}
           onClick={handleNext}
-          disabled={!termsAccepted}
+          disabled={!termsAccepted || !isStep1Valid}
         >
           Podaj adres dostawy
         </button>
@@ -117,10 +80,10 @@ export default function OrderTotal(props) {
       {currentStep === 2 && (
         <button
           className={`${styles.nextButton} ${
-            !termsAccepted ? styles.disabled : ""
+            (!termsAccepted || !isStep2Valid) && styles.disabled
           }`}
           onClick={handleNext}
-          disabled={!termsAccepted}
+          disabled={!termsAccepted || !isStep2Valid}
         >
           Podsumowania zamówienia
         </button>
@@ -129,7 +92,7 @@ export default function OrderTotal(props) {
       {currentStep === 3 && (
         <button
           className={`${styles.payButton} ${
-            isProcessing ? styles.disabled : ""
+            (!termsAccepted || isProcessing) && styles.disabled
           }`}
           onClick={handlePay}
           disabled={!termsAccepted || isProcessing}

@@ -8,7 +8,9 @@ const DeliveryDetailsForm = ({ formData, onChange }) => (
       <div className={styles.title}>Dane kontaktowe:</div>
       <div className={styles.grid}>
         <div className={`${styles.field} ${styles.large}`}>
-          <div className={styles.label}>E-mail</div>
+          <div className={styles.label}>
+            <span className={styles.asterisk}>*</span>E-mail
+          </div>
           <input
             type="email"
             name="email"
@@ -20,7 +22,9 @@ const DeliveryDetailsForm = ({ formData, onChange }) => (
           />
         </div>
         <div className={styles.field}>
-          <div className={styles.label}>Numer telefonu</div>
+          <div className={styles.label}>
+            <span className={styles.asterisk}>*</span>Numer telefonu
+          </div>
           <input
             type="text"
             name="phone"
@@ -32,7 +36,9 @@ const DeliveryDetailsForm = ({ formData, onChange }) => (
           />
         </div>
         <div className={styles.field}>
-          <div className={styles.label}>Pełne imię i nazwisko</div>
+          <div className={styles.label}>
+            <span className={styles.asterisk}>*</span>Pełne imię i nazwisko
+          </div>
           <input
             type="text"
             name="fullname"
@@ -49,9 +55,11 @@ const DeliveryDetailsForm = ({ formData, onChange }) => (
     {/* Адрес */}
     <div className={styles.row}>
       <div className={styles.title}>Dane dostawy:</div>
-      <div className={styles.grid}>
+      <div className={styles.deliveryGrid}>
         <div className={styles.field}>
-          <div className={styles.label}>Ulica</div>
+          <div className={styles.label}>
+            <span className={styles.asterisk}>*</span>Ulica
+          </div>
           <input
             type="text"
             name="street"
@@ -63,7 +71,9 @@ const DeliveryDetailsForm = ({ formData, onChange }) => (
           />
         </div>
         <div className={styles.field}>
-          <div className={styles.label}>Dom</div>
+          <div className={styles.label}>
+            <span className={styles.asterisk}>*</span>Dom
+          </div>
           <input
             type="text"
             name="house_number"
@@ -82,11 +92,13 @@ const DeliveryDetailsForm = ({ formData, onChange }) => (
             value={formData.klatka ?? ""}
             onChange={(e) => onChange(e.target.name, e.target.value)}
             className={styles.input}
-            placeholder="Klatка"
+            placeholder="Klatka"
           />
         </div>
         <div className={styles.field}>
-          <div className={styles.label}>Piętro</div>
+          <div className={styles.label}>
+            <span className={styles.asterisk}>*</span>Piętro
+          </div>
           <input
             type="text"
             name="floor"
@@ -98,7 +110,9 @@ const DeliveryDetailsForm = ({ formData, onChange }) => (
           />
         </div>
         <div className={styles.field}>
-          <div className={styles.label}>Mieszkanie</div>
+          <div className={styles.label}>
+            <span className={styles.asterisk}>*</span>Mieszkanie
+          </div>
           <input
             type="text"
             name="apartment"
@@ -110,7 +124,9 @@ const DeliveryDetailsForm = ({ formData, onChange }) => (
           />
         </div>
         <div className={styles.field}>
-          <div className={styles.label}>Kod do klatki</div>
+          <div className={styles.label}>
+            <span className={styles.asterisk}>*</span>Kod do klatki
+          </div>
           <input
             type="text"
             name="gate_code"

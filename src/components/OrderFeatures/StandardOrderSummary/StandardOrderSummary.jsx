@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import pkgStyles from "./StandardOrderSummary.module.css";
 import PackageSummary from "../PackageWidget/PackageSummary";
 import DeliveryDetailsForm from "../../../components/MenuSelectionFeatures/DeliveryForm/DeliveryDetailsForm/DeliveryDetailsForm";
+import ChangeOrderButton from "../../../components/MenuSelectionFeatures/DeliveryForm/ChangeOrderButton/ChangeOrderButton";
 
 export default function StandardOrderSummary({
   packages,
@@ -15,24 +16,32 @@ export default function StandardOrderSummary({
 
   return (
     <div className={pkgStyles.orderSummary}>
-      <h2>Podsumowanie zamówienia</h2>
+      {/* Заголовок + кнопка «назад» */}
+      <div className={pkgStyles.headerWithBack}>
+        <ChangeOrderButton onBack={onBack} />
+        <h2>Podsumowanie zamówienia</h2>
+      </div>
 
       <div className={pkgStyles.summarySection}>
         <h3>Informacje o zamówieniu</h3>
-        {packages.map((pkg, idx) => (
-          <div key={idx} className={pkgStyles.dateBlock}>
-            <p className={pkgStyles.dateHeader}>Data: {pkg.dates.join(", ")}</p>
-            <div className={pkgStyles.mealsList}>
-              <PackageSummary
-                pkg={pkg.packageData}
-                dates={pkg.dates}
-                priceInfo={pkg}
-                onToggleCalendar={() => {}}
-                onChangeDates={() => {}}
-              />
+        {packages
+          .filter((pkg) => pkg.packageData)
+          .map((pkg, idx) => (
+            <div key={idx} className={pkgStyles.dateBlock}>
+              <p className={pkgStyles.dateHeader}>
+                Data: {pkg.dates.join(", ")}
+              </p>
+              <div className={pkgStyles.mealsList}>
+                <PackageSummary
+                  pkg={pkg.packageData}
+                  dates={pkg.dates}
+                  priceInfo={pkg}
+                  onToggleCalendar={() => {}}
+                  onChangeDates={() => {}}
+                />
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
       </div>
 
       <div className={pkgStyles.summarySection}>
@@ -43,7 +52,11 @@ export default function StandardOrderSummary({
       </div>
 
       <div className={pkgStyles.summaryTotal}>
-        Razem do zapłaty: {packages.reduce((s, p) => s + p.price, 0).toFixed(2)}{" "}
+        Razem do zapłaty:{" "}
+        {packages
+          .filter((pkg) => pkg.packageData)
+          .reduce((s, p) => s + p.price, 0)
+          .toFixed(2)}{" "}
         zł
       </div>
     </div>
@@ -74,4 +87,5 @@ StandardOrderSummary.propTypes = {
     notes: PropTypes.string,
   }).isRequired,
   onBack: PropTypes.func.isRequired,
+  onPlace: PropTypes.func,
 };

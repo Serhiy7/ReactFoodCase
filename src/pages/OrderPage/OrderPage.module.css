@@ -16,12 +16,6 @@
   margin: 0 auto;
 }
 
-/* Дополнительный класс-обёртка, если нужен какой-то специфичный отступ */
-.orderContainer {
-  /* например, можно добавить padding или фон */
-}
-
-/* Заголовок */
 .pageTitle {
   text-align: center;
   margin-bottom: 30px;
@@ -30,20 +24,17 @@
   font-weight: 700;
 }
 
-/* Основная сетка формы + сайдбар */
 .contentGrid {
   display: flex;
   gap: 15px;
   flex-direction: column;
 }
-
 @media (min-width: 767px) {
   .contentGrid {
     flex-direction: row;
   }
 }
 
-/* Левая колонка: визуально как .pageGridMain раньше */
 .mainColumn {
   flex: 1 1 auto;
   display: flex;
@@ -51,40 +42,39 @@
   gap: 20px;
 }
 
-/* Пакетный шаг */
-.packageStep {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-/* Шаг с формой доставки */
 .deliveryStep {
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
-/* Шаг с обзором заказа */
-.summaryStep {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+/* Делает поля именно как на втором скриншоте */
+.deliveryStep input {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  color: #333;
+  box-shadow: none;
+}
+.deliveryStep input:focus {
+  border-color: #0056d3;
+}
+.deliveryStep input:disabled,
+.deliveryStep input[readonly] {
+  background-color: #f6f7fa;
+  opacity: 1;
 }
 
-/* Правая колонка (итоги) */
 .asideColumn {
+  height: 470px;
   flex-shrink: 0;
   background: #fff;
   border-radius: 15px;
   padding: 25px;
-  /* высоту можно убрать или сделать автоматической */
   position: sticky;
   top: 90px;
   max-height: calc(100vh - 40px);
 }
 
-/* Медиа-запросы для крупных экранов */
 @media (min-width: 1201px) {
   .pageMain {
     padding: 70px 0;
@@ -94,4 +84,18 @@
     line-height: 55px;
     margin-bottom: 50px;
   }
+}
+
+.hidden {
+  display: none;
+}
+.background {
+  display: flex;
+
+  flex-direction: column;
+  padding: 25px;
+  flex: 1 1 auto;
+  min-width: 0;
+  border-radius: 15px;
+  background: #fff;
 }

@@ -15,7 +15,6 @@ const MenuSelectionPage = () => {
     { date: "", sniad: null, obiad: null, kolacja: null },
   ]);
 
-  // Подняли стейт формы доставки
   const [deliveryData, setDeliveryData] = useState({
     email: "",
     phone: "",
@@ -29,7 +28,45 @@ const MenuSelectionPage = () => {
     notes: "",
   });
 
-  // Собираем единый заказ
+  // --- валидация шага 1: все три категории должны быть выбраны ---
+  const isStep1Valid = useMemo(() => {
+    return (
+      packages.length > 0 &&
+      packages.every(
+        (pkg) =>
+          pkg.date &&
+          pkg.sniad !== null &&
+          pkg.obiad !== null &&
+          pkg.kolacja !== null
+      )
+    );
+  }, [packages]);
+
+  // --- валидация шага 2: проверяем, что обязательные поля не пустые ---
+  const isStep2Valid = useMemo(() => {
+    const {
+      email,
+      phone,
+      fullname,
+      street,
+      house_number,
+      floor,
+      apartment,
+      gate_code,
+    } = deliveryData;
+    return (
+      email.trim() !== "" &&
+      phone.trim() !== "" &&
+      fullname.trim() !== "" &&
+      street.trim() !== "" &&
+      house_number.trim() !== "" &&
+      floor.trim() !== "" &&
+      apartment.trim() !== "" &&
+      gate_code.trim() !== ""
+    );
+  }, [deliveryData]);
+
+  // сборка order (без изменений) …
   const order = useMemo(() => {
     const selectedMeals = packages
       .flatMap((p) => [p.sniad, p.obiad, p.kolacja].filter(Boolean))
@@ -52,7 +89,7 @@ const MenuSelectionPage = () => {
     };
   }, [packages, deliveryData]);
 
-  // Пакеты
+  // остальной код: addPackage, removePackage, updatePackage, шаги…
   const addPackage = () =>
     setPackages((prev) => [
       ...prev,
@@ -68,7 +105,6 @@ const MenuSelectionPage = () => {
     []
   );
 
-  // Шаги
   const goNextStep = useCallback(
     () => setCurrentStep((s) => Math.min(s + 1, 4)),
     []
@@ -78,21 +114,10 @@ const MenuSelectionPage = () => {
     []
   );
 
-  // Обработчик сабмита формы доставки
   const handleDeliverySubmit = (vals) => {
     setDeliveryData(vals);
     setCurrentStep(3);
   };
-
-  // Проверка первого шага
-  const isStep1Valid = useMemo(() => {
-    return (
-      packages.length > 0 &&
-      packages.every(
-        (pkg) => pkg.date && (pkg.sniad || pkg.obiad || pkg.kolacja)
-      )
-    );
-  }, [packages]);
 
   return (
     <div className={styles.page}>
@@ -142,6 +167,8 @@ const MenuSelectionPage = () => {
                 currentStep={currentStep}
                 onNextStep={goNextStep}
                 onPrevStep={goPrevStep}
+                isStep1Valid={isStep1Valid}
+                isStep2Valid={isStep2Valid} // <-- прокидываем здесь
               />
             </div>
           </div>

@@ -9,9 +9,10 @@ export default function PackageSummary({
   onToggleCalendar,
   onChangeDates,
 }) {
-  const { days, originalPrice, price, discountPercent } = priceInfo;
+  // Если pkg не передали — просто ничего не рендерим
+  if (!pkg) return null;
 
-  // Тот же приём: рисуем картинку по id пакета
+  const { days, originalPrice, price, discountPercent } = priceInfo;
   const imgSrc = `/assets/img/pay/${pkg.id}.png`;
 
   return (
