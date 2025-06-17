@@ -15,7 +15,7 @@ const Logo = () => (
     tabIndex={0}
   >
     <img
-      src="/assets/img/logo.svg"
+      src="/public/assets/img/logo.png"
       alt="Логотип сайта"
       className={styles.logoImage}
       draggable={false}
