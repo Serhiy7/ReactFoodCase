@@ -4,8 +4,6 @@
 .headerWithBack {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 24px;
 }
 .headerWithBack h2 {
   margin: 0;
@@ -25,12 +23,18 @@
   font-family: "Inter", sans-serif;
   color: #333;
 }
+.orderSummary h2 {
+  text-align: center;
+  margin-bottom: 10px;
+}
 
 .summarySection {
   margin-bottom: 2rem;
 }
 
 .summarySection > h3 {
+  text-align: center;
+  width: 100%;
   font-size: 1.25rem;
   font-weight: 600;
   margin: 0 auto 1rem;
@@ -41,28 +45,13 @@
 }
 
 .dateBlock {
-  background: #fdfdfd;
-  border: 1px solid #e8e8e8;
-  border-radius: 12px;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  transition: box-shadow 0.3s ease;
-}
-.dateBlock:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-}
-.dateHeader {
-  font-size: 1.125rem;
-  font-weight: 600;
-  margin-bottom: 0.75rem;
-  color: #111;
+  /* border-radius: 12px; */
 }
 
 .mealsList {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1rem;
-  margin-bottom: 0.75rem;
 }
 
 .summaryTotal {
@@ -73,4 +62,16 @@
   color: #111;
 }
 
+.total-info__grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+@media (min-width: 767px) {
+  .total-info__grid {
+    display: grid;
+    gap: 15px;
+    grid-template-columns: 1fr 1fr;
+  }
+}
 /* ... остальной CSS без изменений ... */

@@ -19,31 +19,31 @@ export default function StandardOrderSummary({
       {/* Заголовок + кнопка «назад» */}
       <div className={pkgStyles.headerWithBack}>
         <ChangeOrderButton onBack={onBack} />
-        <h2>Podsumowanie zamówienia</h2>
       </div>
-
+      <h2>Podsumowanie zamówienia</h2>
       <div className={pkgStyles.summarySection}>
         <h3>Informacje o zamówieniu</h3>
-        {packages
-          .filter((pkg) => pkg.packageData)
-          .map((pkg, idx) => (
-            <div key={idx} className={pkgStyles.dateBlock}>
-              <p className={pkgStyles.dateHeader}>
-                Data: {pkg.dates.join(", ")}
-              </p>
-              <div className={pkgStyles.mealsList}>
-                <PackageSummary
-                  pkg={pkg.packageData}
-                  dates={pkg.dates}
-                  priceInfo={pkg}
-                  onToggleCalendar={() => {}}
-                  onChangeDates={() => {}}
-                />
+        <div className={pkgStyles.totalInfoGrid}>
+          {packages
+            .filter((pkg) => pkg.packageData)
+            .map((pkg, idx) => (
+              <div key={idx} className={pkgStyles.dateBlock}>
+                {/* <p className={pkgStyles.dateHeader}>
+                  Data: {pkg.dates.join(", ")}
+                </p> */}
+                <div className={pkgStyles.mealsList}>
+                  <PackageSummary
+                    pkg={pkg.packageData}
+                    dates={pkg.dates}
+                    priceInfo={pkg}
+                    onToggleCalendar={() => {}}
+                    onChangeDates={() => {}}
+                  />
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+        </div>
       </div>
-
       <div className={pkgStyles.summarySection}>
         <h3>Dane dostawy</h3>
         <div className={pkgStyles.deliveryDetails}>

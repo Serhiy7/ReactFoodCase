@@ -39,7 +39,7 @@ export default function PackageSummary({
           style={{ cursor: "pointer" }}
         >
           <span>Data dostawy:</span>
-          <div>{dates.length ? dates.join(", ") : "kliknij, aby wybrać"}</div>
+          <div>{dates.length ? dates.join(", ") : "     "}</div>
         </div>
 
         <div className={styles.row}>
