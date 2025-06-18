@@ -4,18 +4,18 @@ import styles from "./Feedback.module.css";
 const Feedback = () => {
   return (
     <div className={styles.feedback}>
-      <div className={styles.feedback__title}>Feedback</div>
+      <div className={styles.feedback__title}>Twoje uwagi dotyczące diety</div>
       <form className={styles.feedback__form}>
         <div className={styles.feedback__field}>
-          <label className={styles.feedback__label}>Name:</label>
+          <label className={styles.feedback__label}>Twoje imię:</label>
           <input className={styles.feedback__input} type="text" name="name" />
         </div>
         <div className={styles.feedback__field}>
-          <label className={styles.feedback__label}>Email:</label>
+          <label className={styles.feedback__label}>Twój email:</label>
           <input className={styles.feedback__input} type="email" name="email" />
         </div>
         <div className={styles.feedback__field}>
-          <label className={styles.feedback__label}>Message:</label>
+          <label className={styles.feedback__label}>Twój komentarz:</label>
           <textarea
             className={styles.feedback__textarea}
             name="message"

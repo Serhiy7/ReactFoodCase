@@ -5,59 +5,19 @@ import AdvantageItem from "./AdvantageItem/AdvantageItem";
 const Advantages = () => {
   const advantages = [
     {
-      icon: (
-        <svg
-          width="37"
-          height="37"
-          viewBox="0 0 37 37"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          {/* SVG content */}
-        </svg>
-      ),
+      icon: <img src="/assets/img/promo/free.png" alt="free" />,
       text: "Bezpłatna dostawa na terenie miasta Kraków",
     },
     {
-      icon: (
-        <svg
-          width="37"
-          height="37"
-          viewBox="0 0 37 37"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          {/* SVG content */}
-        </svg>
-      ),
+      icon: <img src="/assets/img/promo/car.png" alt="car" />,
       text: "Dostawa od poniedziałku do soboty do godziny 8 rano",
     },
     {
-      icon: (
-        <svg
-          width="32"
-          height="32"
-          viewBox="0 0 32 32"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          {/* SVG content */}
-        </svg>
-      ),
+      icon: <img src="/assets/img/promo/dataP.png" alt="dataP" />,
       text: "Zamawiaj dostawę na dogodną dla Ciebie liczbę dni.",
     },
     {
-      icon: (
-        <svg
-          width="32"
-          height="32"
-          viewBox="0 0 32 32"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          {/* SVG content */}
-        </svg>
-      ),
+      icon: <img src="/assets/img/promo/time.png" alt="time" />,
       text: "Zamówienia przyjmowane są do godziny 21:00 dnia przed dostawą",
     },
   ];

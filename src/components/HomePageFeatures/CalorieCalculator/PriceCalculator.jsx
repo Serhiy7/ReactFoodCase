@@ -167,7 +167,9 @@ const PriceCalculator = () => {
       </button>
 
       {modalOpen && (
-        <div className={styles.calculatorModal}>
+        <div
+          className={`${styles.calculatorModal} ${styles.calculatorModalOpen}`}
+        >
           <div className={styles.modalInner}>
             <button
               className={styles.modalClose}

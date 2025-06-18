@@ -2,10 +2,12 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  background-color: #fff;
+  padding: 30px;
 }
 
 .calculator:not(:first-child) {
-  margin-top: 35px;
+  margin-top: 25px;
 }
 
 .calculatorTitle {
@@ -71,6 +73,19 @@
   margin-top: 25px;
   margin-left: auto;
   margin-right: auto;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 20px;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  color: #fff;
+  background: #0056d3;
+  border: 1px solid #0056d3;
+  transition: 0.5s;
 }
 
 .calculatorModal {
@@ -88,7 +103,10 @@
   visibility: hidden;
   transition: 0.05s;
 }
-
+.calculatorModalOpen {
+  opacity: 1;
+  visibility: visible;
+}
 .calculatorModal.show {
   opacity: 1;
   visibility: visible;
@@ -143,7 +161,20 @@
   font-weight: 700;
   color: green;
 }
-
+.modalButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 20px;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  color: #fff;
+  background: #0056d3;
+  border: 1px solid #0056d3;
+  transition: 0.5s;
+}
 .modalButton span {
   display: inline-flex;
   margin: 0 5px;
@@ -241,7 +272,7 @@ input[type="range"]::-ms-thumb {
 
 @media (min-width: 993px) {
   .calculator:not(:first-child) {
-    margin-top: 70px;
+    margin-top: 40px;
   }
 
   .calculatorTitle {
