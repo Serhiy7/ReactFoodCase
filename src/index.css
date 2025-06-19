@@ -160,7 +160,7 @@ template {
 body {
   font: 400 18px/22px Montserrat, sans-serif;
   color: #000;
-  background: #f6f7fa;
+  /* background: #f6f7fa; */
 }
 h1,
 h2,
@@ -199,11 +199,4 @@ a:hover,
 button:hover {
   transition: 0.5s;
   cursor: pointer;
-}
-
-.main-content {
-  padding: 0 15px;
-  width: 100%;
-  max-width: 1470px;
-  margin: 0 auto;
 }

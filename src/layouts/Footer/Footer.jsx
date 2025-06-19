@@ -26,8 +26,7 @@ const Footer = () => {
             </div>
           </div>
           <div className={styles.footer__email}>
-            Email:{" "}
-            <a href="mailto:biuro@foodcasepl.com">biuro@foodcasepl.com</a>
+            Email: <a href="#">for@example.com</a>
           </div>
         </div>
         <div className={styles.footer__right}>

@@ -1,9 +1,9 @@
 // constants/footerData.js
 export const FOOTER_LINKS = [
-  { path: "/index.php", label: "Strona główna", isAnchor: false },
-  { path: "#menu", label: "Zobacz menu", isAnchor: true },
-  { path: "/prices/", label: "Zobacz ceny", isAnchor: false },
-  { path: "/privacy_policy/", label: "Polityka prywatności", isAnchor: false },
+  { path: "/", label: "Strona glowna", isAnchor: false },
+  { path: "/order", label: "Standardowe menu", isAnchor: true },
+  { path: "/pricing", label: "Nasze Ceny", isAnchor: false },
+  { path: "/privacy-policy", label: "Polityka", isAnchor: false },
   { path: "/regulamin/", label: "Regulamin", isAnchor: false },
 ];
 
@@ -13,6 +13,6 @@ export const PAYMENT_METHODS = [
 ];
 
 export const SOCIAL_LINKS = {
-  email: "mailto:biuro@foodcasepl.com",
-  instagram: "https://www.instagram.com/foodcase_krakow",
+  email: "mailto:forexample.com",
+  instagram: "https://www.instagram.com",
 };
